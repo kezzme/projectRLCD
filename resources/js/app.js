@@ -1,0 +1,11 @@
+import './bootstrap';
+import './main';
+import './bootstrap.bundle.min.js';
+import './wow.min.js';
+import './easing.min.js';
+import './waypoints.min.js';
+import './counterup.min.js';
+import './owl.carousel.js';
+import './moment.min,js';
+import './moment-timezone.min.js';
+import './tempusdominus-bootstrap-4.min.js';
