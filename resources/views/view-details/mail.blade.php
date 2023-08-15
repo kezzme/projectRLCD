@@ -1,17 +1,5 @@
-<x-mail-layout>
-    <div class="container-fluid bg-secondary py-5 my-5 wow fadeInUp justify-content-center" data-wow-delay="0.1s">
-        <div class="container ">
+@component('mail::message')
+{{  $appointDetails['title'] }}
 
-    <div class="card text-center btn-rounded">
-        <div class="card-header">
-          Message
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">{{ $appointDetails['title'] }}</h5>
-            <p class="card-text">{{ $appointDetails['body'] }}</p>
-    </div>
-  </div>
-</div>
-</div>
-
-</x-mail-layout>
+{{  $appointDetails['body'] }}
+@endcomponent

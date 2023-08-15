@@ -68,22 +68,22 @@
   </li><!-- End Financing Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#trade-in-nav" data-bs-toggle="collapse" href="#">
+    <a class="nav-link {{ is_active_route(['system.trade_in.requests', 'system.trade_in.status', 'system.trade_in.traded'], 'collapsed') }}" data-bs-target="#trade-in-nav" data-bs-toggle="collapse" href="#">
     <i class="fa-solid fa-handshake-simple"></i><span>Trade-in</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-    <ul id="trade-in-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <ul id="trade-in-nav" class="nav-content collapse {{ is_active_route(['system.trade_in.requests', 'system.trade_in.status', 'system.trade_in.traded']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
       <li>
-        <a href="{{ route('system.trade_in.requests') }}">
+        <a class="{{ is_active_route('system.trade_in.requests') }}" href="{{ route('system.trade_in.requests') }}">
           <i class="fa-regular fa-circle"></i><span>Trade Requests</span>
         </a>
       </li>
       <li>
-        <a href="{{ route('system.trade_in.status') }}">
+        <a class="{{ is_active_route('system.trade_in.status') }}" href="{{ route('system.trade_in.status') }}">
           <i class="fa-regular fa-circle"></i><span>Trade-in Status</span>
         </a>
       </li>
       <li>
-        <a href="{{ route('system.trade_in.traded') }}">
+        <a class="{{ is_active_route('system.trade_in.traded') }}" href="{{ route('system.trade_in.traded') }}">
           <i class="fa-regular fa-circle"></i><span>Traded Units</span>
         </a>
       </li>
@@ -91,17 +91,17 @@
   </li><!-- End Trade-in Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#receipts-nav" data-bs-toggle="collapse" href="#">
+    <a class="nav-link {{ is_active_route(['system.receipts.acknowledgment', 'system.receipts.records'], 'collapsed') }}" data-bs-target="#receipts-nav" data-bs-toggle="collapse" href="#">
     <i class="fa-solid fa-file-pen"></i><span>Receipts</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-    <ul id="receipts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <ul id="receipts-nav" class="nav-content collapse {{ is_active_route(['system.receipts.acknowledgment', 'system.receipts.records']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
       <li>
-        <a href="{{ route('system.receipts.acknowledgment') }}">
+        <a class="{{ is_active_route('system.receipts.acknowledgment') }}" href="{{ route('system.receipts.acknowledgment') }}">
           <i class="fa-regular fa-circle"></i><span>Acknowledgment Receipt</span>
         </a>
       </li>
       <li>
-        <a href="{{ route('system.receipts.records') }}">
+        <a class="{{ is_active_route('system.receipts.records') }}" href="{{ route('system.receipts.records') }}">
           <i class="fa-regular fa-circle"></i><span>Records</span>
         </a>
       </li>
@@ -109,37 +109,27 @@
   </li><!-- End Receipts Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#walkin-nav" data-bs-toggle="collapse" href="#">
+    <a class="nav-link {{ is_active_route(['system.walk_in.trades', 'system.walk_in.carwash', 'system.walk_in.detailing', 'system.walk_in.paintjob'], 'collapsed') }}" data-bs-target="#walkin-nav" data-bs-toggle="collapse" href="#">
     <i class="fa-solid fa-shoe-prints"></i><span>Walk-in</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-    <ul id="walkin-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <ul id="walkin-nav" class="nav-content collapse {{ is_active_route(['system.walk_in.trades', 'system.walk_in.carwash', 'system.walk_in.detailing', 'system.walk_in.paintjob']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
       <li>
-        <a href="{{ route('system.walk_in.unit') }}">
-          <i class="fa-regular fa-circle"></i><span>Unit</span>
-        </a>
-      </li>
-      <li>
-        <a href="{{ route('system.walk_in.financing') }}">
-          <i class="fa-regular fa-circle"></i><span>Financing</span>
-        </a>
-      </li>
-      <li>
-        <a href="{{ route('system.walk_in.trades') }}">
+        <a class="{{ is_active_route('system.walk_in.trades') }}" href="{{ route('system.walk_in.trades') }}">
           <i class="fa-regular fa-circle"></i><span>Trade-in</span>
         </a>
       </li>
       <li>
-        <a href="{{ route('system.walk_in.carwash') }}">
+        <a class="{{ is_active_route('system.walk_in.carwash') }}" href="{{ route('system.walk_in.carwash') }}">
           <i class="fa-regular fa-circle"></i><span>Car Wash</span>
         </a>
       </li>
       <li>
-        <a href="{{ route('system.walk_in.detailing') }}">
+        <a class="{{ is_active_route('system.walk_in.detailing') }}" href="{{ route('system.walk_in.detailing') }}">
           <i class="fa-regular fa-circle"></i><span>Auto Detailing</span>
         </a>
       </li>
       <li>
-      <a href="{{ route('system.walk_in.paintjob') }}">
+      <a class="{{ is_active_route('system.walk_in.paintjob') }}" href="{{ route('system.walk_in.paintjob') }}">
           <i class="fa-regular fa-circle"></i><span>Paint Job</span>
         </a>
       </li>
@@ -150,17 +140,17 @@
   <li class="nav-heading">Services</li>
 
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#car-wash-nav" data-bs-toggle="collapse" href="#">
+    <a class="nav-link {{ is_active_route(['system.carwash.confirmation', 'system.carwash.records'], 'collapsed') }}" data-bs-target="#car-wash-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-droplet-fill"></i><span>Car Wash</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-    <ul id="car-wash-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <ul id="car-wash-nav" class="nav-content collapse {{ is_active_route(['system.carwash.confirmation', 'system.carwash.records']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
       <li>
-      <a href="{{ route('system.carwash.confirmation') }}">
+      <a class="{{ is_active_route('system.carwash.confirmation') }}" href="{{ route('system.carwash.confirmation') }}">
           <i class="fa-regular fa-circle"></i><span>Confirmation</span>
         </a>
       </li>
       <li>
-      <a href="{{ route('system.carwash.records') }}">
+      <a class="{{ is_active_route('system.carwash.records') }}" href="{{ route('system.carwash.records') }}">
           <i class="fa-regular fa-circle"></i><span>Records</span>
         </a>
       </li>
@@ -168,22 +158,22 @@
   </li><!-- End Car Wash Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#auto-detailing-nav" data-bs-toggle="collapse" href="#">
+    <a class="nav-link {{ is_active_route(['system.auto_detailing.confirmation', 'system.auto_detailing.payment', 'system.auto_detailing.records'], 'collapsed') }}" data-bs-target="#auto-detailing-nav" data-bs-toggle="collapse" href="#">
     <i class="fa-solid fa-screwdriver-wrench"></i><span>Auto Detailing</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-    <ul id="auto-detailing-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <ul id="auto-detailing-nav" class="nav-content collapse {{ is_active_route(['system.auto_detailing.confirmation', 'system.auto_detailing.payment', 'system.auto_detailing.records']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
       <li>
-        <a href="{{ route('system.auto_detailing.confirmation') }}">
+        <a class="{{ is_active_route('system.auto_detailing.confirmation') }}" href="{{ route('system.auto_detailing.confirmation') }}">
           <i class="fa-regular fa-circle"></i><span>Confirmation</span>
         </a>
       </li>
       <li>
-        <a href="{{ route('system.auto_detailing.payment') }}">
+        <a class="{{ is_active_route('system.auto_detailing.payment') }}" href="{{ route('system.auto_detailing.payment') }}">
           <i class="fa-regular fa-circle"></i><span>Payment</span>
         </a>
       </li>
       <li>
-        <a href="{{ route('system.auto_detailing.records') }}">
+        <a class="{{ is_active_route('system.auto_detailing.records') }}" href="{{ route('system.auto_detailing.records') }}">
           <i class="fa-regular fa-circle"></i><span>Records</span>
         </a>
       </li>
@@ -191,22 +181,22 @@
   </li><!-- End Auto Detailing Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#paint-job-nav" data-bs-toggle="collapse" href="#">
+    <a class="nav-link {{ is_active_route(['system.paintjob.confirmation', 'system.paintjob.payment', 'system.paintjob.records'], 'collapsed') }}" data-bs-target="#paint-job-nav" data-bs-toggle="collapse" href="#">
     <i class="fa-solid fa-spray-can"></i><span>Paint Job</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-    <ul id="paint-job-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <ul id="paint-job-nav" class="nav-content collapse {{ is_active_route(['system.paintjob.confirmation', 'system.paintjob.payment', 'system.paintjob.records']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
       <li>
-        <a href="{{ route('system.paintjob.confirmation') }}">
+        <a class="{{ is_active_route('system.paintjob.confirmation') }}" href="{{ route('system.paintjob.confirmation') }}">
           <i class="fa-regular fa-circle"></i><span>Confirmation</span>
         </a>
       </li>
       <li>
-        <a href="{{ route('system.paintjob.payment') }}">
+        <a class="{{ is_active_route('system.paintjob.payment') }}" href="{{ route('system.paintjob.payment') }}">
           <i class="fa-regular fa-circle"></i><span>Payment</span>
         </a>
       </li>
       <li>
-        <a href="{{ route('system.paintjob.records') }}">
+        <a class="{{ is_active_route('system.paintjob.records') }}" href="{{ route('system.paintjob.records') }}">
           <i class="fa-regular fa-circle"></i><span>Records</span>
         </a>
       </li>

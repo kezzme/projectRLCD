@@ -144,7 +144,11 @@ Route::prefix('system')->name('system.')->group(function(){
     }); 
         Route::prefix('receipts')->name('receipts.')->group(function(){
             Route::get('/acknowledgment_receipt', [ReceiptsController::class, 'ackReceipts'])->name('acknowledgment');
+            Route::post('/acknowledgment_receipt/store', [ReceiptsController::class, 'store'])->name('store');  
+            Route::post('/acknowledgment_receipt/process/toSold', [ReceiptsController::class, 'toSold'])->name('toSold');
+            Route::post('/acknowledgment_receipt/process/toAppointment', [ReceiptsController::class, 'toAppointment'])->name('toAppointment');
             Route::get('/records', [ReceiptsController::class, 'records'])->name('records');
+           
     });             
         Route::prefix('walk_in')->name('walk_in.')->group(function(){
             Route::get('/unit', [WalkInController::class, 'unit'])->name('unit');

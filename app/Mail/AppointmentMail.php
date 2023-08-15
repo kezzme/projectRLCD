@@ -42,7 +42,7 @@ class AppointmentMail extends Mailable
     // }
     public function build()
         {
-            return $this->view('view-details.mail');
+            return $this->markdown('view-details.mail');
         }
 
     /**

@@ -32,8 +32,8 @@
                   </p>
                   <div class="">
                     <a class="add-to-cart" href="">
-                    <i class="fa-regular fa-eye"></i>
-                            View Details
+                    <i class="fa-solid fa-pen-to-square"></i>
+                            Edit Details
                     </a>
                  </div>
                </div>

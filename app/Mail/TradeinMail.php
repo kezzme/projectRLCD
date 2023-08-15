@@ -42,7 +42,7 @@ class TradeinMail extends Mailable
     // }
     public function build()
     {
-        return $this->view('trade-in.mail');
+        return $this->markdown('trade-in.mail');
     }
 
     /**

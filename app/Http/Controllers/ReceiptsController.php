@@ -12,7 +12,7 @@ class ReceiptsController extends Controller
     public function ackReceipts(){
         $units = Units::all();
 
-        $idNumber = User::max('id');
+        $idNumber = ReceiptRecords::max('id');
 
         $tnxNumber = ReceiptRecords::max('TNX_No');
 
@@ -44,4 +44,30 @@ class ReceiptsController extends Controller
     public function records(){
         return view('system.receipts.records');
     }
+
+    public function store(Request $request) {
+        $action = $request->input('action');
+
+        if ($action === 'SOLD') {
+            // Logic to store the request as SOLD
+            return redirect()->route('system.receipts.toSold');
+        } elseif ($action === 'RESERVED') {
+            // Logic to store the request as RESERVED
+            return redirect()->route('system.receipts.toAppointment');
+        }
+        
+        // Handle other cases or provide a default redirect
+        return back()->with('success', 'Record stored successfully');
+
+    }
+    
+
+    public function toSold(Request $request){
+        dd($request);
+    }
+
+    public function toAppointment(Request $request){
+        dd($request);
+    }
+
 }

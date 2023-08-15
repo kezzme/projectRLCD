@@ -17,7 +17,7 @@
       <div class="col-12">
         <div class="card recent-sales overflow-auto rounded-5">
 
-          <div class="card-body">
+          <div class="card-body table-responsive">
             <h5 class="card-title card-header">Client Records</h5>
             @if ($paintjob_records->isEmpty())
             <p>No Listings</p>
@@ -50,6 +50,8 @@
                     <td style="text-transform: uppercase">{{$records->car_variant}}</td>
                     <td style="text-transform: uppercase">{{$records->unit_plate_no}}</td>
                     <td>{{ strtoupper(\Carbon\Carbon::parse($records->date)->format('F-d-Y')) }}</td>
+                    <td>{{$records->panel}}</td>
+                    <td>₱{{ number_format($records->amount, 0, '.', ',') }}</td>
                   </tr>
                @endforeach
               </tbody>
@@ -58,7 +60,7 @@
               {{ $paintjob_records->links() }}
             </div>
           </div>
-
+          @endif
         </div>
       </div><!-- End Recent Sales -->
     </section>
