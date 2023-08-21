@@ -64,8 +64,8 @@
                           </select>
                           <input type="hidden" name="status" value="">
                           <td>
-                            <button type="button" class="btn btn-danger" onclick="showConfirmationModal('Void', {{$payment->id}})"><i class="fa-solid fa-user-xmark"></i></button>
-                            <button type="button" class="btn btn-success" onclick="showConfirmationModal('Confirm', {{$payment->id}})"><i class="fa-solid fa-user-check"></i></button>
+                            <button type="button" class="btn btn-danger" onclick="showConfirmationModal('Void', {{$finCon->id}})"><i class="fa-solid fa-user-xmark"></i></button>
+                            <button type="button" class="btn btn-success" onclick="showConfirmationModal('Confirm', {{$finCon->id}})"><i class="fa-solid fa-user-check"></i></button>
                             <button type="submit" class="btn btn-primary" style="display: none;">Confirm</button>
                         </td>
                         </form>

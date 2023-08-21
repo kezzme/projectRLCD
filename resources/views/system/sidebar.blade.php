@@ -50,6 +50,13 @@
   </li><!-- End Appointment Nav -->
 
   <li class="nav-item">
+    <a class="nav-link {{ is_active_route(['system.appointments.appointments'], 'collapsed') }}" href="{{ route('system.appointments.appointments') }}">
+      <i class="fa-solid fa-file-circle-check"></i>
+      <span>Reservation</span>
+    </a>
+  </li><!-- End Reservation Nav -->
+
+  <li class="nav-item">
     <a class="nav-link {{ is_active_route(['system.financing.confirmation', 'system.financing.status'], 'collapsed') }}" data-bs-target="#financing-nav" data-bs-toggle="collapse" href="#">
     <i class="fa-solid fa-credit-card"></i><span>Financing</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>

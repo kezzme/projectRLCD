@@ -13,18 +13,22 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id');
             $table->string('uid');
-            $table->string('car_year');
+            $table->integer('car_year');
             $table->string('car_make');
             $table->string('car_model');
             $table->string('car_variant');
+            $table->string('car_plate_no');
+            $table->integer('car_price');
+            $table->string('image');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('phone');
-            $table->string('price');
+            $table->string('contact');
+            $table->string('email')->nullable();
             $table->date('date');
-            $table->string('time');
+            $table->string('time')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

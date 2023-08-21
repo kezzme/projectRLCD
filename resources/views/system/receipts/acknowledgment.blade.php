@@ -1,5 +1,9 @@
   <x-system-layout>
 
+@if (session('error'))
+  <div class="alert alert-danger">{{ session('error') }}</div>
+@endif
+
   <main id="main" class="main">
       <div class="row">
         <div class="pagetitle col-md-8">
@@ -21,7 +25,7 @@
           <div class="card recent-sales overflow-auto rounded-5">
             <div class="card-body table-responsive">
               <h3 class="card-title text-center" style="font-size: 30px;">ACKNOWLEDGMENT RECEIPT</h3>
-              <form class="row g-3" action="{{ route('system.receipts.store') }}" method="POST">
+              <form class="row g-3" action="{{ route('system.receipts.store') }}" method="POST" onsubmit="return validateForm()">
                 @csrf
                 <div class="col-md-3">
                   <div class=" input-group">
@@ -42,7 +46,7 @@
     <div class="col-md-12">
       <div class="input-group">
         <label class="col-md-3 input-group-text ">Received from Mr./Mrs.</label>
-        <input type="text" name="receive_from" class="form-control" style="text-transform: capitalize" required>
+        <input type="text" name="received_from" class="form-control" style="text-transform: capitalize" required>
       </div>
     </div>
     <div class="col-md-12">
@@ -113,19 +117,19 @@
   <div class="col-md-6">
     <div class=" input-group">
         <div class="col-md-3 input-group-text justify-content-center">Balance</div>
-      <input type="text" id="balance" name="balance" class="form-control total_price" maxlength="7" readonly required>
+      <input type="text" id="balance" name="balance" class="form-control total_price" maxlength="7" value="0" onblur="handleBlur(this)">
     </div>
   </div>
   <div class="col-md-6">
     <div class="input-group">
       <label class="col-md-3 input-group-text justify-content-center">Deposit</label>
-      <input type="text" id="deposit" name="deposit" class="form-control" maxlength="7" readonly required>
+      <input type="text" id="deposit" name="deposit" class="form-control total_price" maxlength="7" value="0" onblur="handleBlur(this)">
     </div>
   </div>
   <div class="col-md-6">
     <div class=" input-group">
-      <label class="col-md-3 input-group-text justify-content-center">Due Date</label required>
-      <input type="date" name="due_date" class="form-control" >
+      <label class="col-md-3 input-group-text justify-content-center">Due Date</label>
+      <input type="date" name="due_date" class="form-control">
     </div>
   </div>
   <div class="col-md-12">
@@ -152,10 +156,10 @@
   </div>
   @endforeach
 
-    <input type="text" class="form-control" name="user_id" value="{{$nextidNumber}}">
-    <input type="text" class="form-control" id="uid" name="uid">
-    <input type="text" class="form-control" id="image" name="image">
-    <input type="text" class="form-control" id="car_price" name="car_price">
+    <input type="text" class="form-control hidden" name="user_id" value="{{$nextidNumber}}">
+    <input type="text" class="form-control hidden" id="uid" name="uid">
+    <input type="text" class="form-control hidden" id="image" name="image">
+    <input type="text" class="form-control hidden" id="car_price" name="car_price">
     
     <div class="col-md-4">
       <label class="form-label">Conforme:</label>
@@ -206,15 +210,16 @@
         </button>
         <ul class="dropdown-menu">
           <li>
-            <button class="dropdown-item" type="button" onclick="setAction('SOLD')">SOLD</button>
+            <button class="dropdown-item" type="button" onclick="showConfirmationModal('SOLD')">SOLD</button>
           </li>
           <li>
-            <button class="dropdown-item" type="button" onclick="setAction('RESERVED')">RESERVED</button>
+            <button class="dropdown-item" type="button" onclick="showConfirmationModal('RESERVED')">RESERVED</button>
           </li>
         </ul>
         <input type="hidden" name="action" id="action" value="">
       </div>
-    </div>
+      
+      
   
     
   </form>
@@ -250,13 +255,89 @@
     </div>
   </div>
 
+  <div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="validationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="validationModalLabel">Validation Error</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p id="validationMessage"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="confirmationMessage">
+          <!-- The confirmation message will be inserted here -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="confirmActionButton">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  @if(session('success'))
+  <div class="position-fixed bottom-0 end-0 w-40 mx-3 mb-3">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fa-solid fa-circle-check"></i> {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+  @endif
 
 
   </x-system-layout>
 
+  <script>
+function validateForm() {
+  const requiredFields = document.querySelectorAll('[required]');
+  for (const field of requiredFields) {
+    if (!field.value.trim()) {
+      const errorMessage = 'Please fill out all required fields before submitting.';
+      showModal(errorMessage);
+      field.focus();
+      return false;
+    }
+  }
+     
+      return true;
+    }
+
+  function showModal(message) {
+    const validationMessage = document.getElementById('validationMessage');
+    validationMessage.textContent = message;
+    const validationModal = new bootstrap.Modal(document.getElementById('validationModal'));
+    validationModal.show();
+}
+  </script>
+
 <script>
-  function setAction(action) {
+ function handleBlur(input) {
+  if (input.value === '') {
+    input.value = '0';
+  }
+}
+
+ function setAction(action) {
+    document.getElementById('action').value = action;
+    const isValid = validateForm();
+    if (isValid) {
+
     document.getElementById('action').value = action;
 
     // Depending on the action, set the form action attribute
@@ -269,6 +350,7 @@
     // Submit the form
     document.querySelector('form').submit();
   }
+}
 </script>
 
 
@@ -304,7 +386,7 @@
   });
 
   const priceInput = document.getElementById("price");
-    const depositInput = document.getElementById("deposit");
+   
     const agreedPriceInput = document.getElementById("agreed_price");
     const balanceInput = document.getElementById("balance");
 
@@ -322,15 +404,7 @@
       }
     });
 
-    // Event listener for agreed_price input value change
-    agreedPriceInput.addEventListener("input", function () {
-      updateBalance();
-    });
-
-    // Event listener for deposit input value change
-    depositInput.addEventListener("input", function () {
-      updateBalance();
-    });
+    
 
     // Function to update the balance input based on agreed price and deposit values
     function updateBalance() {
@@ -539,4 +613,27 @@
       });
     
     });
+
+    $(document).ready(function() {
+    setTimeout(function() {
+        $(".alert").alert('close');
+    }, 3000);
+});
+
+    function showConfirmationModal(action) {
+    const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+    const confirmActionButton = document.getElementById('confirmActionButton');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    
+    // Set the confirmation message based on the action
+    confirmationMessage.textContent = `Are you sure you want to mark this as ${action.toLowerCase()}?`;
+    
+    confirmActionButton.onclick = function() {
+      setAction(action.toUpperCase());
+      confirmationModal.hide();
+    };
+
+    confirmationModal.show();
+  }
+
   </script>

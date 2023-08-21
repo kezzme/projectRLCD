@@ -16,7 +16,7 @@
                                 <div class="col-10 col-lg-7 text-center text-lg-start">
                                     <h6 class="text-white text-uppercase mb-3 animated slideInDown">// Car Servicing //</h6>
                                     <h1 class="display-3 text-white mb-4 pb-3 animated slideInDown">Quality Car Wash Service Center</h1>
-                                    <a href="" class="btn btn-primary py-3 px-5 animated slideInDown">Book Now<i class="fa fa-arrow-right ms-3"></i></a>
+                                    <a href="{{ route('services.carwash')}}" class="btn btn-primary py-3 px-5 animated slideInDown">Book Now<i class="fa fa-arrow-right ms-3"></i></a>
                                 </div>
                                 <div class="col-lg-5 d-none d-lg-flex animated zoomIn">
                                     <img class="img-fluid" src="img/carousel-1.png" alt="">
@@ -33,7 +33,7 @@
                                 <div class="col-10 col-lg-7 text-center text-lg-start">
                                     <h6 class="text-white text-uppercase mb-3 animated slideInDown">// Car Servicing //</h6>
                                     <h1 class="display-3 text-white mb-4 pb-3 animated slideInDown">Quality Auto Detailing Service Center</h1>
-                                    <a href="" class="btn btn-primary py-3 px-5 animated slideInDown">Book Now<i class="fa fa-arrow-right ms-3"></i></a>
+                                    <a href="{{ route('services.auto-detailing')}}" class="btn btn-primary py-3 px-5 animated slideInDown">Book Now<i class="fa fa-arrow-right ms-3"></i></a>
                                 </div>
                                 <div class="col-lg-5 d-none d-lg-flex animated zoomIn">
                                     <img class="img-fluid" src="img/carousel-2.png" alt="">
@@ -50,7 +50,7 @@
                                 <div class="col-10 col-lg-7 text-center text-lg-start">
                                     <h6 class="text-white text-uppercase mb-3 animated slideInDown">// Car Servicing //</h6>
                                     <h1 class="display-3 text-white mb-4 pb-3 animated slideInDown">Quality Paint Job Service Center</h1>
-                                    <a href="" class="btn btn-primary py-3 px-5 animated slideInDown">Book Now<i class="fa fa-arrow-right ms-3"></i></a>
+                                    <a href="{{ route('services.paintjob')}}" class="btn btn-primary py-3 px-5 animated slideInDown">Book Now<i class="fa fa-arrow-right ms-3"></i></a>
                                 </div>
                                 <div class="col-lg-5 d-none d-lg-flex animated zoomIn">
                                     <img class="img-fluid" src="img/carousel-3.png" alt="">

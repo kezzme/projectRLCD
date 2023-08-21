@@ -126,6 +126,7 @@ Route::prefix('system')->name('system.')->group(function(){
             Route::post('/process/soldunits/{id}', [SystemAppointmentController::class, 'toSoldunits'])->name('toSoldunits');
             Route::post('/process/financing/{id}', [SystemAppointmentController::class, 'toFinancing'])->name('toFinancing');
     });
+        Route::get('/reservations', [SystemCalendarController::class, 'calendar'])->name('calendar');
 
         Route::prefix('financing')->name('financing.')->group(function(){
             Route::get('/confirmation', [FinancingController::class, 'fiConfirmation'])->name('confirmation');

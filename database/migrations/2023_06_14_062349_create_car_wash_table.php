@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('contact');
+            $table->string('email');
             $table->string('car_make');
             $table->string('car_model');
-            $table->string('plate_no');
+            $table->string('unit_plate_no');
             $table->string('body_type');
             $table->decimal('amount', 8, 2); 
             $table->date('date');

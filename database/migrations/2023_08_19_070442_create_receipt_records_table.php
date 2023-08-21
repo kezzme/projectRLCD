@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('TNX_No');
             $table->date('date');
-            $table->string('receive_from');
+            $table->string('received_from');
             $table->string('postal_address');
             $table->string('amount');
             $table->integer('price');
