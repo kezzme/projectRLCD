@@ -36,7 +36,8 @@
                   <th scope="col" class="align-middle">Price</th>
                   <th scope="col" class="align-middle">Date</th>
                   <th scope="col" class="align-middle">Time</th>
-                  <th colspan="2" style="text-align: center;" class="align-middle">Transaction Type</th>
+                  <th scope="col" class="align-middle">Void</th>
+                  <th scope="col" class="align-middle">Receipt</th>
                 </tr>
               </thead>
               <tbody>
@@ -54,13 +55,13 @@
                   <td>₱{{ number_format($app->car_price, 0, '.', ',') }}</td>
                   <td>{{$app->date}}</td>
                   <td>{{$app->time}}</td>
-                  <form action="{{ route('system.appointments.toSoldunits', ['id' => $app->id]) }}" method="POST">
+                  <form action="{{ route('system.appointments.toVoid', ['id' => $app->id]) }}" method="POST">
                   @csrf
-                  <td><button type="button" class="btn btn-danger" onclick="showCashModal(this.form)">Cash</button></td>
+                  <td><button type="button" class="btn btn-danger" onclick="showVoid(this.form)"><i class="fa-solid fa-user-xmark"></i></button></td>
                 </form>
-                <form action="{{ route('system.appointments.toFinancing', ['id' => $app->id]) }}" method="POST">
+                <form action="{{ route('system.appointments.toReceipt', ['id' => $app->id]) }}" method="POST">
                   @csrf
-                  <td><button type="button" class="btn btn-success" onclick="showFinancingModal(this.form)">Financing</button></td>
+                  <td class="text-center"><button type="button" class="btn btn-success" onclick="showCashModal(this.form)"><i class="fa-solid fa-file-circle-plus"></i></button></td>
                 </form>
                 </tr>
                 @endforeach
@@ -86,7 +87,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-              Are you sure you want to mark it as Sold Unit?
+              Are you sure you want to make a receipt?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -103,7 +104,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body">
-            Are you sure you want to mark it as Financed Unit?
+            Are you sure you want to mark it as Void?
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -143,7 +144,7 @@
     });
   }
 
-  function showFinancingModal(form) {
+  function showVoid(form) {
     // Show the confirmation modal
     $('#confirmationFinancingModal').modal('show');
 

@@ -43,15 +43,15 @@
   </li><!-- End Calendar Nav -->
 
   <li class="nav-item">
-    <a class="nav-link {{ is_active_route(['system.appointments.appointments'], 'collapsed') }}" href="{{ route('system.appointments.appointments') }}">
+    <a class="nav-link {{ is_active_route(['system.appointments.appointments', 'system.appointments.toReceipt'], 'collapsed') }}" href="{{ route('system.appointments.appointments') }}">
     <i class="fa-solid fa-calendar-check"></i>
       <span>Appointment</span>
     </a>
   </li><!-- End Appointment Nav -->
 
   <li class="nav-item">
-    <a class="nav-link {{ is_active_route(['system.appointments.appointments'], 'collapsed') }}" href="{{ route('system.appointments.appointments') }}">
-      <i class="fa-solid fa-file-circle-check"></i>
+    <a class="nav-link {{ is_active_route(['system.reservations.reservation'], 'collapsed') }}" href="{{ route('system.reservations.reservation') }}">
+      <i class="fa-solid fa-user-clock"></i>
       <span>Reservation</span>
     </a>
   </li><!-- End Reservation Nav -->

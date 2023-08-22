@@ -18,9 +18,9 @@
     
             <div class="card-body table-responsive">
                 <h5 class="card-title card-header">Client Confirmation</h5>
-                {{-- @if ($appointments->isEmpty())
+                @if ($reservation->isEmpty())
                 <p>No Listings</p>
-              @else --}}
+              @else
              
                 <table id="soldUnitsTable" class="table table-condensed table-hover" cellspacing="0" width="100%" >
                   <thead class="table-success">
@@ -40,37 +40,37 @@
                     </tr>
                   </thead>
                   <tbody>
-{{--                     
-                    @foreach ($appointments as $app)
-                     <tr id="row_{{ $app->id }}">
-                      <th scope="row"><a href="#">{{$app->user_id}}</a></th>
-                      <td>{{$app->first_name}} {{$app->last_name}}</td>
-                      <td>{{$app->contact}}</td>
-                      <td>{{$app->car_year}}</td>
-                      <td>{{$app->car_make}}</td>
-                      <td>{{$app->car_model}}</td>
-                      <td>{{$app->car_variant}}</td>
-                      <td>{{$app->car_plate_no}}</td>
-                      <td>₱{{ number_format($app->car_price, 0, '.', ',') }}</td>
-                      <td>{{$app->date}}</td>
-                      <td>{{$app->time}}</td>
-                      <form action="{{ route('system.appointments.toSoldunits', ['id' => $app->id]) }}" method="POST">
+                    
+                    @foreach ($reservation as $reserve)
+                     <tr id="row_{{ $reserve->id }}">
+                      <th scope="row"><a href="#">{{$reserve->user_id}}</a></th>
+                      <td>{{$reserve->first_name}} {{$reserve->last_name}}</td>
+                      <td>{{$reserve->contact}}</td>
+                      <td>{{$reserve->car_year}}</td>
+                      <td>{{$reserve->car_make}}</td>
+                      <td>{{$reserve->car_model}}</td>
+                      <td>{{$reserve->car_variant}}</td>
+                      <td>{{$reserve->car_plate_no}}</td>
+                      <td>₱{{ number_format($reserve->car_price, 0, '.', ',') }}</td>
+                      <td>{{$reserve->date}}</td>
+                      <td>{{$reserve->time}}</td>
+                      <form action="{{ route('system.appointments.toSoldunits', ['id' => $reserve->id]) }}" method="POST">
                       @csrf
                       <td><button type="button" class="btn btn-danger" onclick="showCashModal(this.form)">Cash</button></td>
                     </form>
-                    <form action="{{ route('system.appointments.toFinancing', ['id' => $app->id]) }}" method="POST">
+                    <form action="{{ route('system.appointments.toFinancing', ['id' => $reserve->id]) }}" method="POST">
                       @csrf
                       <td><button type="button" class="btn btn-success" onclick="showFinancingModal(this.form)">Financing</button></td>
                     </form>
                     </tr>
-                    @endforeach --}}
+                    @endforeach
                   </tbody>
                 </table>
-                {{-- <div class="d-flex justify-content-center">
-                  {{ $appointments->links() }}
-                </div> --}}
+                <div class="d-flex justify-content-center">
+                  {{ $reservation->links() }}
+                </div>
               </div>
-              {{-- @endif --}}
+              @endif
     
             </div>
           </div><!-- End Recent Sales -->

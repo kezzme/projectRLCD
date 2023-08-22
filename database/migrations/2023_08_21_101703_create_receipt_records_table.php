@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -14,21 +15,21 @@ return new class extends Migration
         Schema::create('receipt_records', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->bigInteger('TNX_No');
+            $table->unsignedBigInteger('TNX_No')->unique();
             $table->date('date');
             $table->string('received_from');
             $table->string('postal_address');
             $table->string('amount');
             $table->integer('price');
-            $table->integer('uid'); //check
+            $table->integer('uid');
             $table->integer('car_year');
             $table->string('car_make');
             $table->string('car_model');
             $table->string('car_variant');
             $table->string('exterior_color');
-            $table->string('car_price'); //check
+            $table->string('car_price');
             $table->string('car_plate_no');
-            $table->string('image'); //check
+            $table->string('image');
             $table->integer('agreed_price');
             $table->integer('balance');
             $table->integer('deposit');
@@ -42,6 +43,14 @@ return new class extends Migration
             $table->string('client_contact');
             $table->timestamps();
         });
+
+        DB::unprepared('
+        CREATE TRIGGER increment_TNX_No BEFORE INSERT ON receipt_records
+        FOR EACH ROW
+        BEGIN
+            SET NEW.TNX_No = IFNULL((SELECT MAX(TNX_No) FROM receipt_records), 1002023100) + 1;
+        END;
+    ');
     }
 
     /**

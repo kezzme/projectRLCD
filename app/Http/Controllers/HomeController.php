@@ -23,9 +23,5 @@ class HomeController extends Controller
     public function contact() {
         return view('landing.contact');
     }
-    public function sample(){
-        $details = 'jonny';
-        Mail::to('fake@gmail.com')->send(new BookingMail($details, 'landing.mail'));
-        return view('landing.sample');
-    }
+    
 }

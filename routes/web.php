@@ -13,6 +13,7 @@ use App\Http\Controllers\SystemCalendarController;
 use App\Http\Controllers\SystemAppointmentController;
 use App\Http\Controllers\FinancingController;
 use App\Http\Controllers\ReceiptsController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\SystemAutoDetailingController;
 use App\Http\Controllers\SystemCarwashController;
 use App\Http\Controllers\SystemPaintjobController;
@@ -123,10 +124,18 @@ Route::prefix('system')->name('system.')->group(function(){
 
         Route::prefix('appointments')->name('appointments.')->group(function(){
             Route::get('/', [SystemAppointmentController::class, 'appointments'])->name('appointments');
+            Route::post('/process/receipt/{id}', [SystemAppointmentController::class, 'toReceipt'])->name('toReceipt');
+            Route::post('/process/receipt/store/{id}', [SystemAppointmentController::class, 'store'])->name('store'); 
+            Route::post('/process/receipt/reservation/{id}', [SystemAppointmentController::class, 'toReservation'])->name('toReservation');
             Route::post('/process/soldunits/{id}', [SystemAppointmentController::class, 'toSoldunits'])->name('toSoldunits');
             Route::post('/process/financing/{id}', [SystemAppointmentController::class, 'toFinancing'])->name('toFinancing');
+            Route::post('/process/void/{id}', [SystemAppointmentController::class, 'toVoid'])->name('toVoid');
     });
-        Route::get('/reservations', [SystemCalendarController::class, 'calendar'])->name('calendar');
+
+        Route::prefix('reservations')->name('reservations.')->group(function(){
+            Route::get('/', [ReservationController::class, 'reservation'])->name('reservation');
+       
+    });
 
         Route::prefix('financing')->name('financing.')->group(function(){
             Route::get('/confirmation', [FinancingController::class, 'fiConfirmation'])->name('confirmation');

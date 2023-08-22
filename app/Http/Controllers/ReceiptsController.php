@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointments;
 use App\Models\ReceiptRecords;
+use App\Models\Reservations;
 use App\Models\Soldunits;
 use App\Models\User;
 use App\Models\Units;
@@ -112,6 +113,7 @@ class ReceiptsController extends Controller
     }
 
     public function toAppointment(Request $request){
+        // dd($request);
         $price = str_replace(',', '', $request->input('price'));
         $agreedPrice = str_replace(',', '', $request->input('agreed_price'));
         $balance = str_replace(',', '', $request->input('balance'));
@@ -148,7 +150,7 @@ class ReceiptsController extends Controller
         ]);
 
          // Clone and store in SoldUnits table
-            $appointmentInfo = new Appointments();
+            $appointmentInfo = new Reservations();
             $appointmentInfo->fill($arInfo->toArray());
             $appointmentInfo->car_price = str_replace(',', '', $request->input('agreed_price'));
             $appointmentInfo->save();
