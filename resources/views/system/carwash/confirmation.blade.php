@@ -42,7 +42,7 @@
           <tbody>
             @foreach ($carwashes as $carwash)
             <tr>
-              <th scope="row"><a href="#">{{$carwash->id}}</a></th>
+              <th scope="row"><a href="#">{{$carwash->user_id}}</a></th>
               <td>{{$carwash->first_name}} {{$carwash->last_name}}</td>
               <td>{{ substr_replace(substr_replace($carwash->contact, '-', 4, 0), '-', 8, 0) }}</td>
               <td style="text-transform: capitalize">{{$carwash->car_make}}</td>

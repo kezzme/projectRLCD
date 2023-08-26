@@ -7,7 +7,7 @@
       <main id="main" class="main">
           <div class="row">
             <div class="pagetitle col-md-8">
-              <h1>Appointment</h1>
+              <h1>Acknowledgment Receipt</h1>
                 <nav>
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -95,7 +95,7 @@
       <div class="col-md-6">
         <div class=" input-group">
           <label class="col-md-3 input-group-text justify-content-center">Color</label>
-          <input type="text" name="exterior_color" id="exterior_color" class="form-control" style="text-transform: capitalize" required>
+          <input type="text" name="exterior_color" id="exterior_color" class="form-control" style="text-transform: capitalize" value="{{$toReceipt->exterior_color}}" readonly>
         </div>
       </div>
       <div class="col-md-6">
@@ -317,7 +317,7 @@
         
             // Depending on the action, set the form action attribute
             if (action === 'SOLD') {
-              document.querySelector('form').action = "{{ route(''system.receipts.toSold'') }}";
+              document.querySelector('form').action = "{{ route('system.appointments.toSold', ['id'=>$toReceipt->id]) }}";
             } else if (action === 'RESERVED') {
               document.querySelector('form').action = "{{ route('system.appointments.toReservation', ['id'=>$toReceipt->id]) }}";
             }

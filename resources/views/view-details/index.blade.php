@@ -337,6 +337,7 @@
               <input type="text" class="hidden" name="car_price" value="{{$units->price}}" readonly>
               <input type="text" class="hidden" name="car_plate_no" value="{{$units->plate_no}}" readonly>
               <input type="text" class="hidden" name="image" value="{{$units->image}}" readonly>
+              <input type="text" class="hidden" name="exterior_color" value="{{$units->exterior_color}}" readonly>
               
               <div class="col-12">
                 <button class="btn btn-secondary w-100 py-3 mt-1 btn-rounded" type="submit">Submit</button>

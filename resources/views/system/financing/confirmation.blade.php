@@ -58,14 +58,14 @@
                           @csrf
                           <select name="financing_bank" class="form-select" aria-label="Default select example">
                               <option value="JACCS" selected>JACCS</option>
-                              <option value="Global Domination">Global Domination</option>
+                              <option value="Global Domination">Global Dominion</option>
                               <option value="Primary">Primary</option>
                               <option value="Asialink">Asialink</option>
                           </select>
                           <input type="hidden" name="status" value="">
                           <td>
-                            <button type="button" class="btn btn-danger" onclick="showConfirmationModal('Void', {{$finCon->id}})"><i class="fa-solid fa-user-xmark"></i></button>
-                            <button type="button" class="btn btn-success" onclick="showConfirmationModal('Confirm', {{$finCon->id}})"><i class="fa-solid fa-user-check"></i></button>
+                            <button type="button" class="btn btn-danger" onclick="showConfirmationModal('Reject', {{$finCon->id}})"><i class="fa-solid fa-user-xmark"></i></button>
+                            <button type="button" class="btn btn-success" onclick="showConfirmationModal('Approve', {{$finCon->id}})"><i class="fa-solid fa-user-check"></i></button>
                             <button type="submit" class="btn btn-primary" style="display: none;">Confirm</button>
                         </td>
                         </form>

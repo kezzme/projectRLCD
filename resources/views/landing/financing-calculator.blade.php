@@ -45,7 +45,7 @@
               <label for="interestRate" class="input-group-text bg-secondary text-light btn-rounded" style="height: 45px;">Choose Bank:</label>
               <select class="form-select btn-rounded" id="interestRate" required>
                 <option value="1.5">JACCS - 1.5%</option>
-                <option value="1.3">Global Domination - 1.3%</option>
+                <option value="1.3">Global Dominion - 1.3%</option>
                 <option value="1.3">Primary - 1.3%</option>
                 <option value="1.4">Asialink - 1.4%</option>
               </select>

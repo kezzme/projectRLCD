@@ -143,10 +143,10 @@ class SystemAppointmentController extends Controller
                 $appointmentToDelete->delete();
             }
 
-        return back()->with('success', 'Acknowledgment Receipt stored successfully');
+            return redirect()->route('system.appointments.appointments')->with('success', 'Acknowledgment Receipt (Sold) stored successfully');
     }
    
-    
+
     public function toReservation(Request $request){
         // dd($request);
         $price = str_replace(',', '', $request->input('price'));
@@ -195,7 +195,7 @@ class SystemAppointmentController extends Controller
                 $appointmentToDelete->delete();
             }
 
-        return redirect()->route('system.appointments.appointments')->with('success', 'Acknowledgment Receipt stored successfully');
+        return redirect()->route('system.appointments.appointments')->with('success', 'Acknowledgment Receipt (Reserved) stored successfully');
     }
 
 }

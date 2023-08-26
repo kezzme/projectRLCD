@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('car_make');
             $table->string('car_model');
             $table->string('car_variant');
+            $table->string('exterior_color');
             $table->string('car_plate_no');
             $table->integer('car_price');
             $table->string('image');

@@ -3,11 +3,11 @@
     <main id="main" class="main">
     
         <div class="pagetitle">
-          <h1>Appointment</h1>
+          <h1>Reservation</h1>
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-              <li class="breadcrumb-item active">Appointment</li>
+              <li class="breadcrumb-item active">Reservation</li>
             </ol>
           </nav>
         </div><!-- End Page Title -->
@@ -17,7 +17,7 @@
             <div class="card recent-sales overflow-auto rounded-5">
     
             <div class="card-body table-responsive">
-                <h5 class="card-title card-header">Client Confirmation</h5>
+                <h5 class="card-title card-header">Client List</h5>
                 @if ($reservation->isEmpty())
                 <p>No Listings</p>
               @else
@@ -35,7 +35,6 @@
                       <th scope="col" class="align-middle">Plate No.</th>
                       <th scope="col" class="align-middle">Price</th>
                       <th scope="col" class="align-middle">Date</th>
-                      <th scope="col" class="align-middle">Time</th>
                       <th colspan="2" style="text-align: center;" class="align-middle">Transaction Type</th>
                     </tr>
                   </thead>
@@ -53,12 +52,11 @@
                       <td>{{$reserve->car_plate_no}}</td>
                       <td>₱{{ number_format($reserve->car_price, 0, '.', ',') }}</td>
                       <td>{{$reserve->date}}</td>
-                      <td>{{$reserve->time}}</td>
-                      <form action="{{ route('system.appointments.toSoldunits', ['id' => $reserve->id]) }}" method="POST">
+                      <form action="{{ route('system.reservations.toSoldunits', ['id' => $reserve->id]) }}" method="POST">
                       @csrf
                       <td><button type="button" class="btn btn-danger" onclick="showCashModal(this.form)">Cash</button></td>
                     </form>
-                    <form action="{{ route('system.appointments.toFinancing', ['id' => $reserve->id]) }}" method="POST">
+                    <form action="{{ route('system.reservations.toFinancing', ['id' => $reserve->id]) }}" method="POST">
                       @csrf
                       <td><button type="button" class="btn btn-success" onclick="showFinancingModal(this.form)">Financing</button></td>
                     </form>

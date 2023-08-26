@@ -137,39 +137,39 @@
 
       <div class="col-md-3">
         <label>Front-right</label>
-        <input type="file" class="form-control" id="inputGroupFile02">
+        <input type="file" class="form-control" accept="image/*">
       </div>
       <div class="col-md-3">
         <label>Front-left</label>
-        <input type="file" class="form-control" id="inputGroupFile02">
+        <input type="file" class="form-control" accept="image/*">
       </div>
       <div class="col-md-3">
         <label>Rear-right</label>
-        <input type="file" class="form-control" id="inputGroupFile02">
+        <input type="file" class="form-control" accept="image/*">
       </div>
       <div class="col-md-3">
         <label>Rear-left</label>
-        <input type="file" class="form-control" id="inputGroupFile02">
+        <input type="file" class="form-control" accept="image/*">
       </div>
       <div class="col-md-3">
         <label>Dashboard</label>
-        <input type="file" class="form-control" id="inputGroupFile02">
+        <input type="file" class="form-control" accept="image/*">
       </div>
       <div class="col-md-3">
         <label>Front Seats</label>
-        <input type="file" class="form-control" id="inputGroupFile02">
+        <input type="file" class="form-control" accept="image/*">
       </div>
       <div class="col-md-3">
         <label>Rear Seats</label>
-        <input type="file" class="form-control" id="inputGroupFile02">
+        <input type="file" class="form-control" accept="image/*">
       </div>
       <div class="col-md-3">
         <label>Engine Bay</label>
-        <input type="file" class="form-control" id="inputGroupFile02">
+        <input type="file" class="form-control" accept="image/*">
       </div>     
       <div class="col-md-3">
         <label>Tires</label>
-        <input type="file" class="form-control" id="inputGroupFile02">
+        <input type="file" class="form-control" accept="image/*">
       </div>   
 
 

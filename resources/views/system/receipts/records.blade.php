@@ -32,9 +32,6 @@
                     <th scope="col">TXN No.</th>
                     <th scope="col">Name</th>
                     <th scope="col">Contact</th>
-                    <th scope="col">Postal Address</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Price</th>
                     <th scope="col">Year</th>
                     <th scope="col">Make</th>
                     <th scope="col">Model</th>
@@ -45,10 +42,9 @@
                     <th scope="col">Agreed Price</th>
                     <th scope="col">Balance</th>
                     <th scope="col">Deposit</th>
-                    <th scope="col">Due Date</th>
-                    <th scope="col">Required Documents</th>
-                    <th scope="col">Witness</th>
                     <th scope="col">Date</th>
+                    {{-- <th scope="col">Required Documents</th> --}}
+                    <th scope="col">Due Date</th>
                     <th scope="col">Received By</th>
                   </tr>
                 </thead>
@@ -57,10 +53,7 @@
                   <tr>
                     <th scope="row">{{$records->TNX_No}}</th>
                     <td>{{$records->first_name}} {{$records->last_name}}</td>
-                    <td>{{ substr_replace(substr_replace($records->contact, ' ', 4, 0), ' ', 8, 0) }}</td>
-                    <td>{{$records->postal_address}}</td>
-                    <td>{{$records->amount}}</td>
-                    <td>₱{{ number_format($records->price, 0, '.', ',') }}</td>
+                    <td>{{ substr_replace(substr_replace($records->contact, ' ', 4, 0), ' ', 8, 0) }}</td>      
                     <td>{{$records->car_year}}</td>
                     <td>{{$records->car_make}}</td>
                     <td>{{$records->car_model}}</td>
@@ -71,18 +64,24 @@
                     <td>₱{{ number_format($records->agreed_price, 0, '.', ',') }}</td>
                     <td>₱{{ number_format($records->balance, 0, '.', ',' ?? 0) }}</td>
                     <td>₱{{ number_format($records->deposit, 0, '.', ',' ?? 0) }}</td>
-                    <td>{{ strtoupper(\Carbon\Carbon::parse($records->due_date)->format('F-d-Y')) }}</td>
+                    <td>{{ strtoupper(\Carbon\Carbon::parse($records->date)->format('F-d-Y')) }}</td>
                     <td>
-                      @if ($records->checkboxes)
+                      @if ($records->due_date)
+                      {{ strtoupper(\Carbon\Carbon::parse($records->due_date)->format('F-d-Y')) }}
+                      @else
+                      
+                      @endif
+                    </td>
+                    {{-- <td>
+                      @if ($records->checkboxes === null)
+                      No Documents Submitted
+                  @elseif (is_array(json_decode($records->checkboxes)))
                       @foreach (json_decode($records->checkboxes) as $checkbox)
                           {{ $checkbox }}<br>
                       @endforeach
-                    @else
-                        No Documents Submitted
-                    @endif
-                    </td>
-                    <td>{{$records->witness}}</td>
-                    <td>{{ strtoupper(\Carbon\Carbon::parse($records->date)->format('F-d-Y')) }}</td>
+                  @endif
+                    </td> --}}
+                    
                     <td>{{$records->client_name}}</td>
                   </tr>
                   @endforeach

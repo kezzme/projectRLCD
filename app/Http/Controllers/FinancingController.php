@@ -21,8 +21,14 @@ class FinancingController extends Controller
           $finStatusTable->fill($financing_confirmation->toArray());
           $finStatusTable->financing_bank = $request->input('financing_bank');
           $finStatusTable->status = $request->input('status');
-         //  dd($finStatusTable);
+        
           $finStatusTable->save();
+        
+         $cloned_confirmation = clone $financing_confirmation;
+         
+          $toSoldtable = new Soldunits;
+          $toSoldtable->fill($cloned_confirmation->toArray());
+          $toSoldtable->save();
   
           $financing_confirmation->delete();
   

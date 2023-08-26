@@ -16,6 +16,7 @@ class Appointments extends Model
         'car_make', 
         'car_model', 
         'car_variant', 
+        'exterior_color', 
         'car_price',
         'car_plate_no', 
         'image',
