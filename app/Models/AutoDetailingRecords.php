@@ -21,7 +21,6 @@ class AutoDetailingRecords extends Model
         'car_variant',
         'unit_plate_no',
         'date',
-        'time',
         'amount',
        
     ];

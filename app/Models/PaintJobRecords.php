@@ -20,9 +20,9 @@ class PaintJobRecords extends Model
         'car_model',
         'car_variant',
         'unit_plate_no',
-        'date',
-        'time',
+        'panel',
         'amount',
+        'date',
     ];
     
 }

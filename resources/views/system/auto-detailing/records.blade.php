@@ -27,7 +27,7 @@
         <table id="dtHorizontalExample" class="table table-condensed table-hover" cellspacing="0" width="100%" >
           <thead class="table-success">
             <tr>
-              <th scope="col" class="align-middle">ID</th>
+              <th scope="col" class="align-middle">TNX No</th>
               <th scope="col" class="align-middle">Name</th>
               <th scope="col" class="align-middle">Phone</th>
               <th scope="col" class="align-middle">Year</th>
@@ -42,7 +42,7 @@
           <tbody>
             @foreach ($auto_detailing_records as $records)
             <tr>
-              <th scope="row">{{$records->user_id}}</th>
+              <th scope="row">{{$records->TNX_No3}}</th>
               <td>{{$records->first_name}} {{$records->last_name}}</td>
               <td>{{ substr_replace(substr_replace($records->contact, '-', 4, 0), '-', 8, 0) }}</td>
               <td>{{$records->car_year}}</td>

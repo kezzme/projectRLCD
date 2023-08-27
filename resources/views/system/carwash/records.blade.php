@@ -26,7 +26,7 @@
             <table id="dtHorizontalExample" class="table table-condensed table-hover" cellspacing="0" width="100%" >
               <thead class="table-success">
                 <tr>
-                  <th scope="col">ID</th>
+                  <th scope="col">TNX No</th>
                   <th scope="col">Name</th>
                   <th scope="col">Phone</th>
                   <th scope="col">Make</th>
@@ -40,10 +40,8 @@
                 </thead>
                 <tbody>
                   @foreach ($records as $record)
-                    
-                  @endforeach
                   <tr>
-                    <th scope="row">{{$record->user_id}}</th>
+                    <th scope="row">{{$record->TNX_No2}}</th>
                     <td>{{$record->first_name}} {{$record->last_name}}</td>
                     <td>{{ substr_replace(substr_replace($record->contact, '-', 4, 0), '-', 8, 0) }}</td>
                     <td style="text-transform: capitalize">{{$record->car_make}}</td>
@@ -54,6 +52,7 @@
                     <td>{{ strtoupper(\Carbon\Carbon::parse($record->date)->format('F-d-Y')) }}</td>
                     <td>₱{{ $record->amount}}</td>
                   </tr>
+                   @endforeach
               </tbody>
             </table>
             <div class="d-flex justify-content-center">

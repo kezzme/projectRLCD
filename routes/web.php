@@ -162,12 +162,15 @@ Route::prefix('system')->name('system.')->group(function(){
            
     });             
         Route::prefix('walk_in')->name('walk_in.')->group(function(){
-            Route::get('/unit', [WalkInController::class, 'unit'])->name('unit');
-            Route::get('/financing', [WalkInController::class, 'financing'])->name('financing');
             Route::get('/trade_in', [WalkInController::class, 'trades'])->name('trades');
             Route::get('/carwash', [WalkInController::class, 'carwash'])->name('carwash');
+            Route::post('/carwash/process', [WalkInController::class, 'carwash_store'])->name('carwash_store');
+
             Route::get('/auto_detailing', [WalkInController::class, 'detailing'])->name('detailing');
+            Route::post('/auto_detailing/process', [WalkInController::class, 'detailing_store'])->name('detailing_store');
+            
             Route::get('/paintjob', [WalkInController::class, 'paintjob'])->name('paintjob');
+            Route::post('/paintjob/process', [WalkInController::class, 'paintjob_store'])->name('paintjob_store');
     });  
         Route::prefix('carwash')->name('carwash.')->group(function(){
             Route::get('/confirmation', [SystemCarwashController::class, 'confirmation'])->name('confirmation');

@@ -12,28 +12,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carwash_records', function (Blueprint $table) {
+        Schema::create('auto_detailing_records', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->unsignedBigInteger('TNX_No')->unique();
+            $table->unsignedBigInteger('TNX_No3')->unique();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('contact');
+            $table->integer('car_year');
             $table->string('car_make');
             $table->string('car_model');
+            $table->string('car_variant');
             $table->string('unit_plate_no');
-            $table->string('body_type');
-            $table->decimal('amount', 8, 2); 
             $table->date('date');
-            $table->text('special_request')->nullable();
+            $table->integer('amount');
             $table->timestamps();
         });
 
         DB::unprepared('
-        CREATE TRIGGER increment_TNX_No BEFORE INSERT ON receipt_records
+        CREATE TRIGGER increment_TNX_No3 BEFORE INSERT ON auto_detailing_records
         FOR EACH ROW
         BEGIN
-            SET NEW.TNX_No = IFNULL((SELECT MAX(TNX_No) FROM receipt_records), 3002023100) + 1;
+            SET NEW.TNX_No3 = IFNULL((SELECT MAX(TNX_No3) FROM auto_detailing_records), 4002023100) + 1;
         END;
     ');
     }
@@ -43,6 +43,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carwash_records');
+        Schema::dropIfExists('auto_detailing_records');
     }
 };

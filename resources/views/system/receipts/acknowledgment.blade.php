@@ -227,6 +227,7 @@
             </div>
           </div>
         </div><!-- End Recent Sales -->
+        
       </section>
 
     </main><!-- End #main -->
@@ -303,28 +304,28 @@
 
   </x-system-layout>
 
-  <script>
-function validateForm() {
-  const requiredFields = document.querySelectorAll('[required]');
-  for (const field of requiredFields) {
-    if (!field.value.trim()) {
-      const errorMessage = 'Please fill out all required fields before submitting.';
-      showModal(errorMessage);
-      field.focus();
-      return false;
+<script>
+  function validateForm() {
+    const requiredFields = document.querySelectorAll('[required]');
+    for (const field of requiredFields) {
+      if (!field.value.trim()) {
+        const errorMessage = 'Please fill out all required fields before submitting.';
+        showModal(errorMessage);
+        field.focus();
+        return false;
+      }
     }
-  }
-     
-      return true;
-    }
+      
+        return true;
+      }
 
-  function showModal(message) {
-    const validationMessage = document.getElementById('validationMessage');
-    validationMessage.textContent = message;
-    const validationModal = new bootstrap.Modal(document.getElementById('validationModal'));
-    validationModal.show();
-}
-  </script>
+    function showModal(message) {
+      const validationMessage = document.getElementById('validationMessage');
+      validationMessage.textContent = message;
+      const validationModal = new bootstrap.Modal(document.getElementById('validationModal'));
+      validationModal.show();
+  }
+</script>
 
 <script>
  function handleBlur(input) {
