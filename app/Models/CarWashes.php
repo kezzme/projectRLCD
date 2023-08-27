@@ -29,7 +29,7 @@ class CarWashes extends Model
         'amount' => 'decimal:2', // 2 decimal places
     ];
 
-    public function userCarWashes(){
+    public function carwashes(){
         return $this->belongsTo(User::class, 'user_id');
     }
 }

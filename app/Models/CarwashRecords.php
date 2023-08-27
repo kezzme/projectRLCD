@@ -15,7 +15,6 @@ class CarwashRecords extends Model
         'first_name',
         'last_name',
         'contact',
-        'email',
         'car_make',
         'car_model',
         'unit_plate_no',
@@ -28,4 +27,6 @@ class CarwashRecords extends Model
     protected $casts = [
         'amount' => 'decimal:2', // 2 decimal places
     ];
+
+    
 }

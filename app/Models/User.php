@@ -45,7 +45,7 @@ class User extends Authenticatable
         return $this->hasOne(AutoDetailing::class, 'user_id');
     }
 
-    public function carwashes(){
+    public function userCarWashes(){
         return $this->hasOne(CarWashes::class, 'user_id');
     }
 

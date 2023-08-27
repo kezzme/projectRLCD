@@ -12,6 +12,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\SystemCalendarController;
 use App\Http\Controllers\SystemAppointmentController;
 use App\Http\Controllers\FinancingController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReceiptsController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\SystemAutoDetailingController;
@@ -42,6 +43,12 @@ use App\Http\Middleware\SystemRoleMiddleware;
 // });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth'])->group(function(){
+    Route::prefix('profile')->name('profile.')->group(function(){
+        Route::get('/booked/services', [ProfileController::class, 'booked_services'])->name('booked_services');
+});
+});
 
 Route::middleware(['auth'])->group(function(){
     Route::prefix('services')->name('services.')->group(function(){

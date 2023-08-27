@@ -110,8 +110,19 @@ class ServiceController extends Controller
         ]);
         
         $details = [
+            'user_id'=> $request->input('user_id'),
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'car_make' => $request->input('car_make'),
+            'car_model' => $request->input('car_model'),
+            'unit_plate_no' => $request->input('unit_plate_no'),
+            'body_type' => $request->input('body_type'),
+            'amount' => $request->input('amount'),
+            'date' => $requestedDate,
+            'time' => $requestedTime,
+            'special_request' => $request->input('special_request'),
             'title' => 'Booking Car Wash Service Complete',
-            'body' => 'Your car wash form is successfully submitted, please present it on your arrival.'
+            'body' => 'When you arrive, kindly present it.'
         ];
 
         Mail::to($cwInfo->userCarWashes->email)->send(new BookingMail($details, 'services.mail'));

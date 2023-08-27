@@ -10,14 +10,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a class="nav-item nav-link @if(Route::currentRouteName() == 'home') active @endif" href="{{ route('home') }}">Home</a>
+                <a class="nav-item nav-link  {{ is_active_route(['home']) }}" href="{{ route('home') }}">Home</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
                     <div class="dropdown-menu fade-up m-0">
                         @auth
-                        <a class="dropdown-item @if(Route::currentRouteName() == 'carwash') active @endif" href="{{ route('services.carwash') }}">Carwash</a>
-                        <a class="dropdown-item @if(Route::currentRouteName() == 'auto-detailing') active @endif" href="{{ route('services.auto-detailing') }}">Auto Detailing</a>
-                        <a class="dropdown-item @if(Route::currentRouteName() == 'paintjob') active @endif" href="{{ route('services.paintjob') }}">Paint Job</a>
+                        <a class="dropdown-item {{ is_active_route(['services.carwash']) }}" href="{{ route('services.carwash') }}">Carwash</a>
+                        <a class="dropdown-item {{ is_active_route(['services.auto-detailing']) }}" href="{{ route('services.auto-detailing') }}">Auto Detailing</a>
+                        <a class="dropdown-item {{ is_active_route(['services.paintjob']) }}" href="{{ route('services.paintjob') }}">Paint Job</a>
                         @else
                         <a class="dropdown-item" data-bs-toggle="modal" href="#ServiceModalToggle">Carwash</a>
                         <a class="dropdown-item" data-bs-toggle="modal" href="#ServiceModalToggle">Auto Detailing</a>
@@ -26,14 +26,14 @@
                     </div>
                 </div>
                 
-                <a class="nav-item nav-link @if(Route::currentRouteName() == 'vehicles') active @endif" href="{{ route('vehicles') }}">Vehicles</a>
+                <a class="nav-item nav-link {{ is_active_route(['vehicles']) }}" href="{{ route('vehicles') }}">Vehicles</a>
                 
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-up m-0">
-                        <a class="dropdown-item @if(Route::currentRouteName() == 'new-arrival') active @endif" href="{{ route('new-arrival') }}" >New Arrival</a>
-                        <a class="dropdown-item @if(Route::currentRouteName() == 'financing-calculator') active @endif" href="{{ route('financing-calculator') }}">Financing Calculator</a>
-                        <a class="dropdown-item @if(Route::currentRouteName() == 'about') active @endif" href="{{ route('about') }}">About</a>
+                        <a class="dropdown-item {{ is_active_route(['new-arrival']) }}" href="{{ route('new-arrival') }}" >New Arrival</a>
+                        <a class="dropdown-item {{ is_active_route(['financing-calculator']) }}" href="{{ route('financing-calculator') }}">Financing Calculator</a>
+                        <a class="dropdown-item {{ is_active_route(['about']) }}" href="{{ route('about') }}">About</a>
                        
                     </div>
                 </div>
@@ -46,7 +46,7 @@
             <a class="btn btn-primary py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">Hi, {{auth()->user()->first_name}}</a>
             <div class="dropdown-menu fade-up w-100 ">
                     
-                        <button class="dropdown-item @if(Route::currentRouteName() == 'booked') active @endif"><i class="fa-solid fa-bookmark"></i> Booked Services</button>
+                        <a class="dropdown-item {{ is_active_route(['profile.booked_services']) }}" href="{{route('profile.booked_services')}}"><i class="fa-solid fa-bookmark"></i> Booked Services</a>
                         <button class="dropdown-item @if(Route::currentRouteName() == 'trade-in-request') active @endif"><i class="fa-solid fa-right-left"></i> Trade-in Request</button>
                         <button class="dropdown-item @if(Route::currentRouteName() == 'appointment') active @endif"><i class="fa-solid fa-calendar-check"></i> Appointment</button>
                         <form action="/logout" method="POST">
