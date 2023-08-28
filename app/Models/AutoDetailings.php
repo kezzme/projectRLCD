@@ -31,7 +31,7 @@ class AutoDetailings extends Model
         'photo_6',
     ];
 
-    public function userAutoDetailings(){
+    public function autodetailings(){
         return $this->belongsTo(User::class, 'user_id');
     }
 }

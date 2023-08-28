@@ -33,24 +33,24 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function appointments(){
+    public function userAppointments(){
         return $this->hasOne(Appointments::class, 'user_id');
     }
 
-    public function trades(){
+    public function userTrades(){
         return $this->hasOne(Trades::class, 'user_id');
     }
 
-    public function autodetailings(){
-        return $this->hasOne(AutoDetailing::class, 'user_id');
+    public function userAutoDetailings(){
+        return $this->hasOne(AutoDetailings::class, 'user_id');
     }
 
     public function userCarWashes(){
         return $this->hasOne(CarWashes::class, 'user_id');
     }
 
-    public function paintjobs(){
-        return $this->hasOne(PaintJob::class, 'user_id');
+    public function userPaintJobs(){
+        return $this->hasOne(PaintJobs::class, 'user_id');
     }
 
 }

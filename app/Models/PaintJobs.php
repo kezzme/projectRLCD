@@ -31,7 +31,16 @@ class PaintJobs extends Model
         'photo_6',
     ];
 
-    public function userPaintJobs(){
+    protected $casts = [
+        'photo_1' => 'array',
+        'photo_2' => 'array',
+        'photo_3' => 'array',
+        'photo_4' => 'array',
+        'photo_5' => 'array',
+        'photo_6' => 'array',
+    ];
+
+    public function paintjobs(){
         return $this->belongsTo(User::class, 'user_id');
     }
 }

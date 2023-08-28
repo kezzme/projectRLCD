@@ -2,7 +2,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-        <img src="{{ asset('img/logo.png')}}" class="navbar-brand d-flex">
+        <img src="{{ asset('img/logo.png')}}" class="navbar-brand d-flex img-fluid" alt="Logo">
             <h2 class="m-0 text-primary">RL Car Dealer</h2>
         </a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
