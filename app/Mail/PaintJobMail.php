@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class AutoDetailingMail extends Mailable
+class PaintJobMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -34,7 +34,7 @@ class AutoDetailingMail extends Mailable
 
     public function build()
         {
-            return $this->markdown('services.detailing-mail');
+            return $this->markdown('services.paintjob-mail');
         }
 
     /**

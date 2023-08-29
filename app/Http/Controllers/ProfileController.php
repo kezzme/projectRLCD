@@ -15,36 +15,22 @@ class ProfileController extends Controller
         $bookedCarWash = $user->userCarWashes;
         $bookedAutoDetailing = $user->userAutoDetailings;
         $bookedPaintJob = $user->userPaintJobs;
-        
-     
-        $paintjobImages = [];
-    
-        for ($i = 1; $i <= 6; $i++) {
-            $columnName = 'photo_' . $i;
-            $imagePath = $bookedPaintJob->$columnName;
-    
-            if (!empty($imagePath)) {
-                $fullImagePath = storage_path('app/public/' . $imagePath);
-    
-                if (File::exists($fullImagePath)) {
-                    $imageUrl = url('storage/' . $imagePath);
-                    $paintjobImages[] = $imageUrl;
-                }
-            }
-        }
-    
-       
-    
-        $bookedPaintJob->images = $paintjobImages;
-    
-      
     
         return view('User.booked', compact('bookedCarWash', 'bookedAutoDetailing', 'bookedPaintJob'));
     }
     
-    
-    
-    
-    
+    public function trade_request() {
+        $user = auth()->user();
+        $tradeRequest = $user->userTrades;
+
+        return view('User.trade-request', compact('tradeRequest'));
+    }
+
+    // public function appoints() {
+    //     $user = auth()->user();
+    //     $appointments = $user->userAppointments;
+
+    //     return view('User.trade-request', compact('appointments'));
+    // }
     
 }

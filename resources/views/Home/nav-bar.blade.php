@@ -47,7 +47,7 @@
             <div class="dropdown-menu fade-up w-100 ">
                     
                         <a class="dropdown-item {{ is_active_route(['profile.booked_services']) }}" href="{{route('profile.booked_services')}}"><i class="fa-solid fa-bookmark"></i> Booked Services</a>
-                        <button class="dropdown-item @if(Route::currentRouteName() == 'trade-in-request') active @endif"><i class="fa-solid fa-right-left"></i> Trade-in Request</button>
+                        <button class="dropdown-item {{ is_active_route(['profile.trade_request']) }}" href="{{route('profile.trade_request')}}"><i class="fa-solid fa-right-left"></i> Trade-in Request</button>
                         <button class="dropdown-item @if(Route::currentRouteName() == 'appointment') active @endif"><i class="fa-solid fa-calendar-check"></i> Appointment</button>
                         <form action="/logout" method="POST">
                             @csrf

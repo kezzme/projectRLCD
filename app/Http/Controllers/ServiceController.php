@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Mail\AutoDetailingMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookingMail;
+use App\Mail\PaintJobMail;
 use App\Models\User;
 use App\Models\CarWashes;
 use App\Models\AutoDetailings;
@@ -125,11 +128,9 @@ class ServiceController extends Controller
             'body' => 'When you arrive, kindly present it.'
         ];
 
-        Mail::to($cwInfo->userCarWashes->email)->send(new BookingMail($details, 'services.mail'));
+        Mail::to($cwInfo->email)->send(new BookingMail($details, 'services.mail'));
 
-        return redirect('/services/carwash/done')
-        ->with('title', 'Carwash')
-        ->with('success', 'Carwash booked successfully! please check your email');
+        return redirect('/services/carwash/done');
     }
 }
 
@@ -204,11 +205,22 @@ class ServiceController extends Controller
             ]);
 
             $details = [
+                'user_id'=> $request->input('user_id'),
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'car_year' => $request->input('car_year'),
+                'car_make' => $request->input('car_make'),
+                'car_model' => $request->input('car_model'),
+                'car_variant' => $request->input('car_variant'),
+                'unit_plate_no' => $request->input('unit_plate_no'),
+                'date' => $requestedDate,
+                'time' => $requestedTime,
+                'special_request' => $request->input('special_request'),
                 'title' => 'Booking Auto Detailing Service Complete',
-                'body' => 'Your auto detailing form is successfully submitted, please wait for the approval.'
+                'body' => 'Please wait for the approval.'
             ];
 
-            Mail::to($adInfo->userAutoDetailings->email)->send(new BookingMail($details, 'services.mail'));
+            Mail::to($adInfo->email)->send(new AutoDetailingMail($details, 'services.detailing-mail'));
 
             return redirect('/services/auto-detailing/done');
         }
@@ -286,11 +298,24 @@ class ServiceController extends Controller
             ]);
 
             $details = [
+                'user_id'=> $request->input('user_id'),
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'car_year' => $request->input('car_year'),
+                'car_make' => $request->input('car_make'),
+                'car_model' => $request->input('car_model'),
+                'car_variant' => $request->input('car_variant'),
+                'unit_plate_no' => $request->input('unit_plate_no'),
+                'date' => $requestedDate,
+                'time' => $requestedTime,
+                'special_request' => $request->input('special_request'),
+                'title' => 'Booking Auto Detailing Service Complete',
+                'body' => 'Please wait for your approval.',
                 'title' => 'Booking Paint Job Service Complete',
-                'body' => 'Your paint job form is successfully submitted, please wait for the approval.'
+                'body' => 'Please wait for the approval.'
             ];
 
-            Mail::to($pjInfo->userPaintjobs->email)->send(new BookingMail($details, 'services.mail'));
+            Mail::to($pjInfo->email)->send(new PaintJobMail($details, 'services.paintjob-mail'));
 
             return redirect('/services/paintjob/done');
         }

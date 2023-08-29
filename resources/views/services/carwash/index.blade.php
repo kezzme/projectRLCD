@@ -122,7 +122,7 @@
               <div class="col-12 col-sm-5">
                   <div class=" input-group">
                       <label class="col-md-5 input-group-text justify-content-center btn-rounded">Amount</label>
-                      <input type="text" class="form-control btn-rounded" name="amount" style="height: 55px;" id="outputInput" value="{{ old('amount') }}" readonly required>
+                      <input type="text" class="form-control btn-rounded" name="amount" style="height: 55px;" id="outputInput" value="90.00" readonly required>
                   </div>
               </div>
               <div class="col-lg-6">
