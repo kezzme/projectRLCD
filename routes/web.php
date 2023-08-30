@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function(){
     Route::prefix('profile')->name('profile.')->group(function(){
         Route::get('/booked/services', [ProfileController::class, 'booked_services'])->name('booked_services');
         Route::get('/trade/request', [ProfileController::class, 'trade_request'])->name('trade_request');
+        Route::get('/appointment', [ProfileController::class, 'appoints'])->name('appoints');
 });
 });
 

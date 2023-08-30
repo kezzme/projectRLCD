@@ -2,7 +2,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-        <img src="{{ asset('img/logo.png')}}" class="navbar-brand d-flex img-fluid" alt="Logo">
+        <img src="{{ asset('img/logo.png')}}" class="navbar-logo d-flex img-fluid" alt="Logo">
             <h2 class="m-0 text-primary">RL Car Dealer</h2>
         </a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -47,8 +47,8 @@
             <div class="dropdown-menu fade-up w-100 ">
                     
                         <a class="dropdown-item {{ is_active_route(['profile.booked_services']) }}" href="{{route('profile.booked_services')}}"><i class="fa-solid fa-bookmark"></i> Booked Services</a>
-                        <button class="dropdown-item {{ is_active_route(['profile.trade_request']) }}" href="{{route('profile.trade_request')}}"><i class="fa-solid fa-right-left"></i> Trade-in Request</button>
-                        <button class="dropdown-item @if(Route::currentRouteName() == 'appointment') active @endif"><i class="fa-solid fa-calendar-check"></i> Appointment</button>
+                        <a class="dropdown-item {{ is_active_route(['profile.trade_request']) }}" href="{{route('profile.trade_request')}}"><i class="fa-solid fa-right-left"></i> Trade-in Request</a>
+                        <a class="dropdown-item {{ is_active_route(['profile.appoints']) }}" href="{{route('profile.appoints')}}"><i class="fa-solid fa-calendar-check"></i> Appointment</a>
                         <form action="/logout" method="POST">
                             @csrf
                         <button class="dropdown-item @if(Route::currentRouteName() == 'logout') active @endif"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>

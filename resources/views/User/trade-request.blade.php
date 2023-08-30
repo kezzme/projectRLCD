@@ -6,40 +6,54 @@
     <section class="section">
         <div class="col-md-12 mt-2 ">
             <div class="row justify-content-center">
-                  @if ($bookedAutoDetailing)
-                  <div class="col-md-3 d-flex">
+                  @if ($tradeRequest)
+                  <div class="col-md-4 d-flex">
                       <div class="card card-showroom card-rounded product-grid2">
                         <div class="justify-content-between align-items-center">
                           <span class="pending">Pending</span>
                         </div>
                         <div class="mb-1">
-                          <img src="{{asset('img/sample/4.jpg')}}"
+                          <img src="{{asset('img/'.$tradeRequest->image.'')}}"
                             alt="login form" class="img-fluid" style="border-radius: 1rem 1rem 0 0rem;" />
                         </div>
                         <div class="card-body">
                           <span class="d-flex justify-content-between align-items-center">
-                              <h4><a class="text-danger">Service: Auto Detailing</a></h4>
+                              <h4><a class="text-danger">Trade-in: Request</a></h4>
                               <button type="button" class="btn btn-primary rounded-5 text-center" data-bs-toggle="modal" data-bs-target="#DetailingModal">
                                   <i class="fa-regular fa-images" style="color: #ffffff;"></i>
                               </button>
                           </span>
                           <hr>
-                          <h6>Details:</h6>
-                          <div class="col-md-12" style="font-size: 18px;">
-                           <div class="row text-muted">
-                              <div style="text-transform: capitalize">{{$bookedAutoDetailing->car_year}} {{$bookedAutoDetailing->car_make}} {{$bookedAutoDetailing->car_model}} {{$bookedAutoDetailing->car_variant}}</div>
-                              <div style="text-transform: uppercase">{{$bookedAutoDetailing->unit_plate_no}}</div>
-                              <div class="mb-2">{{$bookedAutoDetailing->special_request ?? 'No Speical Request'}}</div>
-                              
-                              <hr>
-                              <h5><i class="fa-regular fa-clock"></i> {{ str(\Carbon\Carbon::parse($bookedAutoDetailing->date)->format('F d, Y')) }} | {{$bookedAutoDetailing->time}}</h5>
-                          </div>
-                          </div>
-                          <div class="">
-                            <a class="add-to-cart" href="">
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6 mb-3 card-text">
+                                <div class="row">
+                                  <h6>Your Unit:</h6>
+                                   <div style="text-transform: capitalize">{{$tradeRequest->unit_year}} {{$tradeRequest->unit_make}} {{$tradeRequest->unit_model}} {{$tradeRequest->unit_variant}}</div>
+                                   <div style="text-transform: uppercase">{{$tradeRequest->unit_plate_no}}</div>
+                                   <div>₱{{ number_format($tradeRequest->unit_price, 0, '.', ',') }}</div>
+    
+                               </div>
+                               </div>
+                          
+                          
+                               <div class="col-lg-6 mb-3 card-text">
+                                <div class="row">
+                                 <h6>Your Request:</h6>
+                                   <div style="text-transform: capitalize">{{$tradeRequest->car_year}} {{$tradeRequest->car_make}} {{$tradeRequest->car_model}} {{$tradeRequest->car_variant}}</div>
+                                   <div>₱{{ number_format($tradeRequest->car_price, 0, '.', ',') }}</div>
+                                  
+                               </div>
+                               </div>
+                           <hr>
+                           <h5 class="text-center"><i class="fa-regular fa-clock"></i> {{ str(\Carbon\Carbon::parse($tradeRequest->date)->format('F d, Y')) }} | {{$tradeRequest->time}}</h5>
+                        </div>
+                        </div>
+                          {{-- <div class=""> --}}
+                            <div class="add-to-cart" href="">
                               <i class="fa-solid fa-ban"></i> Cancel Booking
-                            </a>
-                          </div>
+                            </div>
+                          {{-- </div> --}}
                         </div>
                       </div>
                     </div>
@@ -56,7 +70,7 @@
     </section>
     </main>
 
-    @if ($bookedAutoDetailing)
+    @if ($tradeRequest)
     <div class="modal fade" id="DetailingModal" tabindex="-1" aria-labelledby="DetailingModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -69,31 +83,31 @@
                         <div class="carousel-inner">
                           
                           <div class="carousel-item active">
-                            <img src="{{asset('storage/' .$bookedAutoDetailing->photo_1.'')}}" class="d-block w-100" alt="">
+                            <img src="{{asset('storage/' .$tradeRequest->photo_1.'')}}" class="d-block w-100" alt="">
                         </div>
-                          @if($bookedAutoDetailing->photo_2)
+                          @if($tradeRequest->photo_2)
                           <div class="carousel-item">
-                            <img src="{{asset('storage/' .$bookedAutoDetailing->photo_2.'')}}" class="d-block w-100" alt="">
-                        </div>
-                          @endif
-                          @if($bookedAutoDetailing->photo_3)
-                          <div class="carousel-item">
-                            <img src="{{asset('storage/' .$bookedAutoDetailing->photo_3.'')}}" class="d-block w-100" alt="">
+                            <img src="{{asset('storage/' .$tradeRequest->photo_2.'')}}" class="d-block w-100" alt="">
                         </div>
                           @endif
-                          @if($bookedAutoDetailing->photo_4)
+                          @if($tradeRequest->photo_3)
                           <div class="carousel-item">
-                            <img src="{{asset('storage/' .$bookedAutoDetailing->photo_4.'')}}" class="d-block w-100" alt="">
+                            <img src="{{asset('storage/' .$tradeRequest->photo_3.'')}}" class="d-block w-100" alt="">
                         </div>
                           @endif
-                          @if($bookedAutoDetailing->photo_5)
+                          @if($tradeRequest->photo_4)
                           <div class="carousel-item">
-                            <img src="{{asset('storage/' .$bookedAutoDetailing->photo_5.'')}}" class="d-block w-100" alt="">
+                            <img src="{{asset('storage/' .$tradeRequest->photo_4.'')}}" class="d-block w-100" alt="">
                         </div>
                           @endif
-                          @if($bookedAutoDetailing->photo_6)
+                          @if($tradeRequest->photo_5)
                           <div class="carousel-item">
-                            <img src="{{asset('storage/' .$bookedAutoDetailing->photo_6.'')}}" class="d-block w-100" alt="">
+                            <img src="{{asset('storage/' .$tradeRequest->photo_5.'')}}" class="d-block w-100" alt="">
+                        </div>
+                          @endif
+                          @if($tradeRequest->photo_6)
+                          <div class="carousel-item">
+                            <img src="{{asset('storage/' .$tradeRequest->photo_6.'')}}" class="d-block w-100" alt="">
                         </div>
                           @endif
                         

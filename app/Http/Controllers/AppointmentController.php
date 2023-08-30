@@ -89,8 +89,19 @@ class AppointmentController extends Controller
         ]);
 
         $appointDetails = [
+            'user_id' => $request->input('user_id'),
+            'car_year' => $request->input('car_year'),
+            'car_make' => $request->input('car_make'),
+            'car_model' => $request->input('car_model'),
+            'car_variant' => $request->input('car_variant'),
+            'car_plate_no' => $request->input('car_plate_no'),
+            'car_price' => $request->input('car_price'),
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'date' => $requestedDate,
+            'time' => $requestedTime,
             'title' => 'Appointment Complete',
-            'body' => 'Your appointment form is successfully submitted, please wait for the approval.'
+            'body' => 'When you arrive, kindly present it.'
         ];
 
         Mail::to($appInfo->userAppointments->email)->send(new AppointmentMail($appointDetails, 'view-details.mail'));

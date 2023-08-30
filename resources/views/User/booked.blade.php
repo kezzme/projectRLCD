@@ -7,13 +7,13 @@
         <div class="col-md-12 mt-2 ">
             <div class="row justify-content-center">
                 @if ($bookedCarWash)
-                <div class="col-md-3 d-flex">
+                <div class="col-md-4 d-flex">
                     <div class="card card-showroom card-rounded product-grid2">
                       <div class="justify-content-between align-items-center">
                         <span class="car-price">₱{{$bookedCarWash->amount}}</span>
                       </div>
                       <div class="mb-1">
-                        <img src="{{asset('img/sample/4.jpg')}}"
+                        <img src="{{asset('img/carwash.png')}}"
                           alt="login form" class="img-fluid" style="border-radius: 1rem 1rem 0 0rem;" />
                       </div>
                       <div class="card-body">
@@ -28,7 +28,7 @@
                             <div class="mb-2">{{$bookedCarWash->special_request ?? 'No Speical Request'}}</div>
                             
                             <hr>
-                            <h5><i class="fa-regular fa-clock"></i> {{ str(\Carbon\Carbon::parse($bookedCarWash->date)->format('F d, Y')) }} | {{$bookedCarWash->time}}</h5>
+                            <h5 class="text-center"><i class="fa-regular fa-clock"></i> {{ str(\Carbon\Carbon::parse($bookedCarWash->date)->format('F d, Y')) }} | {{$bookedCarWash->time}}</h5>
                         </div>
                         </div>
                         <div class="">
@@ -43,7 +43,7 @@
 
                   @endif
                   @if ($bookedAutoDetailing)
-                  <div class="col-md-3 d-flex">
+                  <div class="col-md-4 d-flex">
                       <div class="card card-showroom card-rounded product-grid2">
                         <div class="justify-content-between align-items-center">
                           <span class="pending">Pending</span>
@@ -84,13 +84,13 @@
                     @endif
                     
                     @if ($bookedPaintJob)
-                    <div class="col-md-3 d-flex">
+                    <div class="col-md-4 d-flex">
                         <div class="card card-showroom card-rounded product-grid2">
                           <div class="justify-content-between align-items-center">
                             <span class="pending">Pending</span>
                           </div>
                           <div class="mb-1">
-                            <img src="{{asset('img/sample/4.jpg')}}"
+                            <img src="{{asset('img/paintjob.png')}}"
                               alt="login form" class="img-fluid" style="border-radius: 1rem 1rem 0 0rem;" />
                           </div>
                           <div class="card-body">
@@ -111,7 +111,7 @@
                                 <div class="mb-2">{{$bookedPaintJob->special_request ?? 'No Speical Request'}}</div>
                                 
                                 <hr>
-                                <h5><i class="fa-regular fa-clock"></i> {{ str(\Carbon\Carbon::parse($bookedPaintJob->date)->format('F d, Y')) }} | {{$bookedPaintJob->time}}</h5>
+                                <h5 class="text-center"><i class="fa-regular fa-clock"></i> {{ str(\Carbon\Carbon::parse($bookedPaintJob->date)->format('F d, Y')) }} | {{$bookedPaintJob->time}}</h5>
                             </div>
                             </div>
                             <div class="">

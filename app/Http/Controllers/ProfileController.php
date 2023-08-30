@@ -26,11 +26,11 @@ class ProfileController extends Controller
         return view('User.trade-request', compact('tradeRequest'));
     }
 
-    // public function appoints() {
-    //     $user = auth()->user();
-    //     $appointments = $user->userAppointments;
+    public function appoints() {
+        $user = auth()->user();
+        $appointments = $user->userAppointments;
 
-    //     return view('User.trade-request', compact('appointments'));
-    // }
+        return view('User.appointment', compact('appointments'));
+    }
     
 }

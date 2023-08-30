@@ -196,6 +196,16 @@
     transition: .5s;
 }
 
+.navbar-logo {
+    height: 60px;
+}
+@media (max-width: 768px) {
+    .navbar-logo {
+        min-height: 15px;
+        max-height: 45px;
+    }
+}
+
 @media (min-width: 992px) {
     .navbar .nav-item .dropdown-menu {
         display: block;
