@@ -294,7 +294,7 @@
                 <div class="col-12 col-sm-7">
                   <div class=" input-group">
                     <div class="col-md-5 input-group-text justify-content-center btn-rounded">Unit Price</div>
-                    <input type="text" id="totalPrice" name="unit_price" class="form-control btn-rounded" style="height: 50px;" required>
+                    <input type="text" id="totalPrice" name="unit_price" class="form-control btn-rounded" style="height: 50px;" maxlength="7" required>
                   </div>
                 </div>
                 <div class="col-lg-6">

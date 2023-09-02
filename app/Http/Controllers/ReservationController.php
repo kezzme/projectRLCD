@@ -22,6 +22,7 @@ class ReservationController extends Controller
         if ($appointment) {
             $soldUnitsTable = new Soldunits;
             $soldUnitsTable->fill($appointment->toArray());
+            $soldUnitsTable->transaction_type = $
             $soldUnitsTable->save();
     
             $appointment->delete();

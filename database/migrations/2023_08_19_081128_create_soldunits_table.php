@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('contact');
             $table->string('email')->nullable();
             $table->date('date');
+            $table->string('transaction_type');
             $table->timestamps();
         });
     }

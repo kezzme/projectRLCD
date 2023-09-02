@@ -42,20 +42,17 @@ class FinancingController extends Controller
       $financing_confirmation = FinancingConfirmations::find($id);
 
       if ($financing_confirmation) {
-         // Create a new FinancingStatus model and fill with data
          $finStatusTable = new FinancingStatuses;
          $finStatusTable->fill($financing_confirmation->toArray());
          $finStatusTable->financing_bank = $request->input('financing_bank');
          $finStatusTable->status = $request->input('status');
-         // dd($finStatusTable);
          $finStatusTable->save();
 
-         // Clone the $financing_confirmation object for the Soldunits model
          $cloned_confirmation = clone $financing_confirmation;
          
-         // Create a new Soldunits model and fill with data from the cloned object
          $toSoldtable = new Soldunits;
          $toSoldtable->fill($cloned_confirmation->toArray());
+         $toSoldtable->transaction_type = $request->input('transaction_type');
          $toSoldtable->save();
 
          //Units::where('uid', '$uid')->delete();

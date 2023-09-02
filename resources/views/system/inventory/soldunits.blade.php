@@ -31,6 +31,15 @@
                               <span class="fa-solid fa-calendar-check"></span> {{ strtoupper(\Carbon\Carbon::parse($soldUnit->date)->format('F-d-Y')) }}
                             </p>
                         </div>
+                        <div class="card-footer">
+                          @if ($soldUnit->transaction_type === 'cash')
+                            <h6 class="text-center"><i class="fa-solid fa-money-bill-wave"></i> Cash</h6>
+                            @elseif ($soldUnit->transaction_type === 'financing')
+                            <h6 class="text-center"><i class="fa-solid fa-building-columns"></i> Financing</h6>
+                            @else
+                            <h6 class="text-center"><i class="fa-solid fa-arrow-right-arrow-left"></i> Trade-in</h6>
+                          @endif
+                        </div>
                       </div>
                 </div><!-- End Recent Sales -->
       @endforeach

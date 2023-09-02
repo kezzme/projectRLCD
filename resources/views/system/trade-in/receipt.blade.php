@@ -25,7 +25,7 @@
               <div class="card recent-sales overflow-auto rounded-5">
                 <div class="card-body table-responsive">
                   <h3 class="card-title text-center" style="font-size: 30px;">ACKNOWLEDGMENT RECEIPT</h3>
-                  <form class="row g-3" action="{{ route('system.appointments.store', ['id' => $toReceipt->id]) }}" method="POST" onsubmit="return validateForm()">
+                  <form class="row g-3" action="{{ route('system.trade_in.tradeStore', ['id' => $toReceipt->id]) }}" method="POST" onsubmit="return validateForm()">
                     @csrf
                     
                     <div class="col-md-9">
@@ -47,7 +47,7 @@
         </div>
         <div class="col-md-12">
           <div class="input-group">
-            <label class="col-md-3 input-group-text ">with postal address at</label>
+            <label class="col-md-3 input-group-text ">with postal address at *</label>
             <input type="text" name="postal_address" class="form-control" style="text-transform: capitalize" required>
           </div>
         </div>
@@ -57,17 +57,25 @@
             <input type="text" name="amount" id="amount" class="form-control" style="text-transform: capitalize" readonly required>
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-6">
         <div class=" input-group">
-          <label class="input-group-text">₱</label>
+          <label class="input-group-text">₱ *</label>
           <input type="text" name="price" id="price" class="form-control totalPrice" maxlength="7" required>
         </div>
       </div>
-      <div class="col-md-10">
-        <div>
-          <label style="font-size: 16 px; ">as deposit / earnest / full payment for one unit of used motor vehicle more particularly described as follows:</label>
+      <div class="col-md-6">
+        <div class="input-group">
+          <label for="interestRate" class="input-group-text">Added by</label>
+          <select class="form-select btn-rounded" id="interestRate" name="added_by" required>
+            <option value="RL Car Dealer">RL Car Dealer</option>
+            <option value="Customer">Customer</option>
+          </select>
         </div>
       </div>
+      <div class="col-md-12">
+        <label for="">as deposit / earnest / full payment for one unit of used motor vehicle more particularly described as follows:</label>
+      </div>
+     
       <div class="col-md-6">
         <div class=" input-group">
           <label class="col-md-3 input-group-text justify-content-center">Year</label>
@@ -94,19 +102,19 @@
       </div>
       <div class="col-md-6">
         <div class=" input-group">
-          <label class="col-md-3 input-group-text justify-content-center">Color</label>
-          <input type="text" name="exterior_color" id="exterior_color" class="form-control" style="text-transform: capitalize" value="{{$toReceipt->exterior_color}}" readonly>
+          <label class="col-md-3 input-group-text justify-content-center">Price *</label>
+          <input type="text" name="car_price" id="car_price" class="form-control total_price" maxlength="7" required>
         </div>
       </div>
       <div class="col-md-6">
         <div class=" input-group">
           <label class="col-md-3 input-group-text justify-content-center">Plate No.</label>
           <input type="text" name="car_plate_no" id="car_plate_no" class="form-control" style="text-transform: uppercase" value="{{$toReceipt->car_plate_no}}" readonly>
-        </div>
+        </div>  
       </div>
       <div class="col-md-6">
         <div class=" input-group">
-          <label class="col-md-3 input-group-text justify-content-center">Agreed Price</label>
+          <label class="col-md-3 input-group-text justify-content-center">Agreed Price *</label>
           <input type="text" id="agreed_price" name="agreed_price" class="form-control total_price" maxlength="7" required>
         </div>
       </div>
@@ -153,12 +161,72 @@
       @endforeach
         <input type="text" class="form-control hidden" name="id" value="{{$toReceipt->id}}">
         <input type="text" class="form-control hidden" name="user_id" value="{{$toReceipt->user_id}}">
-        <input type="text" class="form-control hidden" id="car_price" name="car_price" value="{{$toReceipt->email}}">
         <input type="text" class="form-control hidden" id="uid" name="uid" value="{{$toReceipt->uid}}">
         <input type="text" class="form-control hidden" id="image" name="image" value="{{$toReceipt->image}}">
-        <input type="text" class="form-control hidden" id="car_price" name="car_price" value="{{$toReceipt->car_price}}">
-        <input type="text" class="form-control hidden" id="transaction_type" name="transaction_type" value="cash">
-        
+        <input type="text" class="form-control hidden" id="transaction_type" name="transaction_type" value="trade-in">
+
+      <div class="mb-2"></div>
+      <div class="col-md-12">
+        <div>
+          <label style="font-size: 16 px; ">Traded to:</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class=" input-group">
+          <label class="col-md-3 input-group-text justify-content-center">Year</label>
+          <input type="text" name="unit_year" id="unit_year" class="form-control" maxlength="4" value="{{$toReceipt->unit_year}}" readonly>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class=" input-group">
+          <label class="col-md-3 input-group-text justify-content-center">Make</label>
+          <input type="text" name="unit_make" id="unit_make" class="form-control" style="text-transform: capitalize" value="{{$toReceipt->unit_make}}" readonly>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class=" input-group">
+          <label class="col-md-3 input-group-text justify-content-center">Model</label>
+          <input type="text" name="unit_model" id="unit_model" class="form-control" style="text-transform: capitalize" value="{{$toReceipt->unit_model}}" readonly>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class=" input-group">
+          <label class="col-md-3 input-group-text justify-content-center">Variant</label>
+          <input type="text" name="unit_variant" id="unit_variant" class="form-control" style="text-transform: uppercase" value="{{$toReceipt->unit_variant}}" readonly>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class=" input-group">
+          <label class="col-md-3 input-group-text justify-content-center">Price *</label>
+          <input type="text" name="unit_price" id="unit_price" class="form-control total_price" maxlength="7" style="text-transform: capitalize" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class=" input-group">
+          <label class="col-md-3 input-group-text justify-content-center">Plate No.</label>
+          <input type="text" name="unit_plate_no" id="unit_plate_no" class="form-control" style="text-transform: uppercase" value="{{$toReceipt->unit_plate_no}}" readonly>
+        </div>  
+      </div>
+      <div class="col-md-12">
+        <div>
+          <label style="font-size: 16 px; ">"Received the unit in good running condition, as is where is"</label>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div>
+          <label style="font-size: 16 px; ">"Received the original copies of the following:</label>
+        </div>
+      </div>
+      @foreach ($checkboxes2 as $checkbox)
+      <div class="col-md-6">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="required_docs2[]" value="{{ $checkbox }}">
+            <label class="form-check-label">{{ $checkbox }}</label>
+        </div>
+      </div>
+      @endforeach
+
+
         <div class="col-md-4">  
           <label class="form-label">Conforme:</label>
           <div class="input-group">
@@ -180,7 +248,7 @@
           <label class="form-label">&nbsp;</label>
           <input type="text" name="witness" class="form-control text-center" style="text-transform: capitalize" required>
           <div class="text-center">
-          <label class="form-label">Witness</label>
+          <label class="form-label">Witness *</label>
           </div>
         </div>
         <div class="col-md-4">
@@ -209,7 +277,7 @@
             </button>
             <ul class="dropdown-menu">
               <li>
-                <button class="dropdown-item" type="button" onclick="showConfirmationModal('SOLD')">SOLD</button>
+                <button class="dropdown-item" type="button" onclick="showConfirmationModal('TRADE')">TRADE</button>
               </li>
               <li>
                 <button class="dropdown-item" type="button" onclick="showConfirmationModal('RESERVED')">RESERVED</button>
@@ -316,11 +384,11 @@
         
             document.getElementById('action').value = action;
         
-            // Depending on the action, set the form action attribute
-            if (action === 'SOLD') {
-              document.querySelector('form').action = "{{ route('system.appointments.toSold', ['id'=>$toReceipt->id]) }}";
+            //Depending on the action, set the form action attribute
+            if (action === 'TRADE') {
+              document.querySelector('form').action = "{{ route('system.trade_in.toTraded', ['id'=>$toReceipt->id]) }}";
             } else if (action === 'RESERVED') {
-              document.querySelector('form').action = "{{ route('system.appointments.toReservation', ['id'=>$toReceipt->id]) }}";
+              document.querySelector('form').action = "{{ route('system.trade_in.toStatus', ['id'=>$toReceipt->id]) }}";
             }
         
             // Submit the form

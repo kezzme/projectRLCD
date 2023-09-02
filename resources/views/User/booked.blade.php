@@ -49,7 +49,7 @@
                           <span class="pending">Pending</span>
                         </div>
                         <div class="mb-1">
-                          <img src="{{asset('img/sample/4.jpg')}}"
+                          <img src="{{asset('img/auto-detailing.png')}}"
                             alt="login form" class="img-fluid" style="border-radius: 1rem 1rem 0 0rem;" />
                         </div>
                         <div class="card-body">
@@ -68,7 +68,7 @@
                               <div class="mb-2">{{$bookedAutoDetailing->special_request ?? 'No Speical Request'}}</div>
                               
                               <hr>
-                              <h5><i class="fa-regular fa-clock"></i> {{ str(\Carbon\Carbon::parse($bookedAutoDetailing->date)->format('F d, Y')) }} | {{$bookedAutoDetailing->time}}</h5>
+                              <h5 class="text-center"><i class="fa-regular fa-clock"></i> {{ str(\Carbon\Carbon::parse($bookedAutoDetailing->date)->format('F d, Y')) }} | {{$bookedAutoDetailing->time}}</h5>
                           </div>
                           </div>
                           <div class="">

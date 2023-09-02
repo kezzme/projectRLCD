@@ -130,12 +130,14 @@ class SystemAppointmentController extends Controller
             'witness' => $request->input('witness'),
             'client_name' => $request->input('client_name'),
             'client_contact' => $request->input('client_contact'),
+            'transaction_type' => $request->input('transaction_type'),
         ]);
 
          // Clone and store in SoldUnits table
-            $soldUnitInfo = new SoldUnits(); // Create a new instance of SoldUnits model
+            $soldUnitInfo = new Soldunits(); // Create a new instance of SoldUnits model
             $soldUnitInfo->fill($arInfo->toArray()); // Fill the attributes from the cloned instance
             $soldUnitInfo->car_price = str_replace(',', '', $request->input('agreed_price')); // Modify specific attribute
+            $soldUnitInfo->transaction_type = $request->input('transaction_type');
             $soldUnitInfo->save();
 
             $appointmentToDelete = Appointments::find($request->input('id'));

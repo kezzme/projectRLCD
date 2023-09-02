@@ -23,6 +23,7 @@ class Soldunits extends Model
         'last_name',
         'contact',
         'email',
-        'date'
+        'date',
+        'transaction_type'
     ];
 }

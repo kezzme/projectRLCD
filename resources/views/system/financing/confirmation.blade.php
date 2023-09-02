@@ -63,6 +63,7 @@
                               <option value="Asialink">Asialink</option>
                           </select>
                           <input type="hidden" name="status" value="">
+                          <input type="text" class="hidden" name="transaction_type" value="financing">
                           <td>
                             <button type="button" class="btn btn-danger" onclick="showConfirmationModal('Reject', {{$finCon->id}})"><i class="fa-solid fa-user-xmark"></i></button>
                             <button type="button" class="btn btn-success" onclick="showConfirmationModal('Approve', {{$finCon->id}})"><i class="fa-solid fa-user-check"></i></button>

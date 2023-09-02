@@ -66,7 +66,7 @@
                     @endif
                       </td>
                       <td><button type="button" class="btn btn-danger" onclick="showConfirmationModal('Reject', {{$status->id}})"><i class="fa-solid fa-user-xmark"></i></button></td>
-                        <td><button type="button" class="btn btn-success" onclick="showConfirmationModal('Approve', {{$status->id}})"><i class="fa-solid fa-user-check"></i></button>
+                        <td><button type="button" class="btn btn-success" onclick="showConfirmationModal('Approve', {{$status->id}})"><i class="fa-solid fa-file-circle-plus"></i></button>
                         <form id="confirmForm_{{$status->id}}" action="" method="POST" style="display: none;">
                             @csrf
                             @method('POST')
@@ -159,7 +159,7 @@
   
       // Update the form action based on the selected action
       const formAction = action === 'Approve'
-          ? "{{ route('system.trade_in.toTraded', ['id' => ':id']) }}".replace(':id', id)
+          ? "{{ route('system.trade_in.totiReceipt', ['id' => ':id']) }}".replace(':id', id)
           : "{{ route('system.trade_in.phase2', ['id' => ':id']) }}".replace(':id', id);
       form.action = formAction;
   

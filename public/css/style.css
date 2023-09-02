@@ -598,8 +598,9 @@
   }
 
   .custom-rounded-footer {
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
-    background-color: #f8f9fa; /* You can adjust the background color as needed */
-    padding: 0.75rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
   }

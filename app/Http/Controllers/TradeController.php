@@ -77,7 +77,6 @@ class TradeController extends Controller
             $photoDetails[] = $newFilename;
         }
 
-        // $jsonPhotoDetails = json_encode($photoDetails, JSON_UNESCAPED_SLASHES);
     
        
         $unitPrice = str_replace(',', '', $request->input('unit_price'));
@@ -103,7 +102,6 @@ class TradeController extends Controller
             'unit_price' => $unitPrice,
             'date' => $requestedDate,
             'time' => $requestedTime,
-            // 'photo_details' => $jsonPhotoDetails,
             'photo_1' => isset($photoDetails[0]) ? $photoDetails[0] : null,
             'photo_2' => isset($photoDetails[1]) ? $photoDetails[1] : null,
             'photo_3' => isset($photoDetails[2]) ? $photoDetails[2] : null,
@@ -115,8 +113,25 @@ class TradeController extends Controller
         
 
         $tradeDetails = [
+            'user_id' => $request->input('user_id'),
+            'car_year' => $request->input('car_year'),
+            'car_make' => $request->input('car_make'),
+            'car_model' => $request->input('car_model'),
+            'car_variant' => $request->input('car_variant'),
+            'car_plate_no' => $request->input('car_plate_no'),
+            'car_price' => $request->input('car_price'),
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'unit_year' => $request->input('unit_year'),
+            'unit_make' => $request->input('unit_make'),
+            'unit_model' => $request->input('unit_model'),
+            'unit_variant' => $request->input('unit_variant'),
+            'unit_plate_no' => $request->input('unit_plate_no'),
+            'unit_price' => $unitPrice,
+            'date' => $requestedDate,
+            'time' => $requestedTime,
             'title' => 'Trade-in Request Complete',
-            'body' => 'Your trade-in form is successfully submitted, please wait for the approval.'
+            'body' => 'Please wait for the approval.'
         ];
 
         Mail::to($adInfo->userTrades->email)->send(new TradeinMail($tradeDetails, 'trade-in.mail'));
@@ -176,10 +191,10 @@ class TradeController extends Controller
         $photoDetails = [];
 
         foreach ($request->file('photos') as $index => $photoFile) {
-            $newFilename = $photoFile->store('trade-in', 'public'); // Laravel will automatically encrypt the filename
+            $newFilename = $photoFile->store('trade-in', 'public');
             $photoDetails[] = $newFilename;
         }
-        // $jsonPhotoDetails = json_encode($photoDetails, JSON_UNESCAPED_SLASHES);
+       
 
         $unitPrice = str_replace(',', '', $request->input('unit_price'));
         $adInfo = Trades::create([
@@ -214,8 +229,25 @@ class TradeController extends Controller
         ]);
 
         $tradeDetails = [
+            'user_id' => $request->input('user_id'),
+            'car_year' => $request->input('car_year'),
+            'car_make' => $request->input('car_make'),
+            'car_model' => $request->input('car_model'),
+            'car_variant' => $request->input('car_variant'),
+            'car_plate_no' => $request->input('car_plate_no'),
+            'car_price' => $request->input('car_price'),
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'unit_year' => $request->input('unit_year'),
+            'unit_make' => $request->input('unit_make'),
+            'unit_model' => $request->input('unit_model'),
+            'unit_variant' => $request->input('unit_variant'),
+            'unit_plate_no' => $request->input('unit_plate_no'),
+            'unit_price' => $unitPrice,
+            'date' => $requestedDate,
+            'time' => $requestedTime,
             'title' => 'Trade-in Request Complete',
-            'body' => 'Your trade-in form is successfully submitted, please wait for the approval.'
+            'body' => 'Please wait for the approval.'
         ];
 
         Mail::to($adInfo->userTrades->email)->send(new TradeinMail($tradeDetails, 'trade-in.mail'));

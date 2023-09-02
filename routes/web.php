@@ -157,8 +157,12 @@ Route::prefix('system')->name('system.')->group(function(){
             Route::get('/requests', [SystemTradesController::class, 'tiRequests'])->name('requests');
             Route::post('/requests/phase_1/reject/{id}', [SystemTradesController::class, 'phase1'])->name('phase1');
             Route::post('/requests/status/{id}', [SystemTradesController::class, 'toStatus'])->name('toStatus');
+
             Route::get('/status', [SystemTradesController::class, 'status'])->name('status');
             Route::post('/status/phase_2/reject/{id}', [SystemTradesController::class, 'phase2'])->name('phase2');
+            Route::post('/process/receipt/{id}', [SystemTradesController::class, 'totiReceipt'])->name('totiReceipt');
+            Route::post('/process/receipt/trade/store/{id}', [SystemTradesController::class, 'tradeStore'])->name('tradeStore'); 
+
             Route::post('/status/traded/{id}', [SystemTradesController::class, 'toTraded'])->name('toTraded');
             Route::get('/traded', [SystemTradesController::class, 'traded'])->name('traded');
     }); 

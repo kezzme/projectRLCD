@@ -18,7 +18,7 @@
                         </div>
                         <div class="card-body">
                           <span class="d-flex justify-content-between align-items-center">
-                              <h4><a class="text-danger">Trade-in: Request</a></h4>
+                              <h4><a class="text-danger">Appointment</a></h4>
                              
                                   <i class="fa-regular fa-images" style="color: #ffffff;"></i>
                               </button>

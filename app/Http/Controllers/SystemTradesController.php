@@ -132,30 +132,100 @@ class SystemTradesController extends Controller
         return view('system.trade-in.status', ['tiStatuses' => $tiStatuses]);
     }
 
-    public function toTraded($id){
-        $tiStatuses = TradesStatuses::find($id);
-       
 
-        if($tiStatuses){
-            $toTradedTable = new TradedUnits();
-            $toTradedTable->fill($tiStatuses->toArray());
-            $toTradedTable->save();
+    public function totiReceipt($id){
+        $toReceipt = TradesStatuses::find($id);
 
-            // Clone the $financing_confirmation object for the Soldunits model
-            $cloned_tiStatuses = clone $tiStatuses;
-            
-            // Create a new Soldunits model and fill with data from the cloned object
-            $toSoldtable = new Soldunits;
-            $toSoldtable->fill($cloned_tiStatuses->toArray());
-            $toSoldtable->save();
+        $checkboxes = [
+            'LTO OFFICIAL RECEIPT',
+            'PHOTO OF ID\'S WITH SIGNATURE',
+            'LTO CERTIFICATE OF REGISTRATION',
+            'SECRETARY\'S CERTIFICATE',
+            'DEDD OF SALES',
+            'RELEASE OF CHATTLEMORTGAGE',
+        ];
 
-            //Units::where('uid', '$uid')->delete();
+        $checkboxes2 = [
+            'LTO OFFICIAL RECEIPT',
+            'PHOTO OF ID\'S WITH SIGNATURE',
+            'LTO CERTIFICATE OF REGISTRATION',
+            'SECRETARY\'S CERTIFICATE',
+            'DEDD OF SALES',
+            'RELEASE OF CHATTLEMORTGAGE',
+        ];
 
-            $tiStatuses->delete();
+        return view('system.trade-in.receipt', compact('toReceipt', 'checkboxes', 'checkboxes2'));
+    }
 
-            return back()->with('success', 'Trade-in Status transferred successfully');
+    public function tradeStore(Request $request) {
+        $action = $request->input('action');
+
+        if ($action === 'TRADED') {
+            return redirect()->route('system.trade_in.toTraded');
+        } elseif ($action === 'RESERVED') {
+            return redirect()->route('system.appointments.toReservation');
         }
-        return back()->with('error', 'Trade-in not found.');
+        return back()->with('success', 'Record stored successfully');
+    }
+
+    public function toTraded(Request $request){
+       
+       $price = str_replace(',', '', $request->input('price'));
+       $car_price = str_replace(',', '', $request->input('car_price'));
+       $unit_price = str_replace(',', '', $request->input('unit_price'));
+       $agreedPrice = str_replace(',', '', $request->input('agreed_price'));
+       $balance = str_replace(',', '', $request->input('balance'));
+       $deposit = str_replace(',', '', $request->input('deposit'));
+   
+       $arInfo = TradedUnits::create([
+           'user_id' => $request->input('user_id'),
+           'date' => $request->input('date'),
+           'received_from' => $request->input('received_from'),
+           'postal_address' => $request->input('postal_address'),
+           'amount' => $request->input('amount'),
+           'price' => $price,
+           'added_by' => $request->input('added_by'),
+           'uid' => $request->input('uid'),
+           'car_year' => $request->input('car_year'),
+           'car_make' => $request->input('car_make'),
+           'car_model' => $request->input('car_model'),
+           'car_variant' => $request->input('car_variant'),
+           'car_price' => $car_price,
+           'car_plate_no' => $request->input('car_plate_no'),
+           'image' => $request->input('image'),
+           'agreed_price' => $agreedPrice,
+           'balance' => $balance,
+           'deposit' => $deposit,
+           'due_date' => $request->input('due_date'),
+           'checkboxes' => json_encode($request->input('required_docs')),
+           'unit_year' => $request->input('unit_year'),
+           'unit_make' => $request->input('unit_make'),
+           'unit_model' => $request->input('unit_model'),
+           'unit_variant' => $request->input('unit_variant'),
+           'unit_price' => $unit_price,
+           'unit_plate_no' => $request->input('unit_plate_no'),
+           'checkboxes2' => json_encode($request->input('required_docs2')),
+           'first_name' => $request->input('first_name'),
+           'last_name' => $request->input('last_name'),
+           'contact' => $request->input('contact'),
+           'witness' => $request->input('witness'),
+           'client_name' => $request->input('client_name'),
+           'client_contact' => $request->input('client_contact'),
+           'transaction_type' => $request->input('transaction_type'),
+       ]);
+
+        // Clone and store in SoldUnits table
+           $appointmentInfo = new Soldunits();
+           $appointmentInfo->fill($arInfo->toArray());
+           $appointmentInfo->save();
+
+           $appointmentToDelete = TradesStatuses::find($request->input('id'));
+           if ($appointmentToDelete) {
+               $appointmentToDelete->delete();
+           }
+
+       return redirect()->route('system.trade_in.status')->with('success', 'Acknowledgment Receipt (Traded) stored successfully');
+   
     }
 
 

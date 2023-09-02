@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('car_variant');
             $table->string('car_plate_no');
             $table->string('car_price');
+            $table->string('image');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('contact');
@@ -38,7 +39,7 @@ return new class extends Migration
             $table->string('photo_5')->nullable();
             $table->string('photo_6')->nullable();
             $table->date('date');
-            // $table->string('time');
+            $table->string('time');
             $table->timestamps();
         });
     }
