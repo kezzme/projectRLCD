@@ -9,6 +9,9 @@ use App\Models\Reservations;
 use Illuminate\Http\Request;
 use App\Models\ReceiptRecords;
 use App\Models\FinancingConfirmations;
+use App\Models\FinancingStatuses;
+use App\Models\ReservationCashes;
+use App\Models\ReservationFinancings;
 use Illuminate\Support\Facades\Redirect;
 
 class SystemAppointmentController extends Controller
@@ -22,7 +25,9 @@ class SystemAppointmentController extends Controller
         $action = $request->input('action');
 
         if ($action === 'SOLD') {
-            return redirect()->route('system.receipts.toSold');
+            return redirect()->route('system.appointments.toSold');
+        } elseif ($action === 'FINANCING') {
+            return redirect()->route('system.appointments.toFinancing');
         } elseif ($action === 'RESERVED') {
             return redirect()->route('system.appointments.toReservation');
         }
@@ -55,46 +60,6 @@ class SystemAppointmentController extends Controller
         }
         return back()->with('error', 'Auto Detailing not found.');
     }
-
-    // public function toSoldunits($id)
-    // {
-    //     $appointment = Appointments::find($id);
-        
-    //     if ($appointment) {
-    //         $soldUnitsTable = new Soldunits;
-    //         $soldUnitsTable->fill($appointment->toArray());
-    //         $soldUnitsTable->save();
-    
-    //         $appointment->delete();
-
-    //         Appointments::where('uid', '$uid')->delete();
-            
-    //         // Units::where('uid', '$uid')->delete();
-
-            
-    
-    //         return back()->with('success', 'Appointment transferred successfully');
-    //     }
-    
-    //     return back()->with('error', 'Appointment not found.');
-    // }
-
-    // public function toFinancing($id)
-    // {
-    //     $appointment = Appointments::find($id);
-
-    //     if($appointment){
-    //         $financingTable = new FinancingConfirmations;
-    //         $financingTable->fill($appointment->toArray());
-    //         $financingTable->save();
-
-    //         $appointment->delete();
-
-    //         return back()->with('success', 'Appointment transferred successfully');
-    //     }
-
-    //     return back()->with('error', 'Appointment not found.');
-    // }
     
     public function toSold(Request $request){
         $price = str_replace(',', '', $request->input('price'));
@@ -130,14 +95,12 @@ class SystemAppointmentController extends Controller
             'witness' => $request->input('witness'),
             'client_name' => $request->input('client_name'),
             'client_contact' => $request->input('client_contact'),
-            'transaction_type' => $request->input('transaction_type'),
         ]);
 
          // Clone and store in SoldUnits table
-            $soldUnitInfo = new Soldunits(); // Create a new instance of SoldUnits model
-            $soldUnitInfo->fill($arInfo->toArray()); // Fill the attributes from the cloned instance
-            $soldUnitInfo->car_price = str_replace(',', '', $request->input('agreed_price')); // Modify specific attribute
-            $soldUnitInfo->transaction_type = $request->input('transaction_type');
+            $soldUnitInfo = new Soldunits(); 
+            $soldUnitInfo->fill($arInfo->toArray()); 
+            $soldUnitInfo->transaction_type = "cash";
             $soldUnitInfo->save();
 
             $appointmentToDelete = Appointments::find($request->input('id'));
@@ -147,9 +110,65 @@ class SystemAppointmentController extends Controller
 
             return redirect()->route('system.appointments.appointments')->with('success', 'Acknowledgment Receipt (Sold) stored successfully');
     }
+
+
+    public function toFinancing(Request $request){
+        $price = str_replace(',', '', $request->input('price'));
+        $agreedPrice = str_replace(',', '', $request->input('agreed_price'));
+        $balance = str_replace(',', '', $request->input('balance'));
+        $deposit = str_replace(',', '', $request->input('deposit'));
+    
+        $arInfo = ReceiptRecords::create([
+            'user_id' => $request->input('user_id'),
+            'TNX_No' => $request->input('TNX_No'),
+            'date' => $request->input('date'),
+            'received_from' => $request->input('received_from'),
+            'postal_address' => $request->input('postal_address'),
+            'amount' => $request->input('amount'),
+            'price' => $price,
+            'uid' => $request->input('uid'),
+            'car_year' => $request->input('car_year'),
+            'car_make' => $request->input('car_make'),
+            'car_model' => $request->input('car_model'),
+            'car_variant' => $request->input('car_variant'),
+            'exterior_color' => $request->input('exterior_color'),
+            'car_price' => $request->input('car_price'),
+            'car_plate_no' => $request->input('car_plate_no'),
+            'image' => $request->input('image'),
+            'agreed_price' => $agreedPrice,
+            'balance' => $balance,
+            'deposit' => $deposit,
+            'due_date' => $request->input('due_date'),
+            'checkboxes' => json_encode($request->input('required_docs')),
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'contact' => $request->input('contact'),
+            'witness' => $request->input('witness'),
+            'client_name' => $request->input('client_name'),
+            'client_contact' => $request->input('client_contact'),
+        ]);
+
+         // Clone and store in Reservation -> Financing
+            $reserveInfo = new ReservationFinancings();
+            $reserveInfo->fill($arInfo->toArray());
+            $reserveInfo->save();
+
+         // Clone and store in Financing -> Confirmations
+            $reserveInfo = new FinancingConfirmations();
+            $reserveInfo->fill($arInfo->toArray());
+            $reserveInfo->transaction_type = "financing";
+            $reserveInfo->save();
+
+            $appointmentToDelete = Appointments::find($request->input('id'));
+            if ($appointmentToDelete) {
+                $appointmentToDelete->delete();
+            }
+
+        return redirect()->route('system.appointments.appointments')->with('success', 'Acknowledgment Receipt (Reserved) stored successfully');
+    }
    
 
-    public function toReservation(Request $request){
+    public function toReservation(Request $request, $id){
         // dd($request);
         $price = str_replace(',', '', $request->input('price'));
         $agreedPrice = str_replace(',', '', $request->input('agreed_price'));
@@ -187,12 +206,11 @@ class SystemAppointmentController extends Controller
         ]);
 
          // Clone and store in SoldUnits table
-            $appointmentInfo = new Reservations();
+            $appointmentInfo = new ReservationCashes();
             $appointmentInfo->fill($arInfo->toArray());
-            $appointmentInfo->car_price = str_replace(',', '', $request->input('agreed_price'));
             $appointmentInfo->save();
 
-            $appointmentToDelete = Appointments::find($request->input('id'));
+            $appointmentToDelete = Appointments::find($id);
             if ($appointmentToDelete) {
                 $appointmentToDelete->delete();
             }

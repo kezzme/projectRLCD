@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Reservations extends Model
+class ReservationTradeIns extends Model
 {
     use HasFactory;
 
@@ -17,11 +17,11 @@ class Reservations extends Model
         'postal_address',
         'amount',
         'price',
+        'added_by',
         'car_year', 
         'car_make', 
         'car_model', 
         'car_variant', 
-        'exterior_color',
         'car_price',
         'car_plate_no', 
         'image',
@@ -30,11 +30,19 @@ class Reservations extends Model
         'balance',
         'due_date',
         'checkboxes',
+        'unit_year', 
+        'unit_make', 
+        'unit_model', 
+        'unit_variant', 
+        'unit_price',
+        'unit_plate_no', 
+        'checkboxes2',
         'first_name', 
         'last_name',
         'contact',
         'witness',
         'client_name',
         'client_contact',
+        'transaction_type'
     ];
 }

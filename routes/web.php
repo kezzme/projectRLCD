@@ -134,17 +134,25 @@ Route::prefix('system')->name('system.')->group(function(){
         Route::prefix('appointments')->name('appointments.')->group(function(){
             Route::get('/', [SystemAppointmentController::class, 'appointments'])->name('appointments');
             Route::post('/process/receipt/{id}', [SystemAppointmentController::class, 'toReceipt'])->name('toReceipt');
-            Route::post('/process/receipt/store/{id}', [SystemAppointmentController::class, 'store'])->name('store'); 
+            Route::post('/process/receipt/store/{id}', [SystemAppointmentController::class, 'store'])->name('store');      
+            Route::post('/process/receipt/sold/{id}', [SystemAppointmentController::class, 'toSold'])->name('toSold');
+            Route::post('/process/receipt/financing/{id}', [SystemAppointmentController::class, 'toFinancing'])->name('toFinancing');
             Route::post('/process/receipt/reservation/{id}', [SystemAppointmentController::class, 'toReservation'])->name('toReservation');
-            Route::post('/process/sold/{id}', [SystemAppointmentController::class, 'toSold'])->name('toSold');
-           
+            
             Route::post('/process/void/{id}', [SystemAppointmentController::class, 'toVoid'])->name('toVoid');
     });
 
         Route::prefix('reservations')->name('reservations.')->group(function(){
             Route::get('/', [ReservationController::class, 'reservation'])->name('reservation');
+            Route::get('/cash', [ReservationController::class, 'resCash'])->name('resCash');
+            Route::get('/financing', [ReservationController::class, 'resFinancing'])->name('resFinancing');
+            Route::get('/trade_in', [ReservationController::class, 'resTradein'])->name('resTradein');
+            Route::post('/process/receipt/{id}', [ReservationController::class, 'toresReceipt'])->name('toresReceipt');
+            Route::post('/process/receipt/store/{id}', [ReservationController::class, 'reserveStore'])->name('reserveStore');
+            Route::post('/process/receipt/soldunits/{id}', [ReservationController::class, 'toSoldunits'])->name('toSoldunits');
+            
             Route::post('/process/financing/{id}', [ReservationController::class, 'toFinancing'])->name('toFinancing');
-            Route::post('/process/soldunits/{id}', [ReservationController::class, 'toSoldunits'])->name('toSoldunits');
+            
     });
 
         Route::prefix('financing')->name('financing.')->group(function(){
@@ -169,8 +177,9 @@ Route::prefix('system')->name('system.')->group(function(){
         Route::prefix('receipts')->name('receipts.')->group(function(){
             Route::get('/acknowledgment_receipt', [ReceiptsController::class, 'ackReceipts'])->name('acknowledgment');
             Route::post('/acknowledgment_receipt/store', [ReceiptsController::class, 'store'])->name('store');  
-            Route::post('/acknowledgment_receipt/process/toSold', [ReceiptsController::class, 'toSold'])->name('toSold');
-            Route::post('/acknowledgment_receipt/process/toAppointment', [ReceiptsController::class, 'toAppointment'])->name('toAppointment');
+            Route::post('/acknowledgment_receipt/process/to/sold', [ReceiptsController::class, 'toSold'])->name('toSold');
+            Route::post('/acknowledgment_receipt/process/to/financing', [ReceiptsController::class, 'toFinancing'])->name('toFinancing');
+            Route::post('/acknowledgment_receipt/process/to/reservation', [ReceiptsController::class, 'toReservation'])->name('toReservation');
             Route::get('/records', [ReceiptsController::class, 'records'])->name('records');
            
     });             

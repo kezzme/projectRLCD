@@ -21,9 +21,7 @@ class FinancingStatuses extends Model
         'first_name', 
         'last_name',
         'contact',
-        'email',
         'date',
-        'time',
         'financing_bank',
         'status'
     ];

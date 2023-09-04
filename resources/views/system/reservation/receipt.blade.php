@@ -48,7 +48,7 @@
         <div class="col-md-12">
           <div class="input-group">
             <label class="col-md-3 input-group-text ">with postal address at</label>
-            <input type="text" name="postal_address" class="form-control" style="text-transform: capitalize" required>
+            <input type="text" name="postal_address" class="form-control" style="text-transform: capitalize" value="{{$toReceipt->postal_address}}" readonly>
           </div>
         </div>
         <div class="col-md-12">
@@ -107,13 +107,13 @@
       <div class="col-md-6">
         <div class=" input-group">
           <label class="col-md-3 input-group-text justify-content-center">Agreed Price</label>
-          <input type="text" id="agreed_price" name="agreed_price" class="form-control total_price" maxlength="7" required>
+          <input type="text" id="agreed_price" name="agreed_price" class="form-control total_price" value="{{ number_format($toReceipt->agreed_price, 0, '.', ',') }}" readonly>
         </div>
       </div>
       <div class="col-md-6">
         <div class=" input-group">
             <div class="col-md-3 input-group-text justify-content-center">Balance</div>
-          <input type="text" id="balance" name="balance" class="form-control total_price" maxlength="7" value="0" onblur="handleBlur(this)">
+          <input type="text" id="balance" name="balance" class="form-control total_price" maxlength="7" value="{{ number_format($toReceipt->balance, 0, '.', ',') }}" onblur="handleBlur(this)">
         </div>
       </div>
       <div class="col-md-6">
@@ -125,7 +125,7 @@
       <div class="col-md-6">
         <div class=" input-group">
           <label class="col-md-3 input-group-text justify-content-center">Due Date</label>
-          <input type="date" name="due_date" class="form-control">
+          <input type="date" name="due_date" class="form-control" value="{{$toReceipt->due_date}}">
         </div>
       </div>
       <div class="col-md-12">
@@ -156,6 +156,7 @@
         <input type="text" class="form-control hidden" id="uid" name="uid" value="{{$toReceipt->uid}}">
         <input type="text" class="form-control hidden" id="image" name="image" value="{{$toReceipt->image}}">
         <input type="text" class="form-control hidden" id="car_price" name="car_price" value="{{$toReceipt->car_price}}">
+        <input type="text" class="form-control hidden" id="transaction_type" name="transaction_type" value="cash">
         
         <div class="col-md-4">  
           <label class="form-label">Conforme:</label>
@@ -213,7 +214,7 @@
                 <button class="dropdown-item" type="button" onclick="showConfirmationModal('FINANCING')">FINANCING</button>
               </li>
               <li>
-                <button class="dropdown-item" type="button" onclick="showConfirmationModal('RESERVED')">RESERVED</button>
+                <button class="dropdown-item" type="button" onclick="showConfirmationModal('PARTIAL')">PARTIAL</button>
               </li>
             </ul>
             <input type="hidden" name="action" id="action" value="">
@@ -319,10 +320,8 @@
         
             // Depending on the action, set the form action attribute
             if (action === 'SOLD') {
-              document.querySelector('form').action = "{{ route('system.appointments.toSold', ['id'=>$toReceipt->id]) }}";
+              document.querySelector('form').action = "{{ route('system.reservations.toSoldunits', ['id'=>$toReceipt->id]) }}";
             } else if (action === 'FINANCING') {
-              document.querySelector('form').action = "{{ route('system.appointments.toFinancing', ['id'=>$toReceipt->id]) }}";
-            } else if (action === 'RESERVED') {
               document.querySelector('form').action = "{{ route('system.appointments.toReservation', ['id'=>$toReceipt->id]) }}";
             }
         

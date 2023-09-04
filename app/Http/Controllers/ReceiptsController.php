@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Appointments;
-use App\Models\ReceiptRecords;
-use App\Models\Reservations;
-use App\Models\Soldunits;
 use App\Models\User;
 use App\Models\Units;
+use App\Models\Soldunits;
+use App\Models\Appointments;
+use App\Models\Reservations;
 use Illuminate\Http\Request;
+use App\Models\ReceiptRecords;
 use Illuminate\Support\Facades\DB;
+use App\Models\ReservationFinancings;
+use App\Models\FinancingConfirmations;
 
 class ReceiptsController extends Controller
 {
@@ -75,7 +77,7 @@ class ReceiptsController extends Controller
     
         $arInfo = ReceiptRecords::create([
             'user_id' => $request->input('user_id'),
-            'TNX_No' => $request->input('TNX_No'),
+            
             'date' => $request->input('date'),
             'received_from' => $request->input('received_from'),
             'postal_address' => $request->input('postal_address'),
@@ -104,15 +106,72 @@ class ReceiptsController extends Controller
         ]);
 
          // Clone and store in SoldUnits table
-            $soldUnitInfo = new SoldUnits(); // Create a new instance of SoldUnits model
-            $soldUnitInfo->fill($arInfo->toArray()); // Fill the attributes from the cloned instance
-            $soldUnitInfo->car_price = str_replace(',', '', $request->input('agreed_price')); // Modify specific attribute
+            $soldUnitInfo = new SoldUnits(); 
+            $soldUnitInfo->fill($arInfo->toArray());
+            // $soldUnitInfo->car_price = str_replace(',', '', $request->input('agreed_price'));
+            $soldUnitInfo->transaction_type = $request->input('transaction_type');
             $soldUnitInfo->save();
 
-        return back()->with('success', 'Acknowledgment Receipt stored successfully');
+        return back()->with('success', 'Acknowledgment Receipt (Sold) stored successfully');
     }
 
-    public function toAppointment(Request $request){
+    public function toFinancing(Request $request){
+        $price = str_replace(',', '', $request->input('price'));
+        $agreedPrice = str_replace(',', '', $request->input('agreed_price'));
+        $balance = str_replace(',', '', $request->input('balance'));
+        $deposit = str_replace(',', '', $request->input('deposit'));
+    
+        $arInfo = ReceiptRecords::create([
+            'user_id' => $request->input('user_id'),
+            
+            'date' => $request->input('date'),
+            'received_from' => $request->input('received_from'),
+            'postal_address' => $request->input('postal_address'),
+            'amount' => $request->input('amount'),
+            'price' => $price,
+            'uid' => $request->input('uid'),
+            'car_year' => $request->input('car_year'),
+            'car_make' => $request->input('car_make'),
+            'car_model' => $request->input('car_model'),
+            'car_variant' => $request->input('car_variant'),
+            'exterior_color' => $request->input('exterior_color'),
+            'car_price' => $request->input('car_price'),
+            'car_plate_no' => $request->input('car_plate_no'),
+            'image' => $request->input('image'),
+            'agreed_price' => $agreedPrice,
+            'balance' => $balance,
+            'deposit' => $deposit,
+            'due_date' => $request->input('due_date'),
+            'checkboxes' => json_encode($request->input('required_docs')),
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'contact' => $request->input('contact'),
+            'witness' => $request->input('witness'),
+            'client_name' => $request->input('client_name'),
+            'client_contact' => $request->input('client_contact'),
+        ]);
+
+         // Clone and store in Reservation -> Financing
+            $reserveInfo = new ReservationFinancings();
+            $reserveInfo->fill($arInfo->toArray());
+            $reserveInfo->save();
+
+         // Clone and store in Financing -> Confirmations
+            $reserveInfo = new FinancingConfirmations();
+            $reserveInfo->fill($arInfo->toArray());
+            $reserveInfo->transaction_type = "financing";
+            $reserveInfo->save();
+
+            $appointmentToDelete = Appointments::find($request->input('id'));
+            if ($appointmentToDelete) {
+                $appointmentToDelete->delete();
+            }
+
+            return back()->with('success', 'Acknowledgment Receipt (Financing) stored successfully');
+    }
+
+
+    public function toReservation(Request $request){
         // dd($request);
         $price = str_replace(',', '', $request->input('price'));
         $agreedPrice = str_replace(',', '', $request->input('agreed_price'));
@@ -121,7 +180,7 @@ class ReceiptsController extends Controller
     
         $arInfo = ReceiptRecords::create([
             'user_id' => $request->input('user_id'),
-            'TNX_No' => $request->input('TNX_No'),
+            
             'date' => $request->input('date'),
             'received_from' => $request->input('received_from'),
             'postal_address' => $request->input('postal_address'),
@@ -152,10 +211,9 @@ class ReceiptsController extends Controller
          // Clone and store in SoldUnits table
             $appointmentInfo = new Reservations();
             $appointmentInfo->fill($arInfo->toArray());
-            $appointmentInfo->car_price = str_replace(',', '', $request->input('agreed_price'));
             $appointmentInfo->save();
 
-        return back()->with('success', 'Acknowledgment Receipt stored successfully');
+        return back()->with('success', 'Acknowledgment Receipt (Reserved [Cash]) stored successfully');
     }
 
 }

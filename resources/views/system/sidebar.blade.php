@@ -44,16 +44,32 @@
 
   <li class="nav-item">
     <a class="nav-link {{ is_active_route(['system.appointments.appointments', 'system.appointments.toReceipt'], 'collapsed') }}" href="{{ route('system.appointments.appointments') }}">
-    <i class="fa-solid fa-calendar-check"></i>
-      <span>Appointment</span>
+    <i class="fa-solid fa-calendar-check"></i><span>Appointment</span>
     </a>
   </li><!-- End Appointment Nav -->
 
   <li class="nav-item">
-    <a class="nav-link {{ is_active_route(['system.reservations.reservation'], 'collapsed') }}" href="{{ route('system.reservations.reservation') }}">
-      <i class="fa-solid fa-user-clock"></i>
-      <span>Reservation</span>
+    <a class="nav-link {{ is_active_route(['system.reservations.resCash', 'system.reservations.resFinancing', 'system.reservations.resTradein'], 'collapsed') }}" href="{{ route('system.reservations.reservation') }}" data-bs-target="#reservation-nav" data-bs-toggle="collapse">
+      <i class="fa-solid fa-user-clock"></i><span>Reservation</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
+    <ul id="reservation-nav" class="nav-content collapse {{ is_active_route(['system.reservations.resCash', 'system.reservations.resFinancing', 'system.reservations.resTradein']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
+      <li>
+        <a  class="{{ is_active_route('system.reservations.resCash') }}" href="{{ route('system.reservations.resCash') }}">
+          <i class="fa-regular fa-circle"></i><span>Cash</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ is_active_route('system.reservations.resFinancing') }}" href="{{ route('system.reservations.resFinancing') }}">
+          <i class="fa-regular fa-circle"></i><span>Financing</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ is_active_route('system.reservations.resTradein') }}" href="{{ route('system.reservations.resTradein') }}">
+          <i class="fa-regular fa-circle"></i><span>Trade-in</span>
+        </a>
+      </li>
+    </ul>
+
   </li><!-- End Reservation Nav -->
 
   <li class="nav-item">

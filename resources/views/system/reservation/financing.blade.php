@@ -58,7 +58,7 @@
                       <td>{{ strtoupper(\Carbon\Carbon::parse($reserve->due_date)->format('F d, Y')) }}</td>
                       <form action="{{ route('system.reservations.toSoldunits', ['id' => $reserve->id]) }}" method="POST">
                       @csrf
-                      <td><button type="button" class="btn btn-danger" onclick="showVoidModal(this.form)"><i class="fa-solid fa-calendar-xmark"></i></button></td>
+                      <td><button type="button" class="btn btn-danger" onclick="showVoidModal(this.form)"><i class="fa-solid fa-user-xmark"></i></button></td>
                     </form>
                     <form action="{{ route('system.reservations.toresReceipt', ['id' => $reserve->id]) }}" method="POST">
                       @csrf
@@ -88,7 +88,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                  Are you sure you want to mark it as Void?
+                  Are you sure you want to mark it as <strong>Rejected</strong>?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

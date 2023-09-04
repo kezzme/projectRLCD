@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('financing_statuses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id');
             $table->string('uid');
             $table->string('first_name');
             $table->string('last_name');

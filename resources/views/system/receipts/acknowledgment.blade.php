@@ -27,13 +27,7 @@
               <h3 class="card-title text-center" style="font-size: 30px;">ACKNOWLEDGMENT RECEIPT</h3>
               <form class="row g-3" action="{{ route('system.receipts.store') }}" method="POST" onsubmit="return validateForm()">
                 @csrf
-                <div class="col-md-3">
-                  <div class=" input-group">
-                    <div class="input-group-text">TNX No:</div>
-                    <input type="text" name="TNX_No" class="form-control" value="{{$nextTnxNo}}" readonly>
-                  </div>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-9">
                   <label class="form-label">&nbsp;</label>
                 </div>
                 <div class="col-md-3">
@@ -160,6 +154,7 @@
     <input type="text" class="form-control hidden" id="uid" name="uid">
     <input type="text" class="form-control hidden" id="image" name="image">
     <input type="text" class="form-control hidden" id="car_price" name="car_price">
+    <input type="text" class="form-control hidden" id="transaction_type" name="transaction_type" value="cash">
     
     <div class="col-md-4">
       <label class="form-label">Conforme:</label>
@@ -211,6 +206,9 @@
         <ul class="dropdown-menu">
           <li>
             <button class="dropdown-item" type="button" onclick="showConfirmationModal('SOLD')">SOLD</button>
+          </li>
+          <li>
+            <button class="dropdown-item" type="button" onclick="showConfirmationModal('FINANCING')">FINANCING</button>
           </li>
           <li>
             <button class="dropdown-item" type="button" onclick="showConfirmationModal('RESERVED')">RESERVED</button>
@@ -344,8 +342,10 @@
     // Depending on the action, set the form action attribute
     if (action === 'SOLD') {
       document.querySelector('form').action = "{{ route('system.receipts.toSold') }}";
+    } else if (action === 'FINANCING') {
+      document.querySelector('form').action = "{{ route('system.receipts.toFinancing') }}";
     } else if (action === 'RESERVED') {
-      document.querySelector('form').action = "{{ route('system.receipts.toAppointment') }}";
+      document.querySelector('form').action = "{{ route('system.receipts.toReservation') }}";
     }
 
     // Submit the form

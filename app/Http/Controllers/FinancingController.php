@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FinancingConfirmations;
-use App\Models\FinancingStatuses;
 use App\Models\Soldunits;
 use Illuminate\Http\Request;
+use App\Models\ReceiptRecords;
+use App\Models\FinancingStatuses;
+use App\Models\FinancingConfirmations;
 
 class FinancingController extends Controller
 {
@@ -32,8 +33,19 @@ class FinancingController extends Controller
   
           $financing_confirmation->delete();
   
-          return back()->with('success', 'Transferred successfully.');
       }
+
+      if ($request->input('status') === 'Rejected') {
+         $uid = $financing_confirmation->uid;
+         $firstname = $financing_confirmation->first_name;
+         $lastname = $financing_confirmation->last_name;
+ 
+         ReceiptRecords::where('uid', $uid)
+             ->where('first_name', $firstname)
+             ->where('last_name', $lastname)
+             ->delete();
+      }
+      return back()->with('success', 'Transferred successfully.');
   }
   
 
