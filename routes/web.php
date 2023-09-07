@@ -144,10 +144,16 @@ Route::prefix('system')->name('system.')->group(function(){
 
         Route::prefix('reservations')->name('reservations.')->group(function(){
             Route::get('/', [ReservationController::class, 'reservation'])->name('reservation');
+        
             Route::get('/cash', [ReservationController::class, 'resCash'])->name('resCash');
+            Route::post('/cash/create/receipt/{id}', [ReservationController::class, 'receipt1'])->name('receipt1');
+            
             Route::get('/financing', [ReservationController::class, 'resFinancing'])->name('resFinancing');
             Route::get('/trade_in', [ReservationController::class, 'resTradein'])->name('resTradein');
-            Route::post('/process/receipt/{id}', [ReservationController::class, 'toresReceipt'])->name('toresReceipt');
+
+            Route::post('/process/financing/receipt/{id}', [ReservationController::class, 'recFinancing'])->name('recFinancing');
+            Route::post('/process/trade/receipt/{id}', [ReservationController::class, 'recTrade'])->name('recTrade');
+
             Route::post('/process/receipt/store/{id}', [ReservationController::class, 'reserveStore'])->name('reserveStore');
             Route::post('/process/receipt/soldunits/{id}', [ReservationController::class, 'toSoldunits'])->name('toSoldunits');
             

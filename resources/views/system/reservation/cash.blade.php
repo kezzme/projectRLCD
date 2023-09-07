@@ -60,7 +60,7 @@
                       @csrf
                       <td><button type="button" class="btn btn-danger" onclick="showVoidModal(this.form)"><i class="fa-solid fa-calendar-xmark"></i></button></td>
                     </form>
-                    <form action="{{ route('system.reservations.toresReceipt', ['id' => $reserve->id]) }}" method="POST">
+                    <form action="{{ route('system.reser', ['id' => $reserve->id]) }}" method="POST">
                       @csrf
                       <td><button type="button" class="btn btn-success" onclick="showReceiptModal(this.form)"><i class="fa-solid fa-file-circle-plus"></i></button></td>
                     </form>

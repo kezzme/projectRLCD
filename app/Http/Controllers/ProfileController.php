@@ -16,21 +16,21 @@ class ProfileController extends Controller
         $bookedAutoDetailing = $user->userAutoDetailings;
         $bookedPaintJob = $user->userPaintJobs;
     
-        return view('User.booked', compact('bookedCarWash', 'bookedAutoDetailing', 'bookedPaintJob'));
+        return view('user.booked', compact('bookedCarWash', 'bookedAutoDetailing', 'bookedPaintJob'));
     }
     
     public function trade_request() {
         $user = auth()->user();
         $tradeRequest = $user->userTrades;
 
-        return view('User.trade-request', compact('tradeRequest'));
+        return view('user.trade-request', compact('tradeRequest'));
     }
 
     public function appoints() {
         $user = auth()->user();
         $appointments = $user->userAppointments;
 
-        return view('User.appointment', compact('appointments'));
+        return view('user.appointment', compact('appointments'));
     }
     
 }

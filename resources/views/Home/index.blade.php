@@ -1,6 +1,6 @@
 <x-landing-layout>
 
-@include('home.nav-bar')
+@include('Home.nav-bar')
 
 
 
@@ -333,7 +333,7 @@
     </div>
     <!-- Financing Bank End -->
 
-    @include('home.footer')
+    @include('Home.footer')
 
 
 </x-landing-layout>

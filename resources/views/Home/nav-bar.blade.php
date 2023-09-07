@@ -38,27 +38,28 @@
                     </div>
                 </div>
                 <a class="nav-item nav-link @if(Route::currentRouteName() == 'contact') active @endif" href="{{ route('contact') }}">Contact</a>
+                @auth
+                <div class="nav-item dropdown">
+                <a class="btn btn-primary py-4 px-lg-5 d-block" data-bs-toggle="dropdown">Hi, {{auth()->user()->first_name}}</a>
+                <div class="dropdown-menu fade-up w-100 ">
+                        
+                            <a class="dropdown-item {{ is_active_route(['profile.booked_services']) }}" href="{{route('profile.booked_services')}}"><i class="fa-solid fa-bookmark"></i> Booked Services</a>
+                            <a class="dropdown-item {{ is_active_route(['profile.trade_request']) }}" href="{{route('profile.trade_request')}}"><i class="fa-solid fa-right-left"></i> Trade-in Request</a>
+                            <a class="dropdown-item {{ is_active_route(['profile.appoints']) }}" href="{{route('profile.appoints')}}"><i class="fa-solid fa-calendar-check"></i> Appointment</a>
+                            <form action="/logout" method="POST">
+                                @csrf
+                            <button class="dropdown-item @if(Route::currentRouteName() == 'logout') active @endif"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                        </form>
+                    </div>  
+                </div>
+                @else 
+                <!-- Form fields -->
+                <a class="btn btn-primary py-4 px-lg-5 d-block" href="{{ route('login') }}">login<i class="fa fa-arrow-right ms-3"></i></a>
+                @endauth
             </div>
 
 
-            @auth
-            <div class="nav-item dropdown">
-            <a class="btn btn-primary py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">Hi, {{auth()->user()->first_name}}</a>
-            <div class="dropdown-menu fade-up w-100 ">
-                    
-                        <a class="dropdown-item {{ is_active_route(['profile.booked_services']) }}" href="{{route('profile.booked_services')}}"><i class="fa-solid fa-bookmark"></i> Booked Services</a>
-                        <a class="dropdown-item {{ is_active_route(['profile.trade_request']) }}" href="{{route('profile.trade_request')}}"><i class="fa-solid fa-right-left"></i> Trade-in Request</a>
-                        <a class="dropdown-item {{ is_active_route(['profile.appoints']) }}" href="{{route('profile.appoints')}}"><i class="fa-solid fa-calendar-check"></i> Appointment</a>
-                        <form action="/logout" method="POST">
-                            @csrf
-                        <button class="dropdown-item @if(Route::currentRouteName() == 'logout') active @endif"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
-                    </form>
-                </div>  
-            </div>
-            @else 
-            <!-- Form fields -->
-                <a class="btn btn-primary py-4 px-lg-5 d-none d-lg-block" href="{{ route('login') }}">login<i class="fa fa-arrow-right ms-3"></i></a>
-            @endauth
+           
             
         </div>
     </nav>

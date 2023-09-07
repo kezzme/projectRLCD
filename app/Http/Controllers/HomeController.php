@@ -9,7 +9,7 @@ use App\Mail\BookingMail;
 class HomeController extends Controller
 {
     public function index() {
-        return view('home.index');
+        return view('Home.index');
     }
 
     public function finanCal() {

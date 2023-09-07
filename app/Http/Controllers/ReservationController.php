@@ -24,18 +24,8 @@ class ReservationController extends Controller
         return view('system.reservation.cash', ['reservation' => $reservation]);
     }
 
-    public function resFinancing(){
-        $reservation = ReservationFinancings::paginate(10);
-        return view('system.reservation.financing', ['reservation' => $reservation]);
-    }
-
-    public function resTradein(){
-        $reservation = ReservationTradeIns::paginate(10);
-        return view('system.reservation.trade-in', ['reservation' => $reservation]);
-    }
-
-    public function toresReceipt($id){
-        $toReceipt = Reservations::find($id);
+    public function tocashReceipt($id){
+        $cashReceipt = ReservationCashes::find($id);
 
         $checkboxes = [
             'LTO OFFICIAL RECEIPT',
@@ -46,8 +36,54 @@ class ReservationController extends Controller
             'RELEASE OF CHATTLEMORTGAGE',
         ];
 
-        return view('system.reservation.receipt', compact('toReceipt', 'checkboxes'));
+        return view('system.reservation.cashReceipt', compact('cashReceipt', 'checkboxes'));
     }
+
+
+    public function resFinancing(){
+        $reservation = ReservationFinancings::paginate(10);
+        return view('system.reservation.financing', ['reservation' => $reservation]);
+    }
+
+    public function recFinancing($id){
+        $toReceipt = ReservationFinancings::find($id);
+
+        $checkboxes = [
+            'LTO OFFICIAL RECEIPT',
+            'PHOTO OF ID\'S WITH SIGNATURE',
+            'LTO CERTIFICATE OF REGISTRATION',
+            'SECRETARY\'S CERTIFICATE',
+            'DEDD OF SALES',
+            'RELEASE OF CHATTLEMORTGAGE',
+        ];
+
+        return view('system.reservation.financingReceipt', compact('financingReceipt', 'checkboxes'));
+    }
+
+
+    public function resTradein(){
+        $reservation = ReservationTradeIns::paginate(10);
+        return view('system.reservation.trade-in', ['reservation' => $reservation]);
+    }
+
+    public function recTrade($id){
+        $toReceipt = ReservationTradeIns::find($id);
+
+        $checkboxes = [
+            'LTO OFFICIAL RECEIPT',
+            'PHOTO OF ID\'S WITH SIGNATURE',
+            'LTO CERTIFICATE OF REGISTRATION',
+            'SECRETARY\'S CERTIFICATE',
+            'DEDD OF SALES',
+            'RELEASE OF CHATTLEMORTGAGE',
+        ];
+
+        return view('system.reservation.receipt', compact('tradeReceipt', 'checkboxes'));
+    }
+
+   
+
+   
 
 
     public function reserveStore(Request $request){
