@@ -39,10 +39,8 @@
                       </div>
                     </div>
                   </div>
-                  @else
-
-                  @endif
-                  @if ($bookedAutoDetailing)
+                  
+                  @elseif ($bookedAutoDetailing)
                   <div class="col-md-4 d-flex">
                       <div class="card card-showroom card-rounded product-grid2">
                         <div class="justify-content-between align-items-center">
@@ -79,11 +77,8 @@
                         </div>
                       </div>
                     </div>
-                    @else
-  
-                    @endif
                     
-                    @if ($bookedPaintJob)
+                    @elseif ($bookedPaintJob)
                     <div class="col-md-4 d-flex">
                         <div class="card card-showroom card-rounded product-grid2">
                           <div class="justify-content-between align-items-center">
@@ -123,13 +118,44 @@
                         </div>
                       </div>
                       @else
-    
+                      <div class="col-md-4 d-flex">
+                        <div class="card card-showroom card-rounded product-grid2">
+                          <div class="justify-content-between align-items-center">
+                            <span class="no-appoint">No Booked Services</span>
+                          </div>
+                          <div class="mb-1">
+                            <img src="{{asset('img/services.png')}}"
+                              alt="login form" class="img-fluid" style="border-radius: 1rem 1rem 0 0rem;" />
+                          </div>
+                          <div class="card-body">
+                            <span class="d-flex justify-content-between align-items-center">
+                                <h4><a class="text-danger">Services</a></h4>
+                               
+                                    <i class="fa-regular fa-images" style="color: #ffffff;"></i>
+                                </button>
+                            </span>
+                            <hr>
+                            <div class="col-lg-12">
+                              <div class="row">
+                                <div class="col-md-12 mb-3 card-text">
+                                  <p>&nbsp;&nbsp;&nbsp;If you haven't avail our services yet, we encourage you to explore our Services, including top-notch <a href="https://rlcardealer.com/services/carwash"><b><u>Car Wash</u></b></a>, meticulous <a href="https://rlcardealer.com/services/auto-detailing"><b><u>Auto-Detailing</u></b></a>, and expert <a href="https://rlcardealer.com/services/paintjob"><b><u>Paint Job</u></b></a>. You can enhance your vehicle's appearance and care for it conveniently with the guidance of our trusted team.</p>
+                              </div>
+                              
+                              
+                             <hr>
+                             <h5 class="text-center"><i class="fa-regular fa-clock"></i> No date has been set yet. </h5>
+                          </div>
+                          </div>
+                            
+                              {{-- <div class="add-to-cart" href="">
+                                <i class="fa-solid fa-ban"></i> Cancel Booking
+                              </div> --}}
+                           
+                          </div>
+                        </div>
+                      </div>
                       @endif
       
-                      
-                      {{-- <img src="{{asset('storage/' .$bookedPaintJob->photo_1.'')}}" alt=""> --}}
-      <!-- End Recent Sales -->
-
       </div>
       </div>
     </section>
@@ -146,10 +172,11 @@
                 <div class="modal-body">
                     <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                          
+                          @if($bookedAutoDetailing->photo_1)
                           <div class="carousel-item active">
                             <img src="{{asset('storage/' .$bookedAutoDetailing->photo_1.'')}}" class="d-block w-100" alt="">
                         </div>
+                          @endif
                           @if($bookedAutoDetailing->photo_2)
                           <div class="carousel-item">
                             <img src="{{asset('storage/' .$bookedAutoDetailing->photo_2.'')}}" class="d-block w-100" alt="">
@@ -258,11 +285,9 @@
       </div>
   </div>
   @endif
+
     
     
 
     @include('home.footer')
 </x-landing-layout>
-<script>
-
-</script>

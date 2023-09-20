@@ -35,33 +35,51 @@
         <div class="h-100 wow fadeIn" data-wow-delay="0.1s">
           <div id="carouselExampleFade" class="carousel slide carousel-fade">
             <div class="carousel-inner">
+              @if ($units->display_image_1)
               <div class="carousel-item active">
                 <img src="{{ url('storage/images/'.$units->car_model.'/'.$units->display_image_1) }}" class="d-block w-100" />
               </div>
+              @endif
+              @if ($units->display_image_2)
               <div class="carousel-item">
                 <img src="{{ url('storage/images/'.$units->car_model.'/'.$units->display_image_2) }}" class="d-block w-100" />
               </div>
+              @endif
+              @if ($units->display_image_3)
               <div class="carousel-item">
                 <img src="{{ url('storage/images/'.$units->car_model.'/'.$units->display_image_3) }}" class="d-block w-100" />
               </div>
+              @endif
+              @if ($units->display_image_4)
               <div class="carousel-item">
                 <img src="{{ url('storage/images/'.$units->car_model.'/'.$units->display_image_4) }}" class="d-block w-100" />
               </div>
+              @endif
+              @if ($units->display_image_5)
               <div class="carousel-item">
                 <img src="{{ url('storage/images/'.$units->car_model.'/'.$units->display_image_5) }}" class="d-block w-100" />
               </div>
+              @endif
+              @if ($units->display_image_6)
               <div class="carousel-item">
                 <img src="{{ url('storage/images/'.$units->car_model.'/'.$units->display_image_6) }}" class="d-block w-100" />
               </div>
+              @endif
+              @if ($units->display_image_7)
               <div class="carousel-item">
                 <img src="{{ url('storage/images/'.$units->car_model.'/'.$units->display_image_7) }}" class="d-block w-100" />
               </div>
+              @endif
+              @if ($units->display_image_8)
               <div class="carousel-item">
                 <img src="{{ url('storage/images/'.$units->car_model.'/'.$units->display_image_8) }}" class="d-block w-100" />
               </div>
+              @endif
+              @if ($units->display_image_9)
               <div class="carousel-item">
                 <img src="{{ url('storage/images/'.$units->car_model.'/'.$units->display_image_9) }}" class="d-block w-100" />
               </div>
+              @endif
               <!-- 9 IMAGES -->
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -241,105 +259,73 @@
       <div class="col-lg-7">
         <div class="bg-primary h-100 d-flex flex-column p-5 wow zoomIn" data-wow-delay="0.6s">
           <h1 class="text-white mb-4 justify-content-center text-center">Appointment Form</h1>
-          <form action="/vehicles/view_details/check" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+          <form action="{{route('vehicles.viewDetails.check')}}" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
             @csrf
             <div class="row g-3">
-              <div class="col-12 col-sm-6">
-                <div class=" input-group">
-                  <div class="col-md-4 input-group-text justify-content-center btn-rounded">First Name</div>
-                  <input type="text" name="first_name" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" value="{{auth()->user()->first_name}}" readonly>
-                </div>
-              </div>
-              <div class="col-12 col-sm-6">
-                <div class=" input-group">
-                  <div class="col-md-4 input-group-text justify-content-center btn-rounded">Last Name</div>
-                  <input type="text" name="last_name" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" value="{{auth()->user()->last_name}}" readonly>
-                </div>
-              </div>
-              <div class="col-12 col-sm-5">
-                <div class=" input-group">
-                  <div class="col-md-4 input-group-text justify-content-center btn-rounded">Contact</div>
-                  <input type="text" name="contact" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" value="{{auth()->user()->phone}}" readonly>
-                </div>
-              </div>
-              <div class="col-12 col-sm-7">
-                <div class=" input-group">
-                  <div class="col-md-4 input-group-text justify-content-center btn-rounded">Email</div>
-                  <input type="text" name="email" class="form-control btn-rounded" style="height: 50px;" value="{{auth()->user()->email}}" readonly>
-                </div>
-              </div>
-              <div class="col-12 col-sm-6">
-                <div class=" input-group">
-                  <div class="col-md-5 input-group-text justify-content-center btn-rounded">Year</div>
+              <div class="col-md-6">
+                <label for="first_name" class="text-white">First Name</label>
+                <input type="text" name="first_name" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" value="{{auth()->user()->first_name}}" readonly>
+            </div>
+            <div class="col-md-6">
+                <label for="last_name" class="text-white">Last Name</label>
+                <input type="text" name="last_name" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" value="{{auth()->user()->last_name}}" readonly>
+            </div>
+            <div class="col-md-5">
+              <label for="contact" class="text-white">Contact</label>
+                <input type="text" name="contact" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" value="{{auth()->user()->phone}}" readonly>
+            </div>
+            <div class="col-md-7">
+              <label for="email" class="text-white">Email</label>
+                <input type="text" name="email" class="form-control btn-rounded" style="height: 50px;" value="{{auth()->user()->email}}" readonly>
+            </div>
+              <div class="col-md-6">
+                  <label for="car_year" class="text-white">Year</label>
                   <input type="text" name="car_year" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" value="{{$units->car_year}}" readonly>
-                </div>
               </div>
-              <div class="col-12 col-sm-6">
-                <div class=" input-group">
-                  <div class="col-md-5 input-group-text justify-content-center btn-rounded">Make</div>
-                  <input type="text" name="car_make"  class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" value="{{$units->car_make}}" readonly>
-                </div>
+              <div class="col-md-6">
+                <label for="car_make" class="text-white">Make</label>
+                  <input type="text" name="car_make" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;"  value="{{$units->car_make}}" readonly>
               </div>
-              <div class="col-12 col-sm-6">
-                <div class=" input-group">
-                  <div class="col-md-5 input-group-text justify-content-center btn-rounded">Model</div>
-                  <input type="text" name="car_model" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" value="{{$units->car_model}}" readonly>
-                </div>
-              </div>
-              <div class="col-12 col-sm-6">
-                <div class=" input-group">
-                  <div class="col-md-5 input-group-text justify-content-center btn-rounded">Variant</div>
-                  <input type="text" name="car_variant" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" value="{{$units->car_variant}}" readonly>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="col-md-12">
-                  <input type="text" class="form-control btn-rounded hidden" id="datepicker" required>
-                </div>
-              </div>              
-              <div class="col-lg-6">
-                <div class="row">
-                  <div class="col-md-6 mb-3">
-                    <button id="btn7AM" class="btn btn-secondary btn-rounded w-100" style="height:60px;" onclick="selectTime('7:00 AM')" type="button" disabled>7:00 AM</button>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <button id="btn9AM" class="btn btn-secondary btn-rounded w-100" style="height:60px;" onclick="selectTime('9:00 AM')" type="button" disabled>9:00 AM</button>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <button id="btn11AM" class="btn btn-secondary btn-rounded w-100" style="height:60px;" onclick="selectTime('11:00 AM')" type="button" disabled>11:00 AM</button>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <button id="btn1PM" class="btn btn-secondary btn-rounded w-100" style="height:60px;" onclick="selectTime('1:00 PM')" type="button" disabled>1:00 PM</button>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <button id="btn3PM" class="btn btn-secondary btn-rounded w-100" style="height:60px;" onclick="selectTime('3:00 PM')" type="button" disabled>3:00 PM</button>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <button id="btn5PM" class="btn btn-secondary btn-rounded w-100" style="height:60px;" onclick="selectTime('5:00 PM')" type="button" disabled>5:00 PM</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 hidden" id="selectedDateTime">
-                  <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group"> 
-                          <span class="input-group-text btn-rounded">You've selected</span>
-                          <input type="text" class="form-control btn-rounded text-center" id="selectedTime" name="time"  readonly required>
-                          <span class="input-group-text">on</span>
-                          <input type="text" class="form-control btn-rounded text-center" id="selectedDate" name="date" readonly required>
-                          <button class="input-group-text btn btn-light btn-rounded" type="button" onclick="closeDateTime()"><i class="fa-solid fa-xmark"></i></button>
-                        </div>
-                    </div>
-                  </div>
+              <div class="col-md-6">
+                <label for="car_model" class="text-white">Model</label>
+                <input type="text" name="car_model" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;"  value="{{$units->car_model}}" readonly>
+            </div>
+            <div class="col-md-6">
+              <label for="variant" class="text-white">Variant</label>
+                <input type="text" name="car_variant" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;"  value="{{$units->car_variant}}" readonly>
+            </div>
+            <div class="col-md-6 ">
+              <label for="datepicker" class="text-white">Date</label>
+              <input type="text" class="form-control btn-rounded" id="datepicker" name="date" style="height: 50px;" placeholder="Select Date" required>
+          </div>
+            <div class="col-md-6">
+                <label for="dropdownList" class="text-white">Time</label>
+                      <select class="form-select btn-rounded" name="time" id="dropdownList" style="height: 50px;" value="{{ old('time') }}" required>
+                        <option id="btn9AM" selected>9:00 AM</option>
+                          <option id="btn9:30AM">9:30 AM</option>
+                          <option id="btn10AM">10:00 AM</option>
+                          <option id="btn10:30AM">10:30 AM</option>
+                          <option id="btn11AM">11:00 AM</option>
+                          <option id="btn11:30AM">11:30 AM</option>
+                          <option id="btn1PM">1:00 PM</option>
+                          <option id="btn1:30PM">1:30 PM</option>
+                          <option id="btn2PM">2:00 PM</option>
+                          <option id="btn2:30PM">2:30 PM</option>
+                          <option id="btn3PM">3:00 PM</option>
+                          <option id="btn3:30PM">3:30 PM</option>
+                          <option id="btn4PM">4:00 PM</option>
+                          <option id="btn4:30PM">4:30 PM</option>
+                      </select>
               </div>
               <input type="text" class="hidden" name="user_id" value="{{auth()->user()->id}}" readonly>
               <input type="text" class="hidden" name="uid" value="{{$units->uid}}" readonly>
-              <input type="text" class="hidden" name="car_price" value="{{$units->price}}" readonly>
+              <input type="text" class="hidden" name="bought_price" value="{{$units->bought_price}}" readonly>
+              <input type="text" class="hidden" name="car_price" value="{{$units->car_price}}" readonly>
               <input type="text" class="hidden" name="car_plate_no" value="{{$units->plate_no}}" readonly>
               <input type="text" class="hidden" name="image" value="{{$units->image}}" readonly>
               <input type="text" class="hidden" name="exterior_color" value="{{$units->exterior_color}}" readonly>
               
-              <div class="col-12">
+              <div class="col-12 py-3">
                 <button class="btn btn-secondary w-100 py-3 mt-1 btn-rounded" type="submit">Submit</button>
               </div>
             </div>
@@ -352,25 +338,8 @@
 <!-- Booking End --> 
 
   <!-- Modal -->
-  <div class="modal fade" id="limitModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Maximum Limit Reached</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>You can select a maximum of 6 image files.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn-rounded" data-bs-dismiss="modal">OK</button>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="modal fade" id="validationModal" tabindex="-1" role="dialog" aria-labelledby="validationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="validationModalLabel">Validation Error</h5>
@@ -378,7 +347,7 @@
           </button>
         </div>
         <div class="modal-body">
-          Please select a date and time before submitting the form.
+          Please select a Date and Time before submitting the form.
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary btn-rounded" data-bs-dismiss="modal">OK</button>
@@ -395,131 +364,60 @@
 
 <script>
   var selectedDate = ""; // Global variable to store the selected date
-  var selectedButton = null; // Global variable to store the selected button
-  var datePickerInstance = null; // Reference to the Flatpickr instance
-  
-  function selectDate(selectedDates, dateStr) {
-    selectedDate = dateStr;
-    document.getElementById("selectedDate").value = selectedDate;
-    enableTimeButtons();
-    updateSelectedDateTime();
+    var selectedButton = null; // Global variable to store the selected button
+    var datePickerInstance = null; // Reference to the Flatpickr instance
     
-  }
-  var selectedDate = document.getElementById("selectedDate").innerHTML;
-  var selectedTime = document.getElementById("selectedTime").innerHTML;
-
-  function selectTime(time) {
-  if (selectedDate !== "") {
-    var selectedTime = time;
-    document.getElementById("selectedDate").value = selectedDate;
-    document.getElementById("selectedTime").value = selectedTime;
-    document.getElementById("selectedDateTime").style.display = "block";
-    if (selectedButton !== null) {
-      selectedButton.classList.remove("selected");
-    }
-    // Set the clicked button as selected
-    selectedButton = document.getElementById("btn" + time.replace(/:/g, ""));
-    selectedButton.classList.add("selected");
-  }
-}
-
-  function updateSelectedDateTime() {
-    if (selectedDate !== "") {
-      var time = document.getElementById("timepicker").value;
-      var selectedTime = time;
+    function selectDate(selectedDates, dateStr) {
+      selectedDate = dateStr;
       document.getElementById("selectedDate").textContent = formatSelectedDate(selectedDate);
-      document.getElementById("selectedTime").textContent = selectedTime;
-      document.getElementById("selectedDateTime").style.display = "block";
-      if (selectedButton !== null) {
-        selectedButton.classList.remove("selected");
-      }
+      
+  }
+  
+    function formatSelectedDate(date) {
+      var options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      };
+      var formattedDate = new Date(date).toLocaleDateString('en-US', options);
+      return formattedDate;
     }
-  }
-
-
-  function formatSelectedDate(date) {
-    var options = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    };
-    var formattedDate = new Date(date).toLocaleDateString('en-US', options);
-    return formattedDate;
-  }
-
-  function enableTimeButtons() {
-  document.getElementById("btn7AM").removeAttribute("disabled");
-  document.getElementById("btn9AM").removeAttribute("disabled");
-  document.getElementById("btn11AM").removeAttribute("disabled");
-  document.getElementById("btn1PM").removeAttribute("disabled");
-  document.getElementById("btn3PM").removeAttribute("disabled");
-  document.getElementById("btn5PM").removeAttribute("disabled");
-}
-
-function disableTimeButtons() {
-  document.getElementById("btn7AM").disabled = true;
-  document.getElementById("btn9AM").disabled = true;
-  document.getElementById("btn11AM").disabled = true;
-  document.getElementById("btn1PM").disabled = true;
-  document.getElementById("btn3PM").disabled = true;
-  document.getElementById("btn5PM").disabled = true;
-}
-
-
-
+  
+  
   flatpickr("#datepicker", {
-    inline: true,
-  //   defaultDate: new Date().fp_incr(1),
-    minDate: new Date().fp_incr(1),
-    maxDate: new Date().fp_incr(30),
-    disable: [
-      function(date) {
-        // Disable Sundays
-        return date.getDay() === 0;
+      defaultDate: "tomorrow",
+      minDate: new Date().fp_incr(1),
+      maxDate: new Date().fp_incr(30),
+      dateFormat: "F d, Y",
+      disable: [
+          function(date) {
+              // Disable Sundays
+              return date.getDay() === 0;
+          }
+      ],
+      onChange: selectDate,
+      onOpen: function(selectedDates, dateStr, instance) {
+          datePickerInstance = instance;
       }
-    ],
-    onChange: selectDate,
-    onOpen: function(selectedDates, dateStr, instance) {
-      datePickerInstance = instance;
-      resizeCalendar();
-    }
   });
-
-  function resizeCalendar() {
-    if (datePickerInstance !== null) {
-      var calendarElement = datePickerInstance.calendarContainer;
-      calendarElement.classList.add("custom-calendar");
-    }
-  }
-
-  function closeDateTime() {
-    document.getElementById("selectedDateTime").style.display = "none";
-    if (selectedButton !== null) {
-      selectedButton.classList.remove("selected");
-      selectedButton = null;
-    }
-    document.getElementById("selectedDate").value = ""; // Clear the selectedDate input
-    document.getElementById("selectedTime").value = ""; // Clear the selectedTime input
-    disableTimeButtons(); // Disable the time buttons
-
-  }
-
+  
+  
   function validateForm() {
-      var selectedDate = document.getElementById("selectedDate").value;
-      var selectedTime = document.getElementById("selectedTime").value;
-      var submitButton = document.getElementById("submitButton");
+    var selectedDate = document.getElementById("datepicker").value;
+    var selectedTime = document.getElementById("dropdownList").value;
+    var submitButton = document.getElementById("submitButton");
 
-      if (selectedDate === "" || selectedTime === "") {
-          $('#validationModal').modal('show');
-          return false; // Prevent form submission
-      }
+    if (selectedDate === "" || selectedTime === "") {
+      $('#validationModal').modal('show');
+      return false; // Prevent form submission
+    }
 
-      // If both fields have values, enable the submit button
-      submitButton.disabled = false;
+    // If both fields have values, enable the submit button
+    submitButton.disabled = false;
 
-      // You can add further checks or actions here if needed.
+    // You can add further checks or actions here if needed.
 
-      return true; // Allow form submission
-}
-</script>
+    return true; // Allow form submission
+  }
+  </script>

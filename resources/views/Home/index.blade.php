@@ -1,6 +1,6 @@
 <x-landing-layout>
 
-@include('Home.nav-bar')
+@include('home.nav-bar')
 
 
 
@@ -195,7 +195,7 @@
                 <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
                     <i class="fa fa-car fa-2x text-white mb-3"></i>
                     <h2 class="text-white mb-2" data-toggle="counter-up">74</h2>
-                    <p class="text-white mb-0">Compleate Projects</p>
+                    <p class="text-white mb-0">Complete Projects</p>
                 </div>
             </div>
         </div>
@@ -256,7 +256,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <h3 class="mb-3">15 Years Of Experience In Auto Servicing</h3>
+                                    <h3 class="mb-3">5 Years Of Experience In Auto Detailing</h3>
                                     <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
                                     <p><i class="fa fa-check text-success me-3"></i>Quality Servicing</p>
                                     <p><i class="fa fa-check text-success me-3"></i>Expert Workers</p>
@@ -273,7 +273,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <h3 class="mb-3">15 Years Of Experience In Auto Servicing</h3>
+                                    <h3 class="mb-3">5 Years Of Experience In Paint Job</h3>
                                     <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
                                     <p><i class="fa fa-check text-success me-3"></i>Quality Servicing</p>
                                     <p><i class="fa fa-check text-success me-3"></i>Expert Workers</p>
@@ -333,7 +333,7 @@
     </div>
     <!-- Financing Bank End -->
 
-    @include('Home.footer')
+    @include('home.footer')
 
 
 </x-landing-layout>

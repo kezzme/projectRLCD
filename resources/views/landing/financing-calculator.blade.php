@@ -26,23 +26,23 @@
   <!-- Booking Start -->
   <div class="container-fluid bg-secondary finCal my-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container">
-      <div class="row gx-5">
-        <div class="col-lg-12 py-3 row">
-          <div class="col-md-3">
+      <div class=" gx-5">
+        <div class="col-lg-12 py-3 row justify-content-center text-center">
+          <div class="col-md-3 mb-3">
             <div class="input-group">
-              <label for="totalPrice" class="input-group-text bg-secondary text-light btn-rounded" style="height: 45px;">Unit Price:</label>
+              <label for="totalPrice" class="input-group-text bg-secondary text-light btn-rounded" style="height: 45px;">Unit Price</label>
               <input type="text" class="form-control btn-rounded" id="totalPrice" required>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 mb-3">
             <div class="input-group">
-              <label for="downPayment" class="input-group-text bg-secondary text-light btn-rounded" style="height: 45px;">Down Payment (%):</label for="">
-              <input type="number" class="form-control btn-rounded" id="downPayment" min="30" max="100" step="0.01" required>
+              <label for="downPayment" class="input-group-text bg-secondary text-light btn-rounded" style="height: 45px;">Down Payment (%)</label for="">
+              <input type="number" class="form-control btn-rounded" id="downPayment" min="30" max="100" step="5" value="30" required>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 mb-3">
             <div class="input-group">
-              <label for="interestRate" class="input-group-text bg-secondary text-light btn-rounded" style="height: 45px;">Choose Bank:</label>
+              <label for="interestRate" class="input-group-text bg-secondary text-light btn-rounded" style="height: 45px;">Choose Bank</label>
               <select class="form-select btn-rounded" id="interestRate" required>
                 <option value="1.5">JACCS - 1.5%</option>
                 <option value="1.3">Global Dominion - 1.3%</option>
@@ -51,9 +51,9 @@
               </select>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 mb-3">
             <div class="input-group">
-              <label for="terms" class="input-group-text bg-secondary text-light btn-rounded" style="height: 45px;">Select Terms:</label>
+              <label for="terms" class="input-group-text bg-secondary text-light btn-rounded" style="height: 45px;">Select Terms</label>
               <select class="form-select btn-rounded" id="terms" required>
                 <option value="12">12 Months</option>
                 <option value="24">24 Months</option>
@@ -62,15 +62,12 @@
               </select>
             </div>
           </div>
-        </div>
-        <div class="col-lg-12 py-3">
-          <div class="col-3 container-xxl ">
-            <div class="col-12">
-              <button class="btn btn-secondary btn-rounded w-100" type="button" style="height: 45px;" onclick="calculate()">Calculate </a>
-              </button>
-            </div>
+          <div class="col-md-3">
+            <button class="btn btn-secondary btn-rounded w-100" type="button" style="height: 45px;" onclick="calculate()">Calculate </a>
+            </button>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
@@ -83,7 +80,7 @@
         <div class="col-lg-6 py-5">
           <div class="py-5">
             <h1 class="text-white mb-1">Disclaimer:</h1>
-            <p class="text-white mb-0" style="font-size:x-large;"> The computation here is based on interest rate. Interest rates may differ depending on the loan provider (bank or in-house). The amounts listed don't represent any offer from RL Car Dealer or any of its Financing Partners. </p>
+            <p class="text-white mb-0" style="font-size:x-large;"> The computation here is based on interest rate. Interest rates may differ depending on the loan provider (bank). The amounts listed don't represent any offer from RL Car Dealer or any of its Financing Partners. </p>
           </div>
         </div>
         <div class="col-lg-6">
@@ -92,28 +89,28 @@
             <form>
               <div class="row g-3">
                 <div class="col-md-12">
-                  <div class="input-group">
-                    <label class="col-md-5 justify-content-center input-group-text btn-rounded" style="height: 45px;">Down Payment Amount</label>
-                    <input type="text" class="form-control btn-rounded" id="downPaymentAmount" readonly>
-                  </div>
+                  
+                    <label class="text-white">Down Payment Amount</label>
+                    <input type="text" style="height: 45px;" class="form-control btn-rounded" id="downPaymentAmount" readonly>
+                  
                 </div>
                 <div class="col-md-12">
-                  <div class="input-group">
-                    <div class="col-md-5 justify-content-center input-group-text btn-rounded" style="height: 45px;">Loan Amount</div>
-                    <input type="text" class="form-control btn-rounded" id="amountFinanced" readonly>
-                  </div>
+                  
+                    <div class="text-white">Loan Amount</div>
+                    <input type="text" style="height: 45px;" class="form-control btn-rounded" id="amountFinanced" readonly>
+                  
                 </div>
                 <div class="col-md-12">
-                  <div class="input-group">
-                    <div class="col-md-5 justify-content-center input-group-text btn-rounded" style="height: 45px;">Monthly Payment</div>
-                    <input type="text" class="form-control btn-rounded" id="monthlyPayment" readonly>
-                  </div>
+                  
+                    <div class="text-white">Monthly Payment</div>
+                    <input type="text" style="height: 45px;" class="form-control btn-rounded" id="monthlyPayment" readonly>
+                 
                 </div>
                 <div class="col-md-12">
-                  <div class="input-group">
-                    <div class="col-md-5 justify-content-center input-group-text btn-rounded" style="height: 45px;">Total Payments</div>
-                    <input type="text" class="form-control btn-rounded" id="totalPayments" readonly>
-                  </div>
+                  
+                    <div class="text-white">Total Payments</div>
+                    <input type="text" style="height: 45px;" class="form-control btn-rounded" id="totalPayments" readonly>
+                  
                 </div>
               </div>
             </form>

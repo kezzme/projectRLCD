@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Units;
 use App\Models\Soldunits;
 use App\Models\Appointments;
 use App\Models\Reservations;
 use Illuminate\Http\Request;
+use App\Mail\AppointmentVoid;
 use App\Models\ReceiptRecords;
-use App\Models\FinancingConfirmations;
 use App\Models\FinancingStatuses;
 use App\Models\ReservationCashes;
+use Illuminate\Support\Facades\Mail;
 use App\Models\ReservationFinancings;
+use App\Models\FinancingConfirmations;
 use Illuminate\Support\Facades\Redirect;
 
 class SystemAppointmentController extends Controller
@@ -52,6 +55,21 @@ class SystemAppointmentController extends Controller
 
     public function toVoid($id){
         $void = Appointments::find($id);
+
+        $appointVoidDetails = [
+            'user_id'=> $void->user_id,
+            'first_name' => $void->first_name,
+            'last_name' => $void->last_name,
+            'car_year'=> $void->car_year,
+            'car_make'=> $void->car_make,
+            'car_model'=> $void->car_model,
+            'car_variant'=> $void->car_variant,
+            'car_price'=> $void->car_price,
+            'date'=> $void->date,
+            'time'=> $void->time,
+        ];
+
+        Mail::to($void->email)->send(new AppointmentVoid($appointVoidDetails, 'system.appointment.mail'));
        
         if($void){
             $void->delete();
@@ -106,6 +124,11 @@ class SystemAppointmentController extends Controller
             $appointmentToDelete = Appointments::find($request->input('id'));
             if ($appointmentToDelete) {
                 $appointmentToDelete->delete();
+            }
+
+            $app = Appointments::find($request->input('uid'));
+            if ($app){
+                $users = User::where('uid', $app->uid)->get();
             }
 
             return redirect()->route('system.appointments.appointments')->with('success', 'Acknowledgment Receipt (Sold) stored successfully');

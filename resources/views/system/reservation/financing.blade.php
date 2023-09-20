@@ -2,14 +2,20 @@
 
     <main id="main" class="main">
     
-        <div class="pagetitle">
+        <div class="pagetitle col-md-12">
           <h1>Reservation</h1>
-          <nav>
+          <nav class="col-md-4">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.html">Home</a></li>
               <li class="breadcrumb-item active">Reservation</li>
             </ol>
           </nav>
+          <div class="input-group col-md-8">
+            <input type="text" class="form-control" id="searchInput" placeholder="Enter keywords...">
+            <button type="button" class="btn btn-primary" id="searchButton">Search</button>
+          
+          </div>
+          
         </div><!-- End Page Title -->
     
         <section class="section">
@@ -18,7 +24,7 @@
     
             <div class="card-body table-responsive">
                 <h5 class="card-title card-header">Client List</h5>
-                @if ($reservation->isEmpty())
+                @if ($resFinancing->isEmpty())
                 <p>No Listings</p>
               @else
              
@@ -42,25 +48,25 @@
                   </thead>
                   <tbody>
                     
-                    @foreach ($reservation as $reserve)
-                     <tr id="row_{{ $reserve->id }}">
-                      <th scope="row">{{$reserve->user_id}}</th>
-                      <td>{{$reserve->first_name}} {{$reserve->last_name}}</td>
-                      <td>{{ substr_replace(substr_replace($reserve->contact, '-', 4, 0), '-', 8, 0) }}</td>
-                      <td>{{$reserve->car_year}}</td>
-                      <td>{{$reserve->car_make}}</td>
-                      <td>{{$reserve->car_model}}</td>
-                      <td>{{$reserve->car_variant}}</td>
-                      <td>₱{{ number_format($reserve->deposit, 0, '.', ',') }}</td>
-                      <td>₱{{ number_format($reserve->balance, 0, '.', ',') }}</td>
-                      <td>₱{{ number_format($reserve->agreed_price, 0, '.', ',') }}</td>
-                      <td>{{ strtoupper(\Carbon\Carbon::parse($reserve->date)->format('F d, Y')) }}</td>
-                      <td>{{ strtoupper(\Carbon\Carbon::parse($reserve->due_date)->format('F d, Y')) }}</td>
-                      <form action="{{ route('system.reservations.toSoldunits', ['id' => $reserve->id]) }}" method="POST">
+                    @foreach ($resFinancing as $financing)
+                     <tr id="row_{{ $financing->id }}">
+                      <th scope="row">{{$financing->user_id}}</th>
+                      <td>{{$financing->first_name}} {{$financing->last_name}}</td>
+                      <td>{{ substr_replace(substr_replace($financing->contact, '-', 4, 0), '-', 8, 0) }}</td>
+                      <td>{{$financing->car_year}}</td>
+                      <td>{{$financing->car_make}}</td>
+                      <td>{{$financing->car_model}}</td>
+                      <td>{{$financing->car_variant}}</td>
+                      <td>₱{{ number_format($financing->deposit, 0, '.', ',') }}</td>
+                      <td>₱{{ number_format($financing->balance, 0, '.', ',') }}</td>
+                      <td>₱{{ number_format($financing->agreed_price, 0, '.', ',') }}</td>
+                      <td>{{ strtoupper(\Carbon\Carbon::parse($financing->date)->format('F d, Y')) }}</td>
+                      <td>{{ strtoupper(\Carbon\Carbon::parse($financing->due_date)->format('F d, Y')) }}</td>
+                      {{-- <form action="{{ route('system.reservations.toSoldunits', ['id' => $financing->id]) }}" method="POST"> --}}
                       @csrf
                       <td><button type="button" class="btn btn-danger" onclick="showVoidModal(this.form)"><i class="fa-solid fa-user-xmark"></i></button></td>
                     </form>
-                    <form action="{{ route('system.reservations.toresReceipt', ['id' => $reserve->id]) }}" method="POST">
+                    {{-- <form action="{{ route('system.reservations.toresReceipt', ['id' => $financing->id]) }}" method="POST"> --}}
                       @csrf
                       <td><button type="button" class="btn btn-success" onclick="showReceiptModal(this.form)"><i class="fa-solid fa-file-circle-plus"></i></button></td>
                     </form>
@@ -69,7 +75,7 @@
                   </tbody>
                 </table>
                 <div class="d-flex justify-content-center">
-                  {{ $reservation->links() }}
+                  {{ $resFinancing->links() }}
                 </div>
               </div>
               @endif
@@ -132,32 +138,22 @@
     
     <script>
       function showVoidModal(form) {
-        // Show the confirmation modal
         $('#voidReservationModal').modal('show');
-    
-        // Set up a click event listener on the "Confirm" button in the modal
         $('#confirmCashAction').click(function() {
-          // Submit the form after the action is confirmed
           form.submit();
-    
-          // Close the modal
           $('#voidReservationModal').modal('hide');
         });
       }
     
       function showReceiptModal(form) {
-        // Show the confirmation modal
         $('#toReceiptModal').modal('show');
-    
-        // Set up a click event listener on the "Confirm" button in the modal
         $('#confirmFinancingAction').click(function() {
-          // Submit the form after the action is confirmed
           form.submit();
-    
-          // Close the modal
           $('#toReceiptModal').modal('hide');
         });
       }
+
+      
     
       $(document).ready(function() {
           setTimeout(function() {

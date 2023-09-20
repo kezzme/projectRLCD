@@ -35,7 +35,7 @@
                     <div class="input-group-text">Date:</div>
                     <input type="text" id="dateInput" name="date" class="form-control text-center" readonly>
                   </div>
-                </div>              
+                </div>
   
     <div class="col-md-12">
       <div class="input-group">
@@ -154,7 +154,6 @@
     <input type="text" class="form-control hidden" id="uid" name="uid">
     <input type="text" class="form-control hidden" id="image" name="image">
     <input type="text" class="form-control hidden" id="car_price" name="car_price">
-    <input type="text" class="form-control hidden" id="transaction_type" name="transaction_type" value="cash">
     
     <div class="col-md-4">
       <label class="form-label">Conforme:</label>

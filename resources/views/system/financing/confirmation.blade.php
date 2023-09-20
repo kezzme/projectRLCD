@@ -35,9 +35,9 @@
                   <th scope="col">Make</th>
                   <th scope="col">Model</th>
                   <th scope="col">Variant</th>
-                  <th scope="col">Price</th>
+                  <th scope="col">Agreed Price</th>
                   <th scope="col">Date</th>
-                  <th scope="col">Financing Bank</th>
+                  <th scope="col">Chosen Financing Bank</th>
                   <th colspan="2" style="text-align: center;" class="align-middle">Action</th>
                 </tr>
               </thead>
@@ -51,7 +51,7 @@
                     <td>{{$finCon->car_make}}</td>
                     <td>{{$finCon->car_model}}</td>
                     <td>{{$finCon->car_variant}}</td>
-                    <td>₱{{ number_format($finCon->car_price, 0, '.', ',') }}</td>
+                    <td>₱{{ number_format($finCon->agreed_price, 0, '.', ',') }}</td>
                     <td>{{ strtoupper(\Carbon\Carbon::parse($finCon->date)->format('F-d-Y')) }}</td>
                     <td>
                       <form id="confirmForm_{{$finCon->id}}" action="{{ route('system.financing.toStatus', ['id' => $finCon->id]) }}" method="POST">
@@ -63,10 +63,9 @@
                               <option value="Asialink">Asialink</option>
                           </select>
                           <input type="hidden" name="status" value="">
-                          <input type="text" class="hidden" name="transaction_type" value="financing">
                           <td>
-                            <button type="button" class="btn btn-danger" onclick="showConfirmationModal('Reject', {{$finCon->id}})"><i class="fa-solid fa-user-xmark"></i></button>
-                            <button type="button" class="btn btn-success" onclick="showConfirmationModal('Approve', {{$finCon->id}})"><i class="fa-solid fa-user-check"></i></button>
+                            <button type="button" class="btn btn-danger" onclick="showConfirmationModal('Rejected', {{$finCon->id}})"><i class="fa-solid fa-user-xmark"></i></button>
+                            <button type="button" class="btn btn-success" onclick="showConfirmationModal('Approved', {{$finCon->id}})"><i class="fa-solid fa-user-check"></i></button>
                             <button type="submit" class="btn btn-primary" style="display: none;">Confirm</button>
                         </td>
                         </form>
@@ -97,7 +96,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Are you sure you want to mark it as <span id="actionType"></span>?
+        Are you sure you want to mark it as <b><span id="actionType"></span></b>?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -125,33 +124,23 @@
 
 <script>
   function showConfirmationModal(action, id) {
-      // Get the form element
       const form = document.getElementById(`confirmForm_${id}`);
-  
-      // Get the select element for financing_bank
       const financingBankSelect = form.querySelector('select[name="financing_bank"]');
   
-      // Set the action type in the confirmation modal
       document.getElementById('actionType').innerText = action;
   
-      // Update the value of the hidden input field 'status'
-      form.querySelector('input[name="status"]').value = action === 'Reject' ? 'Rejected' : 'Approved';
+      form.querySelector('input[name="status"]').value = action === 'Rejected' ? 'Rejected' : 'Approved';
   
-      // Update the form action based on the selected action
-      const formAction = action === 'Approve'
-          ? "{{ route('system.financing.toSold', ['id' => ':id']) }}".replace(':id', id)
+      const formAction = action === 'Approved'
+          ? "{{ route('system.financing.toReceipt', ['id' => ':id']) }}".replace(':id', id)
           : "{{ route('system.financing.toStatus', ['id' => ':id']) }}".replace(':id', id);
       form.action = formAction;
   
-      // Show the confirmation modal
       $('#confirmationModal').modal('show');
-  
-      // Set up a click event listener on the "Confirm" button in the modal
+
       $('#confirmAction').off('click').on('click', function () {
-          // Submit the form
           form.submit();
   
-          // Close the modal
           $('#confirmationModal').modal('hide');
       });
   }

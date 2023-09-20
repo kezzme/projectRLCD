@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('car_model');
             $table->string('car_variant');
             $table->string('car_plate_no');
-            $table->string('car_price');
+            $table->string('bought_price');
             $table->string('car_price');
             $table->string('image');
             $table->string('first_name');

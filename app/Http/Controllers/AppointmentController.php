@@ -77,6 +77,7 @@ class AppointmentController extends Controller
             'car_variant' => $request->input('car_variant'),
             'exterior_color' => $request->input('exterior_color'),
             'car_plate_no' => $request->input('car_plate_no'),
+            'bought_price' => $request->input('bought_price'),
             'car_price' => $request->input('car_price'),
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
@@ -104,7 +105,7 @@ class AppointmentController extends Controller
             'body' => 'When you arrive, kindly present it.'
         ];
 
-        Mail::to($appInfo->userAppointments->email)->send(new AppointmentMail($appointDetails, 'view-details.mail'));
+        Mail::to($appInfo->email)->send(new AppointmentMail($appointDetails, 'view-details.mail'));
 
         return redirect()->route('vehicles.done4');
     }
@@ -140,6 +141,7 @@ class AppointmentController extends Controller
             'car_model' => $request->input('car_model'),
             'car_variant' => $request->input('car_variant'),
             'exterior_color' => $request->input('exterior_color'),
+            'bought_price' => $request->input('bought_price'),
             'car_price' => $request->input('car_price'),
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
@@ -168,7 +170,7 @@ class AppointmentController extends Controller
             'body' => 'When you arrive, kindly present it.'
         ];
 
-        Mail::to($appInfo->userAppointments->email)->send(new AppointmentMail($appointDetails, 'view-details.mail'));
+        Mail::to($appInfo->email)->send(new AppointmentMail($appointDetails, 'view-details.mail'));
 
         return redirect()->route('vehicles.done4');
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ReservationTradeIns;
 use App\Models\Trades;
 use App\Models\Soldunits;
 use App\Models\TradedUnits;
@@ -45,7 +46,6 @@ class SystemTradesController extends Controller
             }
             $trade->images = $tradeImages;
         }
-
         return view('system.trade-in.requests', compact('trades'));
     }
 
@@ -56,10 +56,10 @@ class SystemTradesController extends Controller
         if($trades){
             $trades->delete();
         }
-
         // Mail::to($cwInfo->userCarWashes->email)->send(new BookingMail($details, 'services.mail'));
         return back()->with('success', 'The trade-in request has been rejected successfully');
     }
+
 
     public function phase2($id){
         $trades = Trades::find($id);
@@ -67,14 +67,13 @@ class SystemTradesController extends Controller
         if($trades){
             $trades->delete();
         }
-
         // Mail::to($cwInfo->userCarWashes->email)->send(new BookingMail($details, 'services.mail'));
         return back()->with('success', 'The trade-in request has been rejected successfully');
     }
 
+
     public function toStatus($id){
         $trades = Trades::find($id);
-        
         
         if ($trades) {
             $toStatusTable = new TradesStatuses();
@@ -82,14 +81,9 @@ class SystemTradesController extends Controller
             $toStatusTable->save();
     
             $trades->delete();
-
-
             // Units::where('uid', '$uid')->delete();
-
-    
             return back()->with('success', 'Trade-in Request transferred successfully');
         }
-    
         return back()->with('error', 'Trade-in not found.');
     }
 
@@ -157,6 +151,7 @@ class SystemTradesController extends Controller
         return view('system.trade-in.receipt', compact('toReceipt', 'checkboxes', 'checkboxes2'));
     }
 
+
     public function tradeStore(Request $request) {
         $action = $request->input('action');
 
@@ -168,7 +163,61 @@ class SystemTradesController extends Controller
         return back()->with('success', 'Record stored successfully');
     }
 
-    public function toTraded(Request $request){
+
+    public function totiReservation(Request $request, $id){
+       
+        $price = str_replace(',', '', $request->input('price'));
+        $car_price = str_replace(',', '', $request->input('car_price'));
+        $unit_price = str_replace(',', '', $request->input('unit_price'));
+        $agreedPrice = str_replace(',', '', $request->input('agreed_price'));
+        $balance = str_replace(',', '', $request->input('balance'));
+        $deposit = str_replace(',', '', $request->input('deposit'));
+    
+        $arInfo = ReservationTradeIns::create([
+            'user_id' => $request->input('user_id'),
+            'date' => $request->input('date'),
+            'received_from' => $request->input('received_from'),
+            'postal_address' => $request->input('postal_address'),
+            'amount' => $request->input('amount'),
+            'price' => $price,
+            'added_by' => $request->input('added_by'),
+            'uid' => $request->input('uid'),
+            'car_year' => $request->input('car_year'),
+            'car_make' => $request->input('car_make'),
+            'car_model' => $request->input('car_model'),
+            'car_variant' => $request->input('car_variant'),
+            'car_price' => $car_price,
+            'car_plate_no' => $request->input('car_plate_no'),
+            'image' => $request->input('image'),
+            'agreed_price' => $agreedPrice,
+            'balance' => $balance,
+            'deposit' => $deposit,
+            'due_date' => $request->input('due_date'),
+            'checkboxes' => json_encode($request->input('required_docs')),
+            'unit_year' => $request->input('unit_year'),
+            'unit_make' => $request->input('unit_make'),
+            'unit_model' => $request->input('unit_model'),
+            'unit_variant' => $request->input('unit_variant'),
+            'unit_price' => $unit_price,
+            'unit_plate_no' => $request->input('unit_plate_no'),
+            'checkboxes2' => json_encode($request->input('required_docs2')),
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'contact' => $request->input('contact'),
+            'witness' => $request->input('witness'),
+            'client_name' => $request->input('client_name'),
+            'client_contact' => $request->input('client_contact'),
+        ]);
+ 
+            $tradeStatusDelete = TradesStatuses::find($request->input('id'));
+            if ($tradeStatusDelete) {
+                $tradeStatusDelete->delete();
+            }
+        return redirect()->route('system.trade_in.status')->with('success', 'Acknowledgment Receipt (Reserved) stored successfully');
+     }
+
+
+    public function toTraded(Request $request, $id){
        
        $price = str_replace(',', '', $request->input('price'));
        $car_price = str_replace(',', '', $request->input('car_price'));
@@ -177,7 +226,7 @@ class SystemTradesController extends Controller
        $balance = str_replace(',', '', $request->input('balance'));
        $deposit = str_replace(',', '', $request->input('deposit'));
    
-       $arInfo = TradedUnits::create([
+       $arInfo = ReservationTradeIns::create([
            'user_id' => $request->input('user_id'),
            'date' => $request->input('date'),
            'received_from' => $request->input('received_from'),
@@ -211,21 +260,19 @@ class SystemTradesController extends Controller
            'witness' => $request->input('witness'),
            'client_name' => $request->input('client_name'),
            'client_contact' => $request->input('client_contact'),
-           'transaction_type' => $request->input('transaction_type'),
        ]);
 
-        // Clone and store in SoldUnits table
-           $appointmentInfo = new Soldunits();
-           $appointmentInfo->fill($arInfo->toArray());
-           $appointmentInfo->save();
+           $tradeInfo = new Soldunits();
+           $tradeInfo->fill($arInfo->toArray());
+           $tradeInfo->transaction_type = 'trade-in';
+           $tradeInfo->save();
 
-           $appointmentToDelete = TradesStatuses::find($request->input('id'));
-           if ($appointmentToDelete) {
-               $appointmentToDelete->delete();
+           $tradeStatusDelete = TradesStatuses::find($id);
+           if ($tradeStatusDelete) {
+               $tradeStatusDelete->delete();
            }
 
        return redirect()->route('system.trade_in.status')->with('success', 'Acknowledgment Receipt (Traded) stored successfully');
-   
     }
 
 

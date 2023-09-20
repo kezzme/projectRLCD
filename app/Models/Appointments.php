@@ -29,7 +29,7 @@ class Appointments extends Model
         'status'
     ];
 
-    public function userAppointments(){
+    public function appointments(){
         return $this->belongsTo(User::class, 'user_id');
     }
 }

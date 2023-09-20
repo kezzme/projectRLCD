@@ -79,7 +79,7 @@ class TradeController extends Controller
 
     
        
-        $unitPrice = str_replace(',', '', $request->input('unit_price'));
+        $unitPrice = str_replace(',', '', $request->input('unit_trade_value'));
         $adInfo = Trades::create([
             'user_id' => $request->input('user_id'),
             'uid' => $request->input('uid'),
@@ -88,6 +88,7 @@ class TradeController extends Controller
             'car_model' => $request->input('car_model'),
             'car_variant' => $request->input('car_variant'),
             'car_plate_no' => $request->input('car_plate_no'),
+            'bought_price' => $request->input('bought_price'),
             'car_price' => $request->input('car_price'),
             'image' => $request->input('image'),
             'first_name' => $request->input('first_name'),
@@ -99,7 +100,7 @@ class TradeController extends Controller
             'unit_model' => $request->input('unit_model'),
             'unit_variant' => $request->input('unit_variant'),
             'unit_plate_no' => $request->input('unit_plate_no'),
-            'unit_price' => $unitPrice,
+            'unit_trade_value' => $unitPrice,
             'date' => $requestedDate,
             'time' => $requestedTime,
             'photo_1' => isset($photoDetails[0]) ? $photoDetails[0] : null,
@@ -127,14 +128,14 @@ class TradeController extends Controller
             'unit_model' => $request->input('unit_model'),
             'unit_variant' => $request->input('unit_variant'),
             'unit_plate_no' => $request->input('unit_plate_no'),
-            'unit_price' => $unitPrice,
+            'unit_trade_value' => $unitPrice,
             'date' => $requestedDate,
             'time' => $requestedTime,
             'title' => 'Trade-in Request Complete',
             'body' => 'Please wait for the approval.'
         ];
 
-        Mail::to($adInfo->userTrades->email)->send(new TradeinMail($tradeDetails, 'trade-in.mail'));
+        Mail::to($adInfo->email)->send(new TradeinMail($tradeDetails, 'trade-in.mail'));
 
         return redirect()->route('vehicles.done3');
     }
@@ -196,7 +197,7 @@ class TradeController extends Controller
         }
        
 
-        $unitPrice = str_replace(',', '', $request->input('unit_price'));
+        $unitPrice = str_replace(',', '', $request->input('unit_trade_value'));
         $adInfo = Trades::create([
             'user_id' => $request->input('user_id'),
             'uid' => $request->input('uid'),
@@ -205,6 +206,7 @@ class TradeController extends Controller
             'car_model' => $request->input('car_model'),
             'car_variant' => $request->input('car_variant'),
             'car_plate_no' => $request->input('car_plate_no'),
+            'bought_price' => $request->input('bought_price'),
             'car_price' => $request->input('car_price'),
             'image' => $request->input('image'),
             'first_name' => $request->input('first_name'),
@@ -216,7 +218,7 @@ class TradeController extends Controller
             'unit_model' => $request->input('unit_model'),
             'unit_variant' => $request->input('unit_variant'),
             'unit_plate_no' => $request->input('unit_plate_no'),
-            'unit_price' => $unitPrice,
+            'unit_trade_value' => $unitPrice,
             'date' => $requestedDate,
             'time' => $requestedTime,
             // 'photo_details' => $jsonPhotoDetails,
@@ -243,14 +245,14 @@ class TradeController extends Controller
             'unit_model' => $request->input('unit_model'),
             'unit_variant' => $request->input('unit_variant'),
             'unit_plate_no' => $request->input('unit_plate_no'),
-            'unit_price' => $unitPrice,
+            'unit_trade_value' => $unitPrice,
             'date' => $requestedDate,
             'time' => $requestedTime,
             'title' => 'Trade-in Request Complete',
             'body' => 'Please wait for the approval.'
         ];
 
-        Mail::to($adInfo->userTrades->email)->send(new TradeinMail($tradeDetails, 'trade-in.mail'));
+        Mail::to($adInfo->email)->send(new TradeinMail($tradeDetails, 'trade-in.mail'));
 
         return redirect()->route('vehicles.done4');
     }

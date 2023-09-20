@@ -58,7 +58,42 @@
                       </div>
                     </div>
                     @else
-  
+                    <div class="col-md-4 d-flex">
+                      <div class="card card-showroom card-rounded product-grid2">
+                        <div class="justify-content-between align-items-center">
+                          <span class="no-appoint">No Trade-in Request</span>
+                        </div>
+                        <div class="mb-1">
+                          <img src="{{asset('img/trade-in.png')}}"
+                            alt="login form" class="img-fluid" style="border-radius: 1rem 1rem 0 0rem;" />
+                        </div>
+                        <div class="card-body">
+                          <span class="d-flex justify-content-between align-items-center">
+                              <h4><a class="text-danger">Trade-in Request</a></h4>
+                             
+                                  <i class="fa-regular fa-images" style="color: #ffffff;"></i>
+                              </button>
+                          </span>
+                          <hr>
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-md-12 mb-3 card-text">
+                                <p>&nbsp;&nbsp;&nbsp;If you haven't initiated a trade yet, we encourage you to explore our extensive inventory of <a href="https://rlcardealer.com/vehicles"><b><u>Vehicles</u></b></a>, including exciting <a href="https://rlcardealer.com/new-arrival"><b><u>New Arrivals</u></b></a>. You can browse for the ideal car at your convenience with the guidance of our online car dealership.</p>
+                            </div>
+                            
+                            
+                           <hr>
+                           <h5 class="text-center"><i class="fa-regular fa-clock"></i> No date has been set yet. </h5>
+                        </div>
+                        </div>
+                          
+                            {{-- <div class="add-to-cart" href="">
+                              <i class="fa-solid fa-ban"></i> Cancel Booking
+                            </div> --}}
+                         
+                        </div>
+                      </div>
+                    </div>
                     @endif
                     
                    

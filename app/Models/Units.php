@@ -12,7 +12,8 @@ class Units extends Model
         'car_model', 
         'car_variant', 
         'image', 
-        'description', 
+        'description',
+        'bought_price',  
         'car_price', 
         'car_plate_no', 
         'engine', 
@@ -34,6 +35,7 @@ class Units extends Model
         'display_image_7',
         'display_image_8',
         'display_image_9',
+        // 
     ];
 
     

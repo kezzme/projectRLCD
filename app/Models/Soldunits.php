@@ -15,7 +15,8 @@ class Soldunits extends Model
         'car_year', 
         'car_make', 
         'car_model', 
-        'car_variant', 
+        'car_variant',
+        'bought_price', 
         'car_price',
         'car_plate_no', 
         'image',
@@ -24,6 +25,8 @@ class Soldunits extends Model
         'contact',
         'email',
         'date',
+        // 'agreed_price',
+        // profit
         'transaction_type'
     ];
 }

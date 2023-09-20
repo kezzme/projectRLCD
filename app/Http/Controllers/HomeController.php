@@ -9,19 +9,22 @@ use App\Mail\BookingMail;
 class HomeController extends Controller
 {
     public function index() {
-        return view('Home.index');
+        return view('home.index');
     }
 
     public function finanCal() {
         return view('landing.financing-calculator');
     }
 
-    public function about() {
-        return view('landing.about');
+    public function gallery() {
+        return view('landing.gallery');
     }
 
     public function contact() {
         return view('landing.contact');
+    }
+    public function termsAndconditions(){
+        return view('home.termsAndconditions');
     }
     
 }

@@ -14,21 +14,22 @@ return new class extends Migration
         Schema::create('reservation_trade_ins', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->unsignedBigInteger('TNX_No5')->unique();
             $table->string('received_from');
             $table->string('postal_address');
+            $table->string('agreed_amount');
+            $table->string('added_by');
             $table->string('amount');
             $table->integer('price');
-            $table->string('added_by');
             $table->string('uid');
             $table->string('car_year');
             $table->string('car_make');
             $table->string('car_model');
             $table->string('car_variant');
             $table->string('car_plate_no');
+            $table->string('bought_price');
             $table->string('car_price');
             $table->string('image');
-            $table->integer('agreed_price');
+            $table->integer('car_trade_value');
             $table->integer('balance');
             $table->integer('deposit');
             $table->date('due_date');
@@ -41,7 +42,7 @@ return new class extends Migration
             $table->string('unit_model');
             $table->string('unit_variant');
             $table->string('unit_plate_no');
-            $table->string('unit_price');
+            $table->string('unit_trade_value');
             $table->json('checkboxes2')->nullable();
             $table->string('witness');
             $table->string('client_name');
@@ -50,10 +51,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
+    
     public function down(): void
     {
         Schema::dropIfExists('reservation_trade_ins');

@@ -17,6 +17,7 @@ class Trades extends Model
         'car_model', 
         'car_variant',
         'car_plate_no',
+        'bought_price',
         'car_price',
         'image', 
         'first_name', 

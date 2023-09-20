@@ -31,7 +31,7 @@
       <img src="img/{{ $unit->image }}">
       <h3>{{ $unit->car_year }} {{ $unit->car_make }} {{ $unit->car_model }}</h3>
       <h5>{{ $unit->car_variant }}</h5>
-      <div class="price">₱{{ number_format($unit->price, 0, '.', ',') }}</div>
+      <div class="price">₱{{ number_format($unit->car_price, 0, '.', ',') }}</div>
       <p>
         <span class="fa-solid fa-microchip"></span> {{ $unit->engine }}
         <span class="fa-solid fa-gauge"></span> {{ $unit->transmission }}

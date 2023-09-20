@@ -49,18 +49,13 @@
   </li><!-- End Appointment Nav -->
 
   <li class="nav-item">
-    <a class="nav-link {{ is_active_route(['system.reservations.resCash', 'system.reservations.resFinancing', 'system.reservations.resTradein'], 'collapsed') }}" href="{{ route('system.reservations.reservation') }}" data-bs-target="#reservation-nav" data-bs-toggle="collapse">
+    <a class="nav-link {{ is_active_route(['system.reservations.resCash', 'system.reservations.resTradein', 'system.reservations.cashReceipt'], 'collapsed') }}" data-bs-target="#reservation-nav" data-bs-toggle="collapse">
       <i class="fa-solid fa-user-clock"></i><span>Reservation</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-    <ul id="reservation-nav" class="nav-content collapse {{ is_active_route(['system.reservations.resCash', 'system.reservations.resFinancing', 'system.reservations.resTradein']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
+    <ul id="reservation-nav" class="nav-content collapse {{ is_active_route(['system.reservations.resCash', 'system.reservations.resTradein', 'system.reservations.cashReceipt']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
       <li>
-        <a  class="{{ is_active_route('system.reservations.resCash') }}" href="{{ route('system.reservations.resCash') }}">
+        <a  class="{{ is_active_route(['system.reservations.resCash', 'system.reservations.cashReceipt']) }}" href="{{ route('system.reservations.resCash') }}">
           <i class="fa-regular fa-circle"></i><span>Cash</span>
-        </a>
-      </li>
-      <li>
-        <a class="{{ is_active_route('system.reservations.resFinancing') }}" href="{{ route('system.reservations.resFinancing') }}">
-          <i class="fa-regular fa-circle"></i><span>Financing</span>
         </a>
       </li>
       <li>
@@ -91,17 +86,17 @@
   </li><!-- End Financing Nav -->
 
   <li class="nav-item">
-    <a class="nav-link {{ is_active_route(['system.trade_in.requests', 'system.trade_in.status', 'system.trade_in.traded'], 'collapsed') }}" data-bs-target="#trade-in-nav" data-bs-toggle="collapse" href="#">
+    <a class="nav-link {{ is_active_route(['system.trade_in.requests', 'system.trade_in.status', 'system.trade_in.totiReceipt', 'system.trade_in.traded'], 'collapsed') }}" data-bs-target="#trade-in-nav" data-bs-toggle="collapse" href="#">
     <i class="fa-solid fa-handshake-simple"></i><span>Trade-in</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-    <ul id="trade-in-nav" class="nav-content collapse {{ is_active_route(['system.trade_in.requests', 'system.trade_in.status', 'system.trade_in.traded']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
+    <ul id="trade-in-nav" class="nav-content collapse {{ is_active_route(['system.trade_in.requests', 'system.trade_in.status', 'system.trade_in.totiReceipt', 'system.trade_in.traded']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
       <li>
         <a class="{{ is_active_route('system.trade_in.requests') }}" href="{{ route('system.trade_in.requests') }}">
           <i class="fa-regular fa-circle"></i><span>Trade Requests</span>
         </a>
       </li>
       <li>
-        <a class="{{ is_active_route('system.trade_in.status') }}" href="{{ route('system.trade_in.status') }}">
+        <a class="{{ is_active_route(['system.trade_in.status', 'system.trade_in.totiReceipt']) }}" href="{{ route('system.trade_in.status') }}">
           <i class="fa-regular fa-circle"></i><span>Trade-in Status</span>
         </a>
       </li>
@@ -114,13 +109,18 @@
   </li><!-- End Trade-in Nav -->
 
   <li class="nav-item">
-    <a class="nav-link {{ is_active_route(['system.receipts.acknowledgment', 'system.receipts.records'], 'collapsed') }}" data-bs-target="#receipts-nav" data-bs-toggle="collapse" href="#">
+    <a class="nav-link {{ is_active_route(['system.receipts.acknowledgment', 'system.receipts.records', 'system.receipts.tradeinForm'], 'collapsed') }}" data-bs-target="#receipts-nav" data-bs-toggle="collapse" href="#">
     <i class="fa-solid fa-file-pen"></i><span>Receipts</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-    <ul id="receipts-nav" class="nav-content collapse {{ is_active_route(['system.receipts.acknowledgment', 'system.receipts.records']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
+    <ul id="receipts-nav" class="nav-content collapse {{ is_active_route(['system.receipts.acknowledgment', 'system.receipts.records', 'system.receipts.tradeinForm']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
       <li>
         <a class="{{ is_active_route('system.receipts.acknowledgment') }}" href="{{ route('system.receipts.acknowledgment') }}">
           <i class="fa-regular fa-circle"></i><span>Acknowledgment Receipt</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ is_active_route('system.receipts.tradeinForm') }}" href="{{ route('system.receipts.tradeinForm') }}">
+          <i class="fa-regular fa-circle"></i><span>Trade-in Form</span>
         </a>
       </li>
       <li>

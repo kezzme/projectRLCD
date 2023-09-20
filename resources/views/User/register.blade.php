@@ -28,7 +28,7 @@
           <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
               <img src="img/register_img.png"
-                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                alt="registration form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
             </div>
             <div class="py-4 card-body justify-content-center col-md-6 col-lg-7 d-flex">
               <!-- <div class="card-body p-4 p-lg-5 text-black"> -->
@@ -40,41 +40,40 @@
                     <span class="h1 fw-bold">RL Car Dealer</span>
                   </div>
                   <h3>Create Account</h3>
-                  <h5 class="fw-normal pb-3" style="letter-spacing: 1px;">Enter your personal details</h5>
+                  <h6 class="fw-normal pb-3" style="letter-spacing: 1px;">Enter your personal details</h6>
 
 
-                  <div class="input-group mb-3">
-                    <label for="first_name" class="input-group-text bg-danger text-white justify-content-center col-md-3">First Name</label>
-                    <input type="text" name="first_name" style="text-transform: capitalize;" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" required autocomplete="name" >
+                  <div class=" mb-2">
+                    <input type="text" name="first_name" style="text-transform: capitalize;" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" placeholder="First Name" required autocomplete="name">
                   </div>
 
-                  <div class="input-group mb-3">
-                    <label for="last_name" class="input-group-text bg-danger text-white justify-content-center col-md-3">Last Name</label>
-                    <input type="text" name="last_name" style="text-transform: capitalize;" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" required autocomplete="name" >
+                  <div class=" mb-2">
+                    <input type="text" name="last_name" style="text-transform: capitalize;" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" placeholder="Last Name" required autocomplete="name">
                   </div>
 
-                  <div class="input-group mb-3">
-                    <label for="email" class="input-group-text bg-danger text-white col-md-3 d-flex justify-content-center">Email</label>
-                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email" >
+                  <div class=" mb-2">
+                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Email" required autocomplete="email">
                   </div>
 
-                  <div class="input-group mb-3">
-                    <label for="phone" class="input-group-text bg-danger text-white col-md-3">Phone No.</label>
-                    <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" required>
+                  <div class=" mb-2">
+                    <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" placeholder="Phone No." required autocomplete="phone">
                   </div>
 
-                  <div class="input-group mb-3">
-                    <label for="password" class="input-group-text bg-danger text-white col-md-3">Password</label>
-                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" required>
+                  <div class=" mb-2">
+                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required>
                   </div>
 
-                  <div class="input-group mb-3">
-                    <label for="password_confirm" class="input-group-text bg-danger text-white col-md-3">Confirm Password</label>
-                    <input type="password" name="password_confirmation" class="form-control" required>
+                  <div class=" mb-3 ">
+                    <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password" required>
                   </div>
       
 
-                  <p class="pb-lg-2">Already have an account? <a href="/login" class="text-primary text-bold">Login</a></p>
+                  <p>Already have an account? <a href="/login" class="text-primary text-bold">Login</a></p>
+
+                  <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="termsAndConditions" name="termsAndConditions" required>
+                    <label class="form-check-label" for="termsAndConditions">I agree to the <a href="{{route('termsAndconditions')}}" class=" text-bold">Terms and Conditions</a></label>
+                  </div>
 
                   <div class="col-md-12 py-3">
                     <button class="btn btn-dark col-12" type="submit">Create Account</button>

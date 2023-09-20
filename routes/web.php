@@ -12,6 +12,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\SystemCalendarController;
 use App\Http\Controllers\SystemAppointmentController;
 use App\Http\Controllers\FinancingController;
+use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReceiptsController;
 use App\Http\Controllers\ReservationController;
@@ -49,7 +50,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/booked/services', [ProfileController::class, 'booked_services'])->name('booked_services');
         Route::get('/trade/request', [ProfileController::class, 'trade_request'])->name('trade_request');
         Route::get('/appointment', [ProfileController::class, 'appoints'])->name('appoints');
-});
+    });
 });
 
 Route::middleware(['auth'])->group(function(){
@@ -72,11 +73,11 @@ Route::get('/vehicles', [UnitController::class, 'vehicles'])->name('vehicles');
 Route::middleware(['auth'])->group(function(){
     Route::prefix('vehicles')->name('vehicles.')->group(function(){
         Route::get('/trade_in/{uid}', [TradeController::class, 'show']);
-        Route::post('/trade_in/check', [TradeController::class, 'check']);
+        Route::post('/trade_in/check', [TradeController::class, 'check'])->name('tradeIn.check');
         Route::view('/trade-in/done', 'trade-in.doneTrade')->name('done3');
 
         Route::get('/view_details/{uid}', [AppointmentController::class, 'show']);
-        Route::post('/view_details/check', [AppointmentController::class, 'check']);
+        Route::post('/view_details/check', [AppointmentController::class, 'check'])->name('viewDetails.check');
         Route::view('/view-details/done', 'view-details.doneAppointment')->name('done4');
     });
 });
@@ -85,11 +86,11 @@ Route::get('/new-arrival', [UnitController::class, 'newArrival'])->name('new-arr
 Route::middleware(['auth'])->group(function(){
     Route::prefix('new-arrival')->name('new-arrival.')->group(function(){
         Route::get('/trade_in/{uid}', [TradeController::class, 'show1']);
-        Route::post('/trade_in/check', [TradeController::class, 'check1']);
+        Route::post('/trade_in/check', [TradeController::class, 'check1'])->name('tradeIn.check');
         Route::view('/tradein/done', 'trade-in.done')->name('done5');
 
         Route::get('/view_details/{uid}', [AppointmentController::class, 'show1']);
-        Route::post('/view_details/check', [AppointmentController::class, 'check1']);
+        Route::post('/view_details/check', [AppointmentController::class, 'check1'])->name('viewDetails.check');
         Route::view('/view-details/done', 'view-details.doneAppointment')->name('done6');
     });
 });
@@ -99,8 +100,9 @@ Route::middleware(['auth'])->group(function(){
 // Route::view('/view-details', 'home.view-details');
 
 Route::get('/financing-calculator', [HomeController::class, 'finanCal'])->name('financing-calculator');
-Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/terms-and-conditions', [HomeController::class, 'termsAndconditions'])->name('termsAndconditions');
 
 
 Route::middleware(['guest'])->group(function(){
@@ -108,6 +110,14 @@ Route::middleware(['guest'])->group(function(){
     Route::view('/register', 'user.register')->name('register');
     Route::post('/login/process', [UserController::class, 'process'])->name('process');
     Route::post('/store', [UserController::class, 'store'])->name('store');
+
+    Route::get('auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('google.redirect');
+    Route::get('auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback'])->name('google.callback');
+
+    Route::get('auth/facebook', [GoogleAuthController::class, 'redirectToFacebook'])->name('facebook.redirect');
+    Route::get('auth/facebook/callback', [GoogleAuthController::class, 'handleFacebookCallback'])->name('facebook.callback');
+
+
 });
 
 
@@ -143,28 +153,26 @@ Route::prefix('system')->name('system.')->group(function(){
     });
 
         Route::prefix('reservations')->name('reservations.')->group(function(){
-            Route::get('/', [ReservationController::class, 'reservation'])->name('reservation');
-        
             Route::get('/cash', [ReservationController::class, 'resCash'])->name('resCash');
-            Route::post('/cash/create/receipt/{id}', [ReservationController::class, 'receipt1'])->name('receipt1');
-            
+            Route::post('/cash/process/void/{id}', [ReservationController::class, 'cashVoid'])->name('cashVoid');
+            Route::post('/cash/process/receipt/{id}', [ReservationController::class, 'cashReceipt'])->name('cashReceipt');
+            Route::post('/cash/process/to/sold/{id}', [ReservationController::class, 'cashSold'])->name('cashSold');
+            Route::post('/cash/process/to/reservation/{id}', [ReservationController::class, 'cashReservation'])->name('cashReservation');
+
             Route::get('/financing', [ReservationController::class, 'resFinancing'])->name('resFinancing');
+            Route::post('/cash/process/receipt/{id}', [ReservationController::class, 'cashReceipt'])->name('cashReceipt');
+            Route::post('/cash/process/to/sold/{id}', [ReservationController::class, 'cashSold'])->name('cashSold');
+
             Route::get('/trade_in', [ReservationController::class, 'resTradein'])->name('resTradein');
-
-            Route::post('/process/financing/receipt/{id}', [ReservationController::class, 'recFinancing'])->name('recFinancing');
-            Route::post('/process/trade/receipt/{id}', [ReservationController::class, 'recTrade'])->name('recTrade');
-
-            Route::post('/process/receipt/store/{id}', [ReservationController::class, 'reserveStore'])->name('reserveStore');
-            Route::post('/process/receipt/soldunits/{id}', [ReservationController::class, 'toSoldunits'])->name('toSoldunits');
-            
-            Route::post('/process/financing/{id}', [ReservationController::class, 'toFinancing'])->name('toFinancing');
-            
+           
     });
 
         Route::prefix('financing')->name('financing.')->group(function(){
             Route::get('/confirmation', [FinancingController::class, 'fiConfirmation'])->name('confirmation');
+            Route::post('/confirmation/process/receipt/{id}', [FinancingController::class, 'toReceipt'])->name('toReceipt');
+            Route::post('/confirmation/process/to/sold/{id}', [FinancingController::class, 'toSold'])->name('toSold');
+
             Route::post('/confirmation/status/{id}', [FinancingController::class, 'toStatus'])->name('toStatus');
-            Route::post('/confirmation/request/{id}', [FinancingController::class, 'toSold'])->name('toSold');
             Route::get('/status', [FinancingController::class, 'fiStatus'])->name('status');
     });
         Route::prefix('trade_in')->name('trade_in.')->group(function(){
@@ -175,6 +183,8 @@ Route::prefix('system')->name('system.')->group(function(){
             Route::get('/status', [SystemTradesController::class, 'status'])->name('status');
             Route::post('/status/phase_2/reject/{id}', [SystemTradesController::class, 'phase2'])->name('phase2');
             Route::post('/process/receipt/{id}', [SystemTradesController::class, 'totiReceipt'])->name('totiReceipt');
+            Route::post('/process/receipt/to/trade_in/reservation{id}', [SystemTradesController::class, 'totiReservation'])->name('totiReservation');
+
             Route::post('/process/receipt/trade/store/{id}', [SystemTradesController::class, 'tradeStore'])->name('tradeStore'); 
 
             Route::post('/status/traded/{id}', [SystemTradesController::class, 'toTraded'])->name('toTraded');
@@ -186,6 +196,11 @@ Route::prefix('system')->name('system.')->group(function(){
             Route::post('/acknowledgment_receipt/process/to/sold', [ReceiptsController::class, 'toSold'])->name('toSold');
             Route::post('/acknowledgment_receipt/process/to/financing', [ReceiptsController::class, 'toFinancing'])->name('toFinancing');
             Route::post('/acknowledgment_receipt/process/to/reservation', [ReceiptsController::class, 'toReservation'])->name('toReservation');
+            
+            Route::get('/trade_in/form', [ReceiptsController::class, 'tradeinForm'])->name('tradeinForm');
+            Route::post('/trade_in/form/process/receipt/to/traded', [ReceiptsController::class, 'totiTraded'])->name('totiTraded');
+            Route::post('/trade_in/form/process/receipt/to/reserved', [ReceiptsController::class, 'totiReservation'])->name('totiReservation');
+            
             Route::get('/records', [ReceiptsController::class, 'records'])->name('records');
            
     });             

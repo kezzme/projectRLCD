@@ -18,7 +18,7 @@
     
             <div class="card-body table-responsive">
                 <h5 class="card-title card-header">Client List</h5>
-                @if ($reservation->isEmpty())
+                @if ($resCash->isEmpty())
                 <p>No Listings</p>
               @else
              
@@ -42,25 +42,25 @@
                   </thead>
                   <tbody>
                     
-                    @foreach ($reservation as $reserve)
-                     <tr id="row_{{ $reserve->id }}">
-                      <th scope="row">{{$reserve->user_id}}</th>
-                      <td>{{$reserve->first_name}} {{$reserve->last_name}}</td>
-                      <td>{{ substr_replace(substr_replace($reserve->contact, '-', 4, 0), '-', 8, 0) }}</td>
-                      <td>{{$reserve->car_year}}</td>
-                      <td>{{$reserve->car_make}}</td>
-                      <td>{{$reserve->car_model}}</td>
-                      <td>{{$reserve->car_variant}}</td>
-                      <td>₱{{ number_format($reserve->deposit, 0, '.', ',') }}</td>
-                      <td>₱{{ number_format($reserve->balance, 0, '.', ',') }}</td>
-                      <td>₱{{ number_format($reserve->agreed_price, 0, '.', ',') }}</td>
-                      <td>{{ strtoupper(\Carbon\Carbon::parse($reserve->date)->format('F d, Y')) }}</td>
-                      <td>{{ strtoupper(\Carbon\Carbon::parse($reserve->due_date)->format('F d, Y')) }}</td>
-                      <form action="{{ route('system.reservations.toSoldunits', ['id' => $reserve->id]) }}" method="POST">
+                    @foreach ($resCash as $cash)
+                     <tr id="row_{{ $cash->id }}">
+                      <th scope="row">{{$cash->user_id}}</th>
+                      <td>{{$cash->first_name}} {{$cash->last_name}}</td>
+                      <td>{{ substr_replace(substr_replace($cash->contact, '-', 4, 0), '-', 8, 0) }}</td>
+                      <td>{{$cash->car_year}}</td>
+                      <td>{{$cash->car_make}}</td>
+                      <td>{{$cash->car_model}}</td>
+                      <td>{{$cash->car_variant}}</td>
+                      <td>₱{{ number_format($cash->deposit, 0, '.', ',') }}</td>
+                      <td>₱{{ number_format($cash->balance, 0, '.', ',') }}</td>
+                      <td>₱{{ number_format($cash->agreed_price, 0, '.', ',') }}</td>
+                      <td>{{ strtoupper(\Carbon\Carbon::parse($cash->date)->format('F d, Y')) }}</td>
+                      <td>{{ strtoupper(\Carbon\Carbon::parse($cash->due_date)->format('F d, Y')) }}</td>
+                      <form action="{{ route('system.reservations.cashVoid', ['id' => $cash->id]) }}" method="POST">
                       @csrf
                       <td><button type="button" class="btn btn-danger" onclick="showVoidModal(this.form)"><i class="fa-solid fa-calendar-xmark"></i></button></td>
                     </form>
-                    <form action="{{ route('system.reser', ['id' => $reserve->id]) }}" method="POST">
+                    <form action="{{ route('system.reservations.cashReceipt', ['id' => $cash->id]) }}" method="POST">
                       @csrf
                       <td><button type="button" class="btn btn-success" onclick="showReceiptModal(this.form)"><i class="fa-solid fa-file-circle-plus"></i></button></td>
                     </form>
@@ -69,7 +69,7 @@
                   </tbody>
                 </table>
                 <div class="d-flex justify-content-center">
-                  {{ $reservation->links() }}
+                  {{ $resCash->links() }}
                 </div>
               </div>
               @endif

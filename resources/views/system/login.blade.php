@@ -40,7 +40,7 @@
                 <input name="username" id="username" type="text" class="form-control rounded-left" placeholder="Username" required>
               </div>
               <div class="form-group d-flex position-relative">
-                <input name="password" id="password" type="password" class="form-control rounded-left pr-5" placeholder="Password" id="password" required>
+                <input name="password" id="password" type="password" class="form-control rounded-left pr-5" placeholder="Password" required>
                 <i class="fas fa-eye position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" onclick="togglePasswordVisibility()" id="togglePasswordIcon"></i>
             </div>
             

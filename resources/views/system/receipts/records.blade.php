@@ -2,8 +2,8 @@
 
 <main id="main" class="main">
     <div class="row g-3">
-      <div class="pagetitle col-md-10">
-        <h1>Acknowledgment Receipt Records</h1>
+      <div class="pagetitle col-md-9">
+        <h1>Records</h1>
           <nav>
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">Home</li>
@@ -12,9 +12,11 @@
               </ol>
             </nav>
        </div>
-      <!-- <div class=" col-md-2 justify-content-md-end">
-        <a class="col-md-12 btn btn-warning" href="ack-receipt.html" type="button"><i class="bi bi-box-arrow-up-left"></i>Back to Form</a>
-     </div> -->
+      <div class="col-md-3">
+        <a class="w-100 btn btn-warning rounded-5" href="ack-receipt.html" type="button">
+          Trade-in Records 
+          <i class="fa-solid fa-arrow-right"></i></a>
+     </div>
   </div><!-- End Page Title -->
 
     <section class="section">
@@ -64,12 +66,12 @@
                     <td>₱{{ number_format($records->agreed_price, 0, '.', ',') }}</td>
                     <td>₱{{ number_format($records->balance, 0, '.', ',' ?? 0) }}</td>
                     <td>₱{{ number_format($records->deposit, 0, '.', ',' ?? 0) }}</td>
-                    <td>{{ strtoupper(\Carbon\Carbon::parse($records->date)->format('F-d-Y')) }}</td>
+                    <td>{{ strtoupper(\Carbon\Carbon::parse($records->date)->format('F d, Y')) }}</td>
                     <td>
                       @if ($records->due_date)
-                      {{ strtoupper(\Carbon\Carbon::parse($records->due_date)->format('F-d-Y')) }}
+                      {{ strtoupper(\Carbon\Carbon::parse($records->due_date)->format('F d, Y')) }}
                       @else
-                      
+                      <div class="text-center">n/a</div>
                       @endif
                     </td>
                     {{-- <td>

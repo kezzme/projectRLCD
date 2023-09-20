@@ -211,9 +211,6 @@
                 <button class="dropdown-item" type="button" onclick="showConfirmationModal('SOLD')">SOLD</button>
               </li>
               <li>
-                <button class="dropdown-item" type="button" onclick="showConfirmationModal('FINANCING')">FINANCING</button>
-              </li>
-              <li>
                 <button class="dropdown-item" type="button" onclick="showConfirmationModal('PARTIAL')">PARTIAL</button>
               </li>
             </ul>
@@ -320,9 +317,9 @@
         
             // Depending on the action, set the form action attribute
             if (action === 'SOLD') {
-              document.querySelector('form').action = "{{ route('system.reservations.toSoldunits', ['id'=>$toReceipt->id]) }}";
-            } else if (action === 'FINANCING') {
-              document.querySelector('form').action = "{{ route('system.appointments.toReservation', ['id'=>$toReceipt->id]) }}";
+              document.querySelector('form').action = "{{ route('system.reservations.cashSold', ['id'=>$toReceipt->id]) }}";
+            } else if (action === 'PARTIAL') {
+              document.querySelector('form').action = "{{ route('system.reservations.cashReservation', ['id'=>$toReceipt->id]) }}";
             }
         
             // Submit the form

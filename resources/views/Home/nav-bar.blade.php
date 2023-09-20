@@ -1,7 +1,7 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="{{route('home')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
         <img src="{{ asset('img/logo.png')}}" class="navbar-logo d-flex img-fluid" alt="Logo">
             <h2 class="m-0 text-primary">RL Car Dealer</h2>
         </a>
@@ -11,9 +11,19 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a class="nav-item nav-link  {{ is_active_route(['home']) }}" href="{{ route('home') }}">Home</a>
+                <a class="nav-item nav-link {{ is_active_route(['vehicles']) }}" href="{{ route('vehicles') }}">Vehicles</a>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <div class="dropdown-menu fade-up m-0" style="border-radius: 0 0 5px 5px">
+                        <a class="dropdown-item {{ is_active_route(['new-arrival']) }}" href="{{ route('new-arrival') }}" >New Arrival</a>
+                        <a class="dropdown-item {{ is_active_route(['financing-calculator']) }}" href="{{ route('financing-calculator') }}">Financing Calculator</a>
+                        <a class="dropdown-item {{ is_active_route(['gallery']) }}" href="{{ route('gallery') }}">Gallery</a>
+                    </div>
+                </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
-                    <div class="dropdown-menu fade-up m-0">
+                    <div class="dropdown-menu fade-up m-0" style="border-radius: 0 0 5px 5px">
                         @auth
                         <a class="dropdown-item {{ is_active_route(['services.carwash']) }}" href="{{ route('services.carwash') }}">Carwash</a>
                         <a class="dropdown-item {{ is_active_route(['services.auto-detailing']) }}" href="{{ route('services.auto-detailing') }}">Auto Detailing</a>
@@ -25,23 +35,11 @@
                         @endauth
                     </div>
                 </div>
-                
-                <a class="nav-item nav-link {{ is_active_route(['vehicles']) }}" href="{{ route('vehicles') }}">Vehicles</a>
-                
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu fade-up m-0">
-                        <a class="dropdown-item {{ is_active_route(['new-arrival']) }}" href="{{ route('new-arrival') }}" >New Arrival</a>
-                        <a class="dropdown-item {{ is_active_route(['financing-calculator']) }}" href="{{ route('financing-calculator') }}">Financing Calculator</a>
-                        <a class="dropdown-item {{ is_active_route(['about']) }}" href="{{ route('about') }}">About</a>
-                       
-                    </div>
-                </div>
                 <a class="nav-item nav-link @if(Route::currentRouteName() == 'contact') active @endif" href="{{ route('contact') }}">Contact</a>
                 @auth
                 <div class="nav-item dropdown">
                 <a class="btn btn-primary py-4 px-lg-5 d-block" data-bs-toggle="dropdown">Hi, {{auth()->user()->first_name}}</a>
-                <div class="dropdown-menu fade-up w-100 ">
+                <div class="dropdown-menu fade-up w-100 " style="border-radius: 0 0 5px 5px">
                         
                             <a class="dropdown-item {{ is_active_route(['profile.booked_services']) }}" href="{{route('profile.booked_services')}}"><i class="fa-solid fa-bookmark"></i> Booked Services</a>
                             <a class="dropdown-item {{ is_active_route(['profile.trade_request']) }}" href="{{route('profile.trade_request')}}"><i class="fa-solid fa-right-left"></i> Trade-in Request</a>

@@ -64,32 +64,33 @@
 
                   <h5 class="fw-normal pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
 
-                  <div class="form-outline mb-2 col-12">
-                    <input type="email" id="email" class="form-control  @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                    <label class="form-label" for="email">{{ __('Email Address') }}</label>
+                  <div class="form-outline mb-3 col-12">
+                    <input type="email" id="email" class="form-control  @error('email') is-invalid @enderror" name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                   </div>
+                <div class="form-group d-flex position-relative mb-2">
+                  <input name="password" id="password" type="password" class="form-control rounded-left pr-5 @error('password') is-invalid @enderror" placeholder="Password" required autocomplete="current-password">
+                  <i class="fas fa-eye position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" onclick="togglePasswordVisibility()" id="togglePasswordIcon"></i>
+              </div>
 
-                  <div class="form-outline mb-2">
-                    <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                    <label class="form-label" for="password">{{ __('Password') }}</label>
-                  </div>
+                  
 
                   <a class="small text-muted" href="#!">Forgot password?</a>
                   <p class=" pb-lg-2">Don't have an account? <a href="/register" class="text-primary text-bold">Register here</a></p>
 
-                  <div class=" col-md-12">
+                  <div class="mb-5 col-md-12">
                     <button type="submit" class="btn btn-dark col-12 ">Login</button>
                   </div>
                   </form>
                  <hr>
 
-                <div class=" mb-2 col-md-12">
-                 <button class="btn btn-block btn-primary col-12" type="submit"><i class="fab fa-facebook-f"></i> Sign in with Facebook</button>
-                </div>
+                 <a class="btn btn-block btn-primary col-12 mb-3" type="button" href="{{route('facebook.redirect')}}">
+                  <i class="fab fa-facebook-f"></i> Sign in with Facebook
+                </a>
                   
-                <div class=" mb-2 col-md-12">
-                  <button class="btn btn-block btn-danger col-12" type="submit"><i class="fa-brands fa-google-plus-g"></i> Sign in with Google</button>
-                </div>
+                <a class="btn btn-block btn-danger col-12" type="button" href="{{route('google.redirect')}}">
+                  <i class="fa-brands fa-google"></i> Sign in with Google
+                </a>
+                
               
                   
                  
@@ -108,21 +109,22 @@
   </main>
   <!-- End #main -->
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.3.2/tinymce.min.js" integrity="sha512-0hADhKU8eEFSmp3+f9Yh8QmWpr6nTYLpN9Br7k2GTUQOT6reI2kdEOwkOORcaRZ+xW5ZL8W24OpBlsCOCqNaNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-  <!-- JavaScript Libraries -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>-->
+<script>
+  function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('password');
+        const togglePasswordIcon = document.getElementById('togglePasswordIcon');
 
-    <!-- Template Javascript -->
-    <!-- <script src="js/main.js"></script> -->
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            togglePasswordIcon.classList.remove('fa-eye');
+            togglePasswordIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            togglePasswordIcon.classList.remove('fa-eye-slash');
+            togglePasswordIcon.classList.add('fa-eye');
+        }
+    }
+</script>
 
 </body>
 </html>
