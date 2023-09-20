@@ -29,7 +29,7 @@ class Trades extends Model
         'unit_model', 
         'unit_variant', 
         'unit_plate_no',
-        'unit_price',
+        'unit_trade_value',
         'date',
         'time',
         'photo_1',

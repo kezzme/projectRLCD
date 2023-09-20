@@ -82,7 +82,6 @@
                 <img src="{{ url('storage/images/'.$units->car_model.'/'.$units->display_image_9) }}" class="d-block w-100" />
               </div>
               @endif
-              <!-- 9 IMAGES -->
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -271,35 +270,36 @@
                 <label for="email" class="text-white">Email</label>
                   <input type="text" name="email" class="form-control btn-rounded" style="height: 50px;" value="{{auth()->user()->email}}" readonly>
               </div>
+             
               <div class="col-md-6">
+                <label for="unit_make" class="text-white">Make</label>
+                <input type="text" name="unit_make" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. Toyota" value="{{ old('unit_make') }}"  required>
+              </div>
+              <div class="col-md-6">
+                <label for="unit_model" class="text-white">Model</label>
+                  <input type="text" name="unit_model" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. Vios" value="{{ old('unit_model') }}" required>
+              </div>
+              <div class="col-md-4">
+                <label for="unit_variant" class="text-white">Variant</label>
+                <input type="text" name="unit_variant" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. G" value="{{ old('unit_variant') }}"  required>
+              </div>
+              <div class="col-md-4">
                 <label for="year" class="text-white">Year</label>
-                  <input type="text" name="car_year" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. 2019" value="{{ old('car_year') }}" required>
+                  <input type="text" name="unit_year" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. 2019" value="{{ old('unit_year') }}" required>
               </div>
-              <div class="col-md-6">
-                <label for="make" class="text-white">Make</label>
-                <input type="text" name="car_make" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. Toyota" value="{{ old('car_make') }}"  required>
-              </div>
-              <div class="col-md-6">
-                <label for="model" class="text-white">Model</label>
-                  <input type="text" name="car_model" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. Vios" value="{{ old('car_model') }}" required>
-              </div>
-              <div class="col-md-6">
-                <label for="car_variant" class="text-white">Variant</label>
-                <input type="text" name="car_variant" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. G" value="{{ old('car_variant') }}"  required>
-              </div>
-              <div class="col-md-5">
-                <label for="plate_no" class="text-white">Plate No.</label>
+              <div class="col-md-4">
+                <label for="unit_plate_no" class="text-white">Plate No.</label>
                 <input type="text" name="unit_plate_no" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" value="{{ old('plate_no') }}" required>
               </div>
-              <div class="col-md-7">
+              <div class="col-md-4">
                 <label for="unit_trade_value" class="text-white">Trade Value</label>
                 <input type="text" id="totalPrice" name="unit_trade_value" class="form-control btn-rounded" style="height: 50px;" maxlength="7" required>
               </div>
-              <div class="col-md-6 ">
+              <div class="col-md-4 ">
                 <label for="datepicker" class="text-white">Date</label>
                 <input type="text" class="form-control btn-rounded" id="datepicker" name="date" style="height: 50px;" placeholder="Select Date" required>
               </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label for="dropdownList" class="text-white">Time</label>
                       <select class="form-select btn-rounded" name="time" id="dropdownList" style="height: 50px;" value="{{ old('time') }}" required>
                         <option id="btn9AM" selected>9:00 AM</option>
@@ -318,6 +318,7 @@
                           <option id="btn4:30PM">4:30 PM</option>
                       </select>
                 </div>
+                
               <input type="text" class="hidden" name="user_id" value="{{auth()->user()->id}}" readonly>
               <input type="text" class="hidden" name="uid" value="{{$units->uid}}" readonly>
               <input type="text" class="hidden" name="car_year" value="{{$units->car_year}}" readonly>
@@ -328,6 +329,8 @@
               <input type="text" class="hidden" name="bought_price" value="{{$units->bought_price}}" readonly>
               <input type="text" class="hidden" name="car_price" value="{{$units->car_price}}" readonly>
               <input type="text" class="hidden" name="image" value="{{$units->image}}" readonly>
+
+              
               <div class="col-sm-12">
                 <label for="photoInput" class="text-white">Upload Car Images</label>
                 <input type="file" class="form-control btn-rounded" name="photos[]" id="photoInput" accept="image/*" multiple required>
@@ -368,7 +371,7 @@
     </div>
 </div>
 <div class="modal fade" id="validationModal" tabindex="-1" role="dialog" aria-labelledby="validationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="validationModalLabel">Validation Error</h5>

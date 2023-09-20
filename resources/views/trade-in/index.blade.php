@@ -272,23 +272,23 @@
               </div>
              
               <div class="col-md-6">
-                <label for="make" class="text-white">Make</label>
-                <input type="text" name="car_make" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. Toyota" value="{{ old('car_make') }}"  required>
+                <label for="unit_make" class="text-white">Make</label>
+                <input type="text" name="unit_make" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. Toyota" value="{{ old('unit_make') }}"  required>
               </div>
               <div class="col-md-6">
-                <label for="model" class="text-white">Model</label>
-                  <input type="text" name="car_model" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. Vios" value="{{ old('car_model') }}" required>
+                <label for="unit_model" class="text-white">Model</label>
+                  <input type="text" name="unit_model" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. Vios" value="{{ old('unit_model') }}" required>
               </div>
               <div class="col-md-4">
-                <label for="car_variant" class="text-white">Variant</label>
-                <input type="text" name="car_variant" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. G" value="{{ old('car_variant') }}"  required>
+                <label for="unit_variant" class="text-white">Variant</label>
+                <input type="text" name="unit_variant" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. G" value="{{ old('unit_variant') }}"  required>
               </div>
               <div class="col-md-4">
                 <label for="year" class="text-white">Year</label>
-                  <input type="text" name="car_year" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. 2019" value="{{ old('car_year') }}" required>
+                  <input type="text" name="unit_year" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" placeholder="ex. 2019" value="{{ old('unit_year') }}" required>
               </div>
               <div class="col-md-4">
-                <label for="plate_no" class="text-white">Plate No.</label>
+                <label for="unit_plate_no" class="text-white">Plate No.</label>
                 <input type="text" name="unit_plate_no" class="form-control btn-rounded" style="height: 50px; text-transform:uppercase;" value="{{ old('plate_no') }}" required>
               </div>
               <div class="col-md-4">

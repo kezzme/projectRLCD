@@ -80,6 +80,8 @@ class TradeController extends Controller
     
        
         $unitPrice = str_replace(',', '', $request->input('unit_trade_value'));
+        $dateFormat = date('Y-m-d', strtotime($requestedDate));
+
         $adInfo = Trades::create([
             'user_id' => $request->input('user_id'),
             'uid' => $request->input('uid'),
@@ -101,7 +103,7 @@ class TradeController extends Controller
             'unit_variant' => $request->input('unit_variant'),
             'unit_plate_no' => $request->input('unit_plate_no'),
             'unit_trade_value' => $unitPrice,
-            'date' => $requestedDate,
+            'date' => $dateFormat,
             'time' => $requestedTime,
             'photo_1' => isset($photoDetails[0]) ? $photoDetails[0] : null,
             'photo_2' => isset($photoDetails[1]) ? $photoDetails[1] : null,
@@ -198,6 +200,7 @@ class TradeController extends Controller
        
 
         $unitPrice = str_replace(',', '', $request->input('unit_trade_value'));
+        $dateFormat = date('Y-m-d', strtotime($requestedDate));
         $adInfo = Trades::create([
             'user_id' => $request->input('user_id'),
             'uid' => $request->input('uid'),
@@ -219,9 +222,8 @@ class TradeController extends Controller
             'unit_variant' => $request->input('unit_variant'),
             'unit_plate_no' => $request->input('unit_plate_no'),
             'unit_trade_value' => $unitPrice,
-            'date' => $requestedDate,
+            'date' => $dateFormat,
             'time' => $requestedTime,
-            // 'photo_details' => $jsonPhotoDetails,
             'photo_1' => isset($photoDetails[0]) ? $photoDetails[0] : null,
             'photo_2' => isset($photoDetails[1]) ? $photoDetails[1] : null,
             'photo_3' => isset($photoDetails[2]) ? $photoDetails[2] : null,

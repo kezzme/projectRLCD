@@ -9,6 +9,7 @@ use App\Http\Controllers\TradeController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SystemCalendarController;
 use App\Http\Controllers\SystemAppointmentController;
 use App\Http\Controllers\FinancingController;
@@ -111,11 +112,11 @@ Route::middleware(['guest'])->group(function(){
     Route::post('/login/process', [UserController::class, 'process'])->name('process');
     Route::post('/store', [UserController::class, 'store'])->name('store');
 
-    Route::get('auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('google.redirect');
-    Route::get('auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback'])->name('google.callback');
+    Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('google.redirect');
+    Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback'])->name('google.callback');
 
-    Route::get('auth/facebook', [GoogleAuthController::class, 'redirectToFacebook'])->name('facebook.redirect');
-    Route::get('auth/facebook/callback', [GoogleAuthController::class, 'handleFacebookCallback'])->name('facebook.callback');
+    Route::get('auth/facebook', [LoginController::class, 'redirectToFacebook'])->name('facebook.redirect');
+    Route::get('auth/facebook/callback', [LoginController::class, 'handleFacebookCallback'])->name('facebook.callback');
 
 
 });

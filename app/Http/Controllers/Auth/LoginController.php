@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -36,5 +37,33 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    //Google Login
+    public function redirectToGoogle()
+    {
+        return Socialite::driver(driver: 'google')->redirect();
+    }
+
+    //Google callback
+    public function handleGoogleCallback()
+    {
+        $user = Socialite::driver(driver: 'google')->user();
+
+        //$user->token;
+    }
+
+    //Facebook Login
+    public function redirectFacebook()
+    {
+        return Socialite::driver(driver: 'facebook')->redirect();
+    }
+
+    //Facebook callback
+    public function handleFacebookCallback()
+    {
+        $user = Socialite::driver(driver: 'facebook')->user();
+
+        //$user->token;
     }
 }

@@ -11,7 +11,7 @@ Make: {{$tradeDetails['unit_make']}} <br>
 Model: {{$tradeDetails['unit_model']}} <br>
 Variant: {{$tradeDetails['unit_variant']}} <br>
 Plate No: {{$tradeDetails['unit_plate_no']}} <br>
-Price: ₱{{ number_format($tradeDetails['unit_price'], 0, '.', ',') }} <br>
+Trade Value: ₱{{ number_format($tradeDetails['unit_trade_value'], 0, '.', ',') }} <br>
 
 Your Request: <br>
 Year: {{$tradeDetails['car_year']}} <br>
