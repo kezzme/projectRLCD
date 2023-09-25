@@ -16,22 +16,28 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-up m-0" style="border-radius: 0 0 5px 5px">
-                        <a class="dropdown-item {{ is_active_route(['new-arrival']) }}" href="{{ route('new-arrival') }}" >New Arrival</a>
-                        <a class="dropdown-item {{ is_active_route(['financing-calculator']) }}" href="{{ route('financing-calculator') }}">Financing Calculator</a>
-                        <a class="dropdown-item {{ is_active_route(['gallery']) }}" href="{{ route('gallery') }}">Gallery</a>
+                        <a class="dropdown-item {{ is_active_route(['new-arrival']) }}" href="{{ route('new-arrival') }}"><i class="fa-solid fa-bullhorn"></i> <span>New Arrival</span> </a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item {{ is_active_route(['financing-calculator']) }}" href="{{ route('financing-calculator') }}"><i class="fa-solid fa-percent"></i> <span>Financing Calculator</span> </a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item {{ is_active_route(['gallery']) }}" href="{{ route('gallery') }}"><i class="fa-solid fa-images"></i> <span>Gallery</span> </a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
                     <div class="dropdown-menu fade-up m-0" style="border-radius: 0 0 5px 5px">
                         @auth
-                        <a class="dropdown-item {{ is_active_route(['services.carwash']) }}" href="{{ route('services.carwash') }}">Carwash</a>
-                        <a class="dropdown-item {{ is_active_route(['services.auto-detailing']) }}" href="{{ route('services.auto-detailing') }}">Auto Detailing</a>
-                        <a class="dropdown-item {{ is_active_route(['services.paintjob']) }}" href="{{ route('services.paintjob') }}">Paint Job</a>
+                        <a class="dropdown-item {{ is_active_route(['services.carwash']) }}" href="{{ route('services.carwash') }}"><i class="fa-solid fa-droplet"></i> <span>Carwash</span> </a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item {{ is_active_route(['services.auto-detailing']) }}" href="{{ route('services.auto-detailing') }}"><i class="fa-solid fa-screwdriver-wrench"></i> <span>Auto Detailing</span> </a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item {{ is_active_route(['services.paintjob']) }}" href="{{ route('services.paintjob') }}"><i class="fa-solid fa-fill-drip"></i> <span>Paint Job</span> </a>
                         @else
-                        <a class="dropdown-item" data-bs-toggle="modal" href="#ServiceModalToggle">Carwash</a>
-                        <a class="dropdown-item" data-bs-toggle="modal" href="#ServiceModalToggle">Auto Detailing</a>
-                        <a class="dropdown-item" data-bs-toggle="modal" href="#ServiceModalToggle">Paint Job</a>
+                        <a class="dropdown-item" data-bs-toggle="modal" href="#ServiceModalToggle"><i class="fa-solid fa-droplet"></i> <span>Carwash</span> </a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item" data-bs-toggle="modal" href="#ServiceModalToggle"><i class="fa-solid fa-screwdriver-wrench"></i> <span>Auto Detailing</span> </a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item" data-bs-toggle="modal" href="#ServiceModalToggle"><i class="fa-solid fa-fill-drip"></i> <span>Paint Job</span> </a>
                         @endauth
                     </div>
                 </div>
@@ -41,12 +47,15 @@
                 <a class="btn btn-primary py-4 px-lg-5 d-block" data-bs-toggle="dropdown">Hi, {{auth()->user()->first_name}}</a>
                 <div class="dropdown-menu fade-up w-100 " style="border-radius: 0 0 5px 5px">
                         
-                            <a class="dropdown-item {{ is_active_route(['profile.booked_services']) }}" href="{{route('profile.booked_services')}}"><i class="fa-solid fa-bookmark"></i> Booked Services</a>
-                            <a class="dropdown-item {{ is_active_route(['profile.trade_request']) }}" href="{{route('profile.trade_request')}}"><i class="fa-solid fa-right-left"></i> Trade-in Request</a>
-                            <a class="dropdown-item {{ is_active_route(['profile.appoints']) }}" href="{{route('profile.appoints')}}"><i class="fa-solid fa-calendar-check"></i> Appointment</a>
+                            <a class="dropdown-item {{ is_active_route(['profile.booked_services']) }}" href="{{route('profile.booked_services')}}"><i class="fa-solid fa-bookmark"></i> <span>Booked Services</span></a>
+                            <hr class="dropdown-divider">
+                            <a class="dropdown-item {{ is_active_route(['profile.trade_request']) }}" href="{{route('profile.trade_request')}}"><i class="fa-solid fa-right-left"></i> <span>Trade-in Request</span></a>
+                            <hr class="dropdown-divider">
+                            <a class="dropdown-item {{ is_active_route(['profile.appoints']) }}" href="{{route('profile.appoints')}}"><i class="fa-solid fa-calendar-check"></i> <span>Appointment</span></a>
+                            <hr class="dropdown-divider">
                             <form action="/logout" method="POST">
                                 @csrf
-                            <button class="dropdown-item @if(Route::currentRouteName() == 'logout') active @endif"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                            <button class="dropdown-item @if(Route::currentRouteName() == 'logout') active @endif"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></button>
                         </form>
                     </div>  
                 </div>

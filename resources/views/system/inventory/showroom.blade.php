@@ -1,7 +1,7 @@
 <x-system-layout>
 <main id="main" class="main">
 <div class="row g-3" >
-      <div class="pagetitle col-md-10">
+  <div class="pagetitle col-md-5">
         <h1>Showroom</h1>
           <nav>
               <ol class="breadcrumb">
@@ -10,8 +10,20 @@
                 <li class="breadcrumb-item active">Showroom</li>
               </ol>
             </nav>
-       </div>
-  </div><!-- End Page Title -->
+          </div>
+            <div class="col-md-7">
+              <div class="col-md-12 mb-3">
+                <div class="input-group search-bar">
+                  <input type="text" class="form-control rounded-5" placeholder="Search...">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text bg-transparent border-0" style="position: absolute; right: 0; top: 0; bottom: 0; padding: 0.375rem;">
+                      <i class="fas fa-search"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+           </div>
+        </div><!-- End Page Title -->
 
     <section class="section">
         <div class="col-md-12 mt-2 ">
@@ -19,7 +31,7 @@
             @foreach ($units as $unit)
     <div class="col-md-3 d-flex ">
         <div class="card card-showroom rounded-4 product-grid2">
-        <div class="justify-content-between align-items-center"> <span class="car-price">₱{{ number_format($unit->price, 0, '.', ',') }}</span> </div>
+        <div class="justify-content-between align-items-center"> <span class="car-price">₱{{ number_format($unit->car_price, 0, '.', ',') }}</span> </div>
          <img src="{{ asset('img/'.$unit->image.'')}}" class="card-img-top">
           <div class="card-body">
             

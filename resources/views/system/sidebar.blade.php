@@ -92,12 +92,12 @@
     <ul id="trade-in-nav" class="nav-content collapse {{ is_active_route(['system.trade_in.requests', 'system.trade_in.status', 'system.trade_in.totiReceipt', 'system.trade_in.traded']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
       <li>
         <a class="{{ is_active_route('system.trade_in.requests') }}" href="{{ route('system.trade_in.requests') }}">
-          <i class="fa-regular fa-circle"></i><span>Trade Requests</span>
+          <i class="fa-regular fa-circle"></i><span>Requests</span>
         </a>
       </li>
       <li>
         <a class="{{ is_active_route(['system.trade_in.status', 'system.trade_in.totiReceipt']) }}" href="{{ route('system.trade_in.status') }}">
-          <i class="fa-regular fa-circle"></i><span>Trade-in Status</span>
+          <i class="fa-regular fa-circle"></i><span>Status</span>
         </a>
       </li>
       <li>
@@ -132,15 +132,10 @@
   </li><!-- End Receipts Nav -->
 
   <li class="nav-item">
-    <a class="nav-link {{ is_active_route(['system.walk_in.trades', 'system.walk_in.carwash', 'system.walk_in.detailing', 'system.walk_in.paintjob'], 'collapsed') }}" data-bs-target="#walkin-nav" data-bs-toggle="collapse" href="#">
+    <a class="nav-link {{ is_active_route(['system.walk_in.carwash', 'system.walk_in.detailing', 'system.walk_in.paintjob'], 'collapsed') }}" data-bs-target="#walkin-nav" data-bs-toggle="collapse" href="#">
     <i class="fa-solid fa-shoe-prints"></i><span>Walk-in</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="walkin-nav" class="nav-content collapse {{ is_active_route(['system.walk_in.trades', 'system.walk_in.carwash', 'system.walk_in.detailing', 'system.walk_in.paintjob']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
-      <li>
-        <a class="{{ is_active_route('system.walk_in.trades') }}" href="{{ route('system.walk_in.trades') }}">
-          <i class="fa-regular fa-circle"></i><span>Trade-in</span>
-        </a>
-      </li>
       <li>
         <a class="{{ is_active_route('system.walk_in.carwash') }}" href="{{ route('system.walk_in.carwash') }}">
           <i class="fa-regular fa-circle"></i><span>Car Wash</span>

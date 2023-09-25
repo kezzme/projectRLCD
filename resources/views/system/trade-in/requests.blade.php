@@ -1,20 +1,30 @@
 <x-system-layout>
 
 <main id="main" class="main">
-
-    <div class="pagetitle">
-     
-      <h1>Trade Requests</h1>
-      
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Trade-in</li>
-          <li class="breadcrumb-item active">Trade Requests</li>
-        </ol>
-      </nav>
-      
-    </div><!-- End Page Title -->
+  <div class="row g-3" >
+    <div class="pagetitle col-md-5">
+          <h1>Requests</h1>
+            <nav>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">Home</li>
+                  <li class="breadcrumb-item">Trade-in</li>
+                  <li class="breadcrumb-item active">Requests</li>
+                </ol>
+              </nav>
+            </div>
+              <div class="col-md-7">
+                <div class="col-md-12 mb-3">
+                  <div class="input-group search-bar">
+                    <input type="text" class="form-control rounded-5" placeholder="Search...">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text bg-transparent border-0" style="position: absolute; right: 0; top: 0; bottom: 0; padding: 0.375rem;">
+                        <i class="fas fa-search"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+             </div>
+          </div><!-- End Page Title -->
 
     
 
@@ -22,7 +32,7 @@
       <div class="col-12">
         <div class="card recent-sales overflow-auto rounded-5">
           <div class="card-body table-responsive">
-            <h5 class="card-title">Client List</h5>
+            <h5 class="card-title card-header">Client List</h5>
             @if ($trades->isEmpty())
             <p>No Listings</p>
           @else
@@ -57,7 +67,7 @@
                   <td>₱{{ number_format($trade->car_price, 0, '.', ',') }}</td>
                   <td style="text-transform: capitalize">{{$trade->unit_year}} {{$trade->unit_make}} {{$trade->unit_model}} {{$trade->unit_variant}}</td>
                   <td style="text-transform: uppercase">{{$trade->unit_plate_no}}</td>
-                  <td>₱{{ number_format($trade->unit_price, 0, '.', ',') }}</td>
+                  <td>₱{{ number_format($trade->unit_trade_value, 0, '.', ',') }}</td>
                   <td>{{ strtoupper(\Carbon\Carbon::parse($trade->date)->format('F-d-Y')) }}</td>
                   <td>{{$trade->time}}</td>
                   <td class="text-center">@if ($trade->images && count($trade->images) > 0)

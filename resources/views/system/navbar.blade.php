@@ -104,7 +104,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
               <i class="fa-solid fa-user"></i>
-                <span>My Profile</span>
+                <span>Account Settings</span>
               </a>
             </li>
             <li>
@@ -114,7 +114,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
               <i class="fa-solid fa-gear"></i>
-                <span>Account Settings</span>
+                <span>Homepage Settings</span>
               </a>
             </li>
             <li>

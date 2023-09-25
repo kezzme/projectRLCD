@@ -1,16 +1,30 @@
 <x-system-layout>
 
     <main id="main" class="main">
-    
-        <div class="pagetitle">
-          <h1>Reservation</h1>
-          <nav>
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-              <li class="breadcrumb-item active">Reservation</li>
-            </ol>
-          </nav>
-        </div><!-- End Page Title -->
+      <div class="row g-3" >
+        <div class="pagetitle col-md-5">
+              <h1>Cash</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item">Home</li>
+                      <li class="breadcrumb-item">Reservation</li>
+                      <li class="breadcrumb-item active">Cash</li>
+                    </ol>
+                  </nav>
+                </div>
+                  <div class="col-md-7">
+                    <div class="col-md-12 mb-3">
+                      <div class="input-group search-bar">
+                        <input type="text" class="form-control rounded-5" placeholder="Search...">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text bg-transparent border-0" style="position: absolute; right: 0; top: 0; bottom: 0; padding: 0.375rem;">
+                            <i class="fas fa-search"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                 </div>
+              </div><!-- End Page Title -->
     
         <section class="section">
           <div class="col-12">

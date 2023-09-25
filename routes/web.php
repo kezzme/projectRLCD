@@ -37,7 +37,7 @@ use App\Http\Middleware\SystemRoleMiddleware;
 */
 
 
-// Auth::routes();
+Auth::routes();
 
 
 // Route::get('/services', function(){
@@ -106,17 +106,17 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/terms-and-conditions', [HomeController::class, 'termsAndconditions'])->name('termsAndconditions');
 
 
-Route::middleware(['guest'])->group(function(){
+Route::middleware(['web:guest'])->group(function(){
     Route::view('/login', 'user.login')->name('login');
     Route::view('/register', 'user.register')->name('register');
     Route::post('/login/process', [UserController::class, 'process'])->name('process');
     Route::post('/store', [UserController::class, 'store'])->name('store');
 
-    Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('google.redirect');
-    Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback'])->name('google.callback');
+    Route::get('login/google', [LoginController::class, 'redirectToGoogle'])->name('google.redirect');
+    Route::get('login/google/callback', [LoginController::class, 'handleGoogleCallback'])->name('google.callback');
 
-    Route::get('auth/facebook', [LoginController::class, 'redirectToFacebook'])->name('facebook.redirect');
-    Route::get('auth/facebook/callback', [LoginController::class, 'handleFacebookCallback'])->name('facebook.callback');
+    Route::get('login/facebook', [LoginController::class, 'redirectToFacebook'])->name('facebook.redirect');
+    Route::get('login/facebook/callback', [LoginController::class, 'handleFacebookCallback'])->name('facebook.callback');
 
 
 });

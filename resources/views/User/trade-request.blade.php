@@ -31,7 +31,7 @@
                                   <h6>Your Unit:</h6>
                                    <div style="text-transform: capitalize">{{$tradeRequest->unit_year}} {{$tradeRequest->unit_make}} {{$tradeRequest->unit_model}} {{$tradeRequest->unit_variant}}</div>
                                    <div style="text-transform: uppercase">{{$tradeRequest->unit_plate_no}}</div>
-                                   <div>₱{{ number_format($tradeRequest->unit_price, 0, '.', ',') }}</div>
+                                   <div>₱{{ number_format($tradeRequest->unit_trade_value, 0, '.', ',') }}</div>
     
                                </div>
                                </div>

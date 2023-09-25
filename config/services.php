@@ -34,15 +34,15 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => env('GOOGLE_CALLBACK_URL', env('APP_URL').'/auth/google/callback'),
-        // 'redirect' => 'https://rlcardealer.com/auth/google/call-back',
+        // 'redirect' => 'https://localhost:8000/login/google/callback'
+        'redirect' => 'https://rlcardealer.com/login/google/callback',
     ],
 
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => env('FACEBOOK_CALLBACK_URL', env('APP_URL').'/auth/facebook/callback'),
-        // 'redirect' => 'https://rlcardealer.com/auth/google/call-back',
+        'redirect' => 'https://rlcardealer.com/login/facebook/callback',
     ],
+    
 
 ];

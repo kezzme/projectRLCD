@@ -1,20 +1,30 @@
 <x-system-layout>
 
 <main id="main" class="main">
-
-<div class="pagetitle">
- 
-  <h1>Auto Detailing Confirmation</h1>
-  
-  <nav>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">Home</li>
-      <li class="breadcrumb-item">Auto Detailing</li>
-      <li class="breadcrumb-item active">Confirmation</li>
-    </ol>
-  </nav>
-  
-</div><!-- End Page Title -->
+  <div class="row g-3" >
+    <div class="pagetitle col-md-5">
+          <h1>Confirmation</h1>
+            <nav>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">Home</li>
+                  <li class="breadcrumb-item">Auto Detailing</li>
+                  <li class="breadcrumb-item active">Confirmation</li>
+                </ol>
+              </nav>
+            </div>
+              <div class="col-md-7">
+                <div class="col-md-12">
+                  <div class="input-group search-bar">
+                    <input type="text" class="form-control rounded-5" placeholder="Search...">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text bg-transparent border-0" style="position: absolute; right: 0; top: 0; bottom: 0; padding: 0.375rem;">
+                        <i class="fas fa-search"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+             </div>
+          </div><!-- End Page Title -->
 
 <section class="section">
   <div class="col-12">
